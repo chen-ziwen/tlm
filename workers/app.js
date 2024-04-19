@@ -1,10 +1,22 @@
 const commander = require("commander");
 const program = new commander.Command();
 
-program
-    .option("-i, --input <type>", "Input language", "en")
-    .option("-o, --output <type>", "Output language", "zh-Hans")
-    .option()
+function createCommander() {
+    console.log("trigger ===>");
+    program
+        .option("-i, --input <char>", "Input language", "en")
+        .option("-o, --output <char>", "Output language", "zh-Hans");
+    // .option()
 
-const options = program.opts();
+    program.parse();
+
+    const options = program.opts();
+
+    console.log(options);
+}
+
+module.exports = {
+    createCommander,
+}
+
 
