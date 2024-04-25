@@ -2,13 +2,13 @@
   "name": "translate",
   "version": "1.0.0",
   "description": "终端翻译",
-  "main": "index.js",
+  "main": "cli.js",
   "bin": {
-    "tl": "index.js"
+    "tl": "cli.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start": "node cli.js"
   },
   "author": "chiko",
   "license": "ISC",
