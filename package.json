@@ -1,7 +1,11 @@
 {
   "name": "translate",
   "version": "1.0.0",
+<<<<<<< Updated upstream
   "description": "终端翻译",
+=======
+  "description": "terminal translation",
+>>>>>>> Stashed changes
   "main": "cli.js",
   "bin": {
     "tl": "cli.js"
@@ -13,6 +17,7 @@
   "author": "chiko",
   "license": "ISC",
   "dependencies": {
+    "chalk": "^5.3.0",
     "commander": "^12.0.0"
   }
 }

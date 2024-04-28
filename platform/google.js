@@ -1,11 +1,4 @@
-
-/**
- * 
- * @param {*} sl 
- * @param {*} tl 
- * @param {*} raw 
- * @returns 
- */
+// 谷歌翻译
 
 export function translate(sl, tl, raw) {
     return fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=${sl}&tl=${tl}&dt=t&q=${raw}`)

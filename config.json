@@ -1,7 +1,18 @@
 {
+<<<<<<< Updated upstream
     "from_lang": "zh-cn",
     "to_lang": "en",
     "api_key": "your_api_key",
     "api_secret": "your_api_secret",
     "translate_api_url": "https://api.translate.com/language/translate/v2"
 }
+=======
+  "default": "google",
+  "baidu": {
+    "appid": "",
+    "key": "",
+    "from": "",
+    "to": ""
+  }
+}
+>>>>>>> Stashed changes
