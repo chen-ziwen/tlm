@@ -18,8 +18,6 @@ program
     .description("Change current translate platform")
     .action(onUse);
 
-program.
-    command('')
 program
     .option("-f, --from-lang <char>", "Source language", "en")
 
