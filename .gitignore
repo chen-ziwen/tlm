@@ -1,3 +1,5 @@
-.gitignore
-node_module
+
+node_modules
 package-lock.json
+
+privateConfig.json

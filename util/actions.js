@@ -18,8 +18,8 @@ const {
 async function onList() {
     const config = await getPlatformInfo();
     const messages = config.platform.map(([key, value]) => {
-        const prefix = isLowerCaseEqual(key, config.default) ? chalk.blue.bold("   * ") : "     ";
-        const suffix = isLowerCaseEqual(key, config.default) ? chalk.blue(" (Currently useing) ") : "";
+        const prefix = isLowerCaseEqual(key, config.pls) ? chalk.blue.bold("   * ") : "     ";
+        const suffix = isLowerCaseEqual(key, config.pls) ? chalk.blue(" (Currently useing) ") : "";
         return prefix + value.name + suffix;
     });
 
@@ -33,7 +33,7 @@ async function onCurrent(name) {
 async function onUse(name) {
     if (await isTranslatePlatformNotFound(name)) return;
     const config = await readFile(configPath);
-    config.default = name;
+    config.pls = name;
     await writeFile(configPath, config);
     successLog(`The translate platform has been changed to '${name}'.`)
 }

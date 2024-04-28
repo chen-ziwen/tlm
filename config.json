@@ -1,1 +1,1 @@
-{"default":"youdao","platform":{"google":{"name":"谷歌-google"},"baidu":{"name":"百度-baidu","appid":"","key":"","from":"","to":""},"youdao":{"name":"有道-youdao"},"volcengine":{"name":"火山-volcengine"}}}
+{"platform":{"google":{"name":"谷歌-google","appid":"","key":""},"baidu":{"name":"百度-baidu","appid":"","key":""},"youdao":{"name":"有道-youdao","appid":"","key":""},"volcengine":{"name":"火山-volcengine","appid":"","key":""}},"pls":"volcengine","from":"auto","to":"zh-cn"}

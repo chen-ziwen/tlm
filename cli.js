@@ -18,17 +18,16 @@ program
     .description("Change current translate platform")
     .action(onUse);
 
+program.
+    command('')
 program
     .option("-f, --from-lang <char>", "Source language", "en")
-
 
 program
     .option("-t, --to-lang <char>", "Target language", "zh-Hans")
 
 program.parse(process.argv);
 
-
-const options = program.opts();
 
 
 

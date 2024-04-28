@@ -33,7 +33,7 @@ async function getPlatformInfo() {
     const config = await readFile(configPath);
     const platform = Object.entries(config.platform);
     return {
-        default: config.default,
+        pls: config.pls,
         platform
     }
 }
@@ -49,11 +49,11 @@ async function isTranslatePlatformNotFound(name, printErr = true) {
 }
 
 function successLog(message) {
-    console.log(chalk.bgGreenBright('SUCCESS') + " " + message);
+    console.log(chalk.bgGreenBright(" SUCCESS ") + " " + message);
 }
 
 function errorLog(error) {
-    console.error(chalk.bgRed("ERROR") + " " + chalk.red(error));
+    console.error(chalk.bgRed(" ERROR ") + " " + chalk.red(error));
 }
 
 function messageLog(messages) {
