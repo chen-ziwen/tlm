@@ -14,7 +14,6 @@ const {
     isTranslatePlatformNotFound
 } = require("./helpers");
 
-
 async function onList() {
     const config = await getPlatformInfo();
     const messages = config.platform.map(([key, value]) => {

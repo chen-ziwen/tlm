@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
 const commander = require("commander");
-const pkg = require("./package.json");
-const { onList, onUse } = require("./util/actions");
+const pkg = require("../package.json");
+const { onList, onUse } = require("../util/actions");
 
 const program = new commander.Command();
 
@@ -10,7 +10,7 @@ program.version(pkg.version, '-v, --version', 'Output the current version');
 
 program
     .command("ls")
-    .description("List all the translate language")
+    .description("List all the translate platform")
     .action(onList);
 
 program

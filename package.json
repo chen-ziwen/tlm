@@ -2,13 +2,13 @@
   "name": "translate",
   "version": "1.0.0",
   "description": "terminal translation",
-  "main": "cli.js",
+  "main": "./bin/cli.js",
   "bin": {
-    "tl": "cli.js"
+    "tl": "./bin/cli.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node cli.js"
+    "start": "node ./bin/cli.js"
   },
   "author": "chiko",
   "license": "ISC",
