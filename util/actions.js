@@ -11,7 +11,7 @@ const {
     isLowerCaseEqual,
     getPlatformInfo,
     exit,
-    isTranslatePlatformNotFound
+    isTranslationPlatformNotFound
 } = require("./helpers");
 
 async function onList() {
@@ -30,15 +30,29 @@ async function onCurrent(name) {
 }
 
 async function onUse(name) {
-    if (await isTranslatePlatformNotFound(name)) return;
+    if (await isTranslationPlatformNotFound(name)) return;
     const config = await readFile(configPath);
     config.pls = name;
     await writeFile(configPath, config);
-    successLog(`The translate platform has been changed to '${name}'.`)
+    successLog(`The translation platform has been changed to '${name}'.`)
+}
+
+async function onSetTranslation(name, { appid, secretKey }) {
+    if (await isTranslationPlatformNotFound(name)) return;
+
+    // 先实现一个能用的 就先用火山的来测试吧
+    const config = await readFile(configPath);
+    const platform = config.platform[name];
+    platform.appid = appid;
+    platform.key = secretKey;
+    await writeFile(configPath, config);
+    successLog(`Set api-secre-key ${name} success`);
+    console.log('set-Translation ===>', name, appid, secretKey);
 }
 
 module.exports = {
     onList,
     onCurrent,
-    onUse
+    onUse,
+    onSetTranslation
 }

@@ -38,11 +38,22 @@ async function getPlatformInfo() {
     }
 }
 
-async function isTranslatePlatformNotFound(name, printErr = true) {
+async function getPlatformList() {
+    const config = await readFile(configPath);
+    return Object.keys(config.platform);
+}
+
+async function getPlatformItem(name) {
+    if (isTranslationPlatformNotFound(name)) return;
+    const config = await readFile(configPath);
+    return { ens: name, ...config.platform[name] };
+}
+
+async function isTranslationPlatformNotFound(name, printErr = true) {
     const config = await getPlatformInfo();
     const keys = config.platform.map(item => item[0]);
     if (!keys.includes(name)) {
-        printErr && errorLog(`The translate platform '${name}' is not found.`);
+        printErr && errorLog(`The translation platform '${name}' is not found.`);
         return true;
     }
     return false;
@@ -70,6 +81,10 @@ function isLowerCaseEqual(s1, s2) {
     }
 }
 
+function verifTranslationInfo(appid, secretKey) {
+    //    if()
+}
+
 function exit(error) {
     error && errorLog(error);
     process.exit(1);
@@ -82,7 +97,9 @@ module.exports = {
     messageLog,
     isLowerCaseEqual,
     getPlatformInfo,
-    isTranslatePlatformNotFound,
+    getPlatformList,
+    getPlatformItem,
+    isTranslationPlatformNotFound,
     readFile,
     writeFile
 }
