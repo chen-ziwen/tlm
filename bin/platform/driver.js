@@ -1,9 +1,12 @@
-
+const config = require("../../config.json");
 
 class Driver {
-    constructor() {
-
+    constructor(name) {
+        this.config = {};
     }
+    
+    
+    
 }
 
 module.exports = Driver;

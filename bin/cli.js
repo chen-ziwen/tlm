@@ -2,8 +2,7 @@
 
 const commander = require("commander");
 const pkg = require("../package.json");
-const { onList, onUse, onSetTranslation } = require("../util/actions");
-const { getPlatformList } = require("../util/helpers");
+const { onList, onUse, onSetTranslation, test } = require("../util/actions");
 
 const program = new commander.Command();
 
@@ -25,6 +24,11 @@ program
     .requiredOption("-s, --secret-key <secretKey>", "Set translation platform secret key")
     .description("Set the appid and key for the translation platform to access the channel translation api")
     .action(onSetTranslation);
+
+// 测试 翻译
+program
+    .argument("<query>")
+    .action(test)
 
 program.parse(process.argv);
 

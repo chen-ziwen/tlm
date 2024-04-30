@@ -10,6 +10,9 @@ class Youdao extends Driver {
     }
 
     translate() {
-       
+
     }
 }
+
+
+module.exports = Youdao;

@@ -1,13 +1,13 @@
 {
   "platform": {
     "google": { "name": "谷歌-google", "appid": "", "key": "" },
-    "baidu": { "name": "百度-baidu", "appid": "", "key": "" },
+    "baidu": {
+      "name": "百度-baidu",
+      "appid": "20240430002039100",
+      "key": "TQ9GyNmtbJ5cJBucCptl"
+    },
     "youdao": { "name": "有道-youdao", "appid": "", "key": "" },
-    "volcengine": {
-      "name": "火山-volcengine",
-      "appid": "AKLTYzkzNzQ1YmZiM2FhNDA1YmIyOGEzMWVlMzM3ODg0Nzc",
-      "key": "TURObE1HRTJOREU1WW1Gak5EUTJOV0ZsWXpWa05qUTFNR1UzTlRObFpXSQ=="
-    }
+    "volcengine": { "name": "火山-volcengine", "appid": "", "key": "" }
   },
   "pls": "baidu",
   "from": "auto",

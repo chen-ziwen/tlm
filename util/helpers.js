@@ -46,7 +46,7 @@ async function getPlatformList() {
 async function getPlatformItem(name) {
     if (isTranslationPlatformNotFound(name)) return;
     const config = await readFile(configPath);
-    return { ens: name, ...config.platform[name] };
+    return { ens: name, to: config.to, from: config.from, ...config.platform[name] };
 }
 
 async function isTranslationPlatformNotFound(name, printErr = true) {
