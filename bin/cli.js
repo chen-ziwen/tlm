@@ -2,8 +2,13 @@
 
 const commander = require("commander");
 const pkg = require("../package.json");
-const { onList, onUse, onSetTranslation, test } = require("../util/actions");
-
+const {
+    onList,
+    onUse,
+    onSetTranslation,
+    onTranslate
+} = require("../util/actions");
+ 
 const program = new commander.Command();
 
 program.version(pkg.version, '-v, --version', 'Output the current version');
@@ -25,10 +30,11 @@ program
     .description("Set the appid and key for the translation platform to access the channel translation api")
     .action(onSetTranslation);
 
-// 测试 翻译
 program
-    .argument("<query>")
-    .action(test)
+    .command("p")
+    .argument("<query...>")
+    .description("Translate the text using the \`tl p <params...>\` directive")
+    .action(onTranslate)
 
 program.parse(process.argv);
 

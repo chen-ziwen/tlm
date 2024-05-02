@@ -32,21 +32,12 @@ async function writeFile(path, content) {
 async function getPlatformInfo() {
     const config = await readFile(configPath);
     const platform = Object.entries(config.platform);
-    return {
-        pls: config.pls,
-        platform
-    }
+    return { pls: config.pls, platform }
 }
 
 async function getPlatformList() {
     const config = await readFile(configPath);
     return Object.keys(config.platform);
-}
-
-async function getPlatformItem(name) {
-    if (isTranslationPlatformNotFound(name)) return;
-    const config = await readFile(configPath);
-    return { ens: name, to: config.to, from: config.from, ...config.platform[name] };
 }
 
 async function isTranslationPlatformNotFound(name, printErr = true) {
@@ -98,7 +89,6 @@ module.exports = {
     isLowerCaseEqual,
     getPlatformInfo,
     getPlatformList,
-    getPlatformItem,
     isTranslationPlatformNotFound,
     readFile,
     writeFile

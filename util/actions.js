@@ -1,8 +1,7 @@
 
 const chalk = require("chalk");
 const { configPath } = require("../constants");
-const { readFile } = require("../util/helpers");
-const translate = require("../bin/platform/index");
+const { translate } = require("../bin/platform/index");
 
 const {
     readFile,
@@ -52,9 +51,9 @@ async function onSetTranslation(name, { appid, secretKey }) {
     console.log('set-Translation ===>', name, appid, secretKey);
 }
 
-async function test(query) {
-    const q = await translate(query) // 动态参数
-    console.log(q);
+async function onTranslate(query) {
+    const txt = await translate(query);
+    console.log(chalk.blue(txt));
 }
 
 module.exports = {
@@ -63,5 +62,5 @@ module.exports = {
     onUse,
     onSetTranslation,
 
-    test
+    onTranslate
 }

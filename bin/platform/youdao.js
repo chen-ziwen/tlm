@@ -1,16 +1,14 @@
 // 有道翻译
+const Core = require('./core');
 
-const { getPlatformItem } = require("../../util/helpers");
-const config = require("../../config.json");
-const Driver = require('./driver');
-
-class Youdao extends Driver {
+class Youdao extends Core {
     constructor() {
-        this.translate_api = "";
+        super("youdao");
+        this.mTitle = "有道翻译";
     }
 
-    translate() {
-
+    async translate() {
+        const url = "";
     }
 }
 

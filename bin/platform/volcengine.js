@@ -1,38 +1,20 @@
 // 火山翻译
-const { getPlatformItem } = require("../../util/helpers");
-const Driver = require('./driver');
+const Core = require('./core');
 const { iam } = require("@volcengine/openapi");
 
-class Volcengine extends Driver {
+class Volcengine extends Core {
     constructor() {
-        super();
+        super("volcengine");
+        this.mTitle = "火山翻译"
 
-        this.host = "translate.volcengineapi.com";
-        this.main();
+        this.url = "translate.volcengineapi.com";
     }
 
 
-    async main() {
-        const iamService = iam.defaultService;
-
-        // 设置sdk
-        const { appid, key } = getPlatformItem("volcengine");
-        iamService.setAccessKeyId(appid);
-        iamService.setSecretKey(key);
-
-        console.log('user response ====>', iamService);
-
-        const openApiRequestData = {
-            method: "POST",
-            region: "cn-north-1",
-            params: {
-                Action:""
-            }
-        }
-        iamService.fetchOpenAPI()
-
+    async translate() {
 
     }
+
 }
 
 module.exports = Volcengine;

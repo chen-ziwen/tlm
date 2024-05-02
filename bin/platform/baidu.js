@@ -1,22 +1,23 @@
 // 百度翻译
-const Driver = require('./driver');
+const Core = require('./core');
 const MD5 = require("md5")
 const fetch = require("node-fetch");
 
-class Baidu extends Driver {
+class Baidu extends Core {
     constructor() {
-        super();
-        this.url = "https://fanyi-api.baidu.com/api/trans/vip/translate?"
+        super("baidu");
+        this.mTitle = "百度翻译";
     }
-    // 这边参数得处理普通字符串和数组类型
-    // 数组类型就是句子形式
-    async translate(query, config) {
-        const { appid, key, from, to } = config;
+
+    async translate(query) {
+        const { appid, key, from, to } = await this.getPlatformConfig();
         const salt = Date.now();
-        const sign = MD5(appid + query + salt + key);
+        const q = query.join(" ");
+        const sign = MD5(appid + q + salt + key);
+        let url = "https://fanyi-api.baidu.com/api/trans/vip/translate?";
 
         const params = {
-            q: query,
+            q,
             from,
             to,
             appid,
@@ -25,21 +26,18 @@ class Baidu extends Driver {
         };
 
         for (let q in params) {
-            this.url += `${q}=${params[q]}&`
+            url += `${q}=${params[q]}&`
         }
 
-        this.url = this.url.slice(0, this.url.length - 1);
-        this.url = encodeURI(this.url);
+        url = url.slice(0, url.length - 1);
+        url = encodeURI(url);
 
-        // 简单处理 后续还要优化
-        return fetch(this.url)
+        return fetch(url)
             .then(res => res.json())
-            .then(data => {
-                const q = data["trans_result"][0].dst;
-                return q;
-            })
+            .then(data => data["trans_result"][0].dst)
             .catch((err) => console.error(err));
     }
+
 }
 
 

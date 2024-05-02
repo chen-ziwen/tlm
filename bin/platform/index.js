@@ -3,13 +3,21 @@ const Google = require("./google");
 const Youdao = require("./youdao");
 const Volcengine = require("./volcengine");
 
-const { getPlatformItem } = require("../../util/helpers");
+const config = require("../../config.json");
 
-const platform = { Baidu, Google, Youdao, Volcengine };
+const platform = {
+    baidu: new Baidu(),
+    google: new Google(),
+    youdao: new Youdao(),
+    volcengine: new Volcengine()
+};
 
-module.exports = (query, config) => {
-    const { pls } = config;
-    const s = pls.charAt(0).toUpperCase() + pls.slice(1);
-    const pl = new platform[s](query, config);
-    return pl.translate;
+const platformName = config.pls;
+
+function translate(query) {
+    return platform[platformName].translate(query);
+}
+
+module.exports = {
+    translate,
 }

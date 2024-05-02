@@ -1,5 +1,5 @@
 // 谷歌翻译
-const Driver = require("./driver");
+const Core = require("./core");
 // export function translate(sl, tl, raw) {
 //     return fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=${sl}&tl=${tl}&dt=t&q=${raw}`)
 //         .then(res => res.json())
@@ -8,10 +8,17 @@ const Driver = require("./driver");
 //         });
 // }
 
-class Google extends Driver {
+class Google extends Core {
     constructor() {
-        this.url = "https://translate.googleapis.com/translate_a/single"
+        super("google");
+        this.mTitle = "谷歌翻译";
+
+    }
+
+    async translate() {
+        const url = "https://translate.googleapis.com/translate_a/single";
     }
 }
+
 
 module.exports = Google;
