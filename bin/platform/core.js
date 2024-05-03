@@ -1,5 +1,6 @@
 const { readFile } = require("../../util/helpers");
 const { configPath } = require("../../constants");
+const { v4: uuidv4 } = require("uuid");
 
 class Core {
     constructor(name) {
@@ -14,11 +15,15 @@ class Core {
         return { ...platform, to, from, pls }
     }
 
-    async getPlatformLangList() {
-
+    getTruncate(str) {
+        const len = str.length;
+        if (len <= 20) return str;
+        return str.slice(0, 10) + len + str.slice(-10);
     }
 
-
+    generalUuidv4() {
+        return uuidv4();
+    }
 }
 
 module.exports = Core;

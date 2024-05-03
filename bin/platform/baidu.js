@@ -9,29 +9,26 @@ class Baidu extends Core {
         this.mTitle = "百度翻译";
     }
 
-    async translate(query) {
+    async url(query) {
         const { appid, key, from, to } = await this.getPlatformConfig();
-        const salt = Date.now();
+        const salt = this.generalUuidv4();
         const q = query.join(" ");
         const sign = MD5(appid + q + salt + key);
-        let url = "https://fanyi-api.baidu.com/api/trans/vip/translate?";
 
-        const params = {
+        const params = new URLSearchParams({
             q,
             from,
             to,
             appid,
             salt,
             sign
-        };
+        });
 
-        for (let q in params) {
-            url += `${q}=${params[q]}&`
-        }
+        return "https://fanyi-api.baidu.com/api/trans/vip/translate?" + params.toString();
+    }
 
-        url = url.slice(0, url.length - 1);
-        url = encodeURI(url);
-
+    async translate(query) {
+        const url = await this.url(query);
         return fetch(url)
             .then(res => res.json())
             .then(data => data["trans_result"][0].dst)
@@ -39,6 +36,5 @@ class Baidu extends Core {
     }
 
 }
-
 
 module.exports = Baidu;

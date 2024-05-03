@@ -16,7 +16,9 @@
     "@volcengine/openapi": "^1.18.1",
     "chalk": "^4.1.2",
     "commander": "^12.0.0",
+    "crypto-js": "^4.2.0",
     "md5": "^2.3.0",
-    "node-fetch": "^2.6.6"
+    "node-fetch": "^2.6.6",
+    "uuid": "^9.0.1"
   }
 }

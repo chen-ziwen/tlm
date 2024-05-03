@@ -5,14 +5,12 @@ const { iam } = require("@volcengine/openapi");
 class Volcengine extends Core {
     constructor() {
         super("volcengine");
-        this.mTitle = "火山翻译"
-
-        this.url = "translate.volcengineapi.com";
+        this.mTitle = "火山翻译";
     }
 
 
     async translate() {
-
+        const url = "translate.volcengineapi.com";
     }
 
 }

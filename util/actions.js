@@ -1,7 +1,7 @@
 
 const chalk = require("chalk");
 const { configPath } = require("../constants");
-const { translate } = require("../bin/platform/index");
+const { translate } = require("../bin/platform/driver");
 
 const {
     readFile,
