@@ -53,7 +53,9 @@ async function onSetTranslation(name, { appid, secretKey }) {
 
 async function onTranslate(query) {
     const txt = await translate(query);
-    console.log(chalk.blue(txt));
+    if (txt) {
+        console.log(chalk.blue(txt));
+    }
 }
 
 module.exports = {

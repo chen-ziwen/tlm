@@ -2,6 +2,8 @@
 const Core = require("./core");
 const fetch = require("node-fetch");
 const sha256 = require("crypto-js/sha256");
+const { errorLog } = require("../../util/helpers");
+
 
 class Youdao extends Core {
     constructor() {
@@ -26,8 +28,27 @@ class Youdao extends Core {
             signType: "v3",
             curtime
         });
-        return "https://openapi.youdao.com/api?" + params.toString();
 
+        return "https://openapi.youdao.com/api?" + params.toString();
+    }
+
+    printError(code) {
+        const messages = {
+            101: "缺少必填的参数",
+            102: "不支持的语言类型",
+            103: "翻译文本过长",
+            108: "应用ID无效",
+            110: "无相关服务的有效实例",
+            111: "开发者账号无效",
+            112: "请求服务无效",
+            113: "查询为空",
+            202: "签名检验失败,检查 KEY 和 SECRET",
+            401: "账户已经欠费",
+            411: "访问频率受限",
+        };
+
+        const message = this.mTitle + ": " + messages[code] || "请参考错误码：" + code;
+        errorLog(message);
     }
 
     async translate(query) {
@@ -35,10 +56,16 @@ class Youdao extends Core {
         return fetch(url)
             .then(res => res.json())
             .then(data => {
-                return data.translation.join(",");
+                if (data.errorCode !== "0") {
+                    return this.printError(data.errorCode);
+                }
+                return data.translation.join("");
             })
-            .catch((err) => console.error(err));
+            .catch((err) => {
+                this.printError(err);
+            });
     }
+
 }
 
 module.exports = Youdao;

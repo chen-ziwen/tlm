@@ -27,6 +27,10 @@ class Baidu extends Core {
         return "https://fanyi-api.baidu.com/api/trans/vip/translate?" + params.toString();
     }
 
+    errorLog() {
+
+    }
+    
     async translate(query) {
         const url = await this.url(query);
         return fetch(url)

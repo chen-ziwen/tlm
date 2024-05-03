@@ -24,6 +24,7 @@ class Core {
     generalUuidv4() {
         return uuidv4();
     }
+
 }
 
 module.exports = Core;
