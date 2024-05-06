@@ -36,7 +36,7 @@ class Tenxun {
                 secretId: appid,
                 secretKey: key
             },
-            // region: "ap-shanghai",
+            region: "ap-shanghai",
             profile: {
                 signMethod: "TC3-HMAC-SHA256",
                 httpProfile: {
