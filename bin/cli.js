@@ -37,7 +37,3 @@ program
     .action(onTranslate)
 
 program.parse(process.argv);
-
-
-
-

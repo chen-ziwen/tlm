@@ -40,15 +40,12 @@ async function onUse(name) {
 
 async function onSetTranslation(name, { appid, secretKey }) {
     if (await isTranslationPlatformNotFound(name)) return;
-
-    // 先实现一个能用的 就先用火山的来测试吧
     const config = await readFile(configPath);
     const platform = config.platform[name];
     platform.appid = appid;
     platform.key = secretKey;
     await writeFile(configPath, config);
     successLog(`Set api-secre-key ${name} success`);
-    console.log('set-Translation ===>', name, appid, secretKey);
 }
 
 async function onTranslate(query) {
