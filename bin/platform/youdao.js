@@ -1,17 +1,17 @@
 // 有道翻译
 const sha256 = require("crypto-js/sha256");
-const { errorLog } = require("../../util/helpers");
-const {
-    getPlatformConfig,
-    generalUuidv4,
-    getTruncate
-} = require("../../util/helpers");
-
+const { getPlatformConfig, errorLog } = require("../../util/helpers");
 
 class Youdao {
     constructor(name) {
         this.mName = name;
         this.mTitle = "有道翻译";
+    }
+
+    getTruncate(str) {
+        const len = str.length;
+        if (len <= 20) return str;
+        return str.slice(0, 10) + len + str.slice(-10);
     }
 
     async url(query) {
@@ -50,7 +50,8 @@ class Youdao {
             411: "访问频率受限",
         };
 
-        const message = this.mTitle + ": " + messages[code] || "请参考错误码：" + code;
+        const message = this.mTitle + ": " + (messages[code] ||
+            "请参考错误码：" + code + " [https://ai.youdao.com/DOCSIRMA/html/trans/api/wbfy/index.html] ");
         errorLog(message);
     }
 
@@ -59,10 +60,11 @@ class Youdao {
         return fetch(url)
             .then(res => res.json())
             .then(data => {
-                if (data.errorCode !== "0") {
-                    return this.printError(data.errorCode);
+                const { errorCode: ec, translation: tl } = data;
+                if (ec !== "0") {
+                    return this.printError(ec);
                 }
-                return data.translation.join("");
+                return tl.join("");
             })
             .catch((err) => {
                 this.printError(err);

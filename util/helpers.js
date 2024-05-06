@@ -2,7 +2,6 @@ const fs = require("fs");
 const chalk = require("chalk");
 const process = require('../process');
 const { configPath } = require('../constants');
-const { v4: uuidv4 } = require("uuid");
 
 async function readFile(file) {
     return new Promise(resolve => {
@@ -58,16 +57,6 @@ async function isTranslationPlatformNotFound(name, printErr = true) {
     return false;
 }
 
-function generalUuidv4() {
-    return uuidv4();
-}
-
-function getTruncate(str) {
-    const len = str.length;
-    if (len <= 20) return str;
-    return str.slice(0, 10) + len + str.slice(-10);
-}
-
 
 function successLog(message) {
     console.log(chalk.bgGreenBright(" SUCCESS ") + " " + message);
@@ -110,8 +99,6 @@ module.exports = {
     getPlatformList,
     getPlatformConfig,
     isTranslationPlatformNotFound,
-    generalUuidv4,
-    getTruncate,
     readFile,
     writeFile
 }

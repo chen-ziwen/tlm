@@ -1,12 +1,29 @@
 // 腾讯翻译
-// 腾讯云sdk翻译模块
-const tencentCloud = require("tencentcloud-sdk-nodejs-tmt");
-const { getPlatformConfig } = require("../../util/helpers");
+const tencentCloud = require("tencentcloud-sdk-nodejs-tmt"); // 腾讯云sdk翻译模块
+const { getPlatformConfig, errorLog } = require("../../util/helpers");
 
 class Tenxun {
     constructor(name) {
         this.mName = name;
         this.mTitle = "腾讯翻译";
+    }
+
+    printError(code) {
+        const messages = {
+            "MissingParameter": "缺少必填的参数",
+            "UnsupportedOperation.UnsupportedLanguage": "不支持的语言类型",
+            "UnsupportedOperation.TextTooLong": "翻译文本过长",
+            "FailedOperation.UserNotRegistered": "服务未开通，请在腾讯云官网机器翻译控制台开通服务",
+            "FailedOperation.StopUsing": "账号已停服",
+            // "AuthFailure.SignatureFailure": "签名检验失败,检查 KEY 和 SECRET",
+            "FailedOperation.ServiceIsolate": "账户已经欠费",
+            "FailedOperation.NoFreeAmount": "本月免费额度已用完",
+            "RequestLimitExceeded": "访问频率受限",
+        };
+
+        const message = this.mTitle + ": " + (messages[code] ||
+            "请参考错误码：" + code + " [https://cloud.tencent.com/document/product/551/30637] ");
+        errorLog(message);
     }
 
     async translate(query) {
@@ -19,7 +36,7 @@ class Tenxun {
                 secretId: appid,
                 secretKey: key
             },
-            region: "ap-shanghai",
+            // region: "ap-shanghai",
             profile: {
                 signMethod: "TC3-HMAC-SHA256",
                 httpProfile: {
@@ -41,7 +58,9 @@ class Tenxun {
 
         return client.TextTranslate(params)
             .then(data => data.TargetText)
-            .catch((err) => console.err(err));
+            .catch((err) => {
+                this.printError(err.code)
+            });
     }
 }
 
