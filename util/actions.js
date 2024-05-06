@@ -53,9 +53,7 @@ async function onTranslate(query) {
 
 module.exports = {
     onList,
-    onCurrent,
     onUse,
     onSetTranslation,
-
     onTranslate
 }
