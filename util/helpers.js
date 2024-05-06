@@ -2,6 +2,7 @@ const fs = require("fs");
 const chalk = require("chalk");
 const process = require('../process');
 const { configPath } = require('../constants');
+const { v4: uuidv4 } = require("uuid");
 
 async function readFile(file) {
     return new Promise(resolve => {
@@ -40,6 +41,13 @@ async function getPlatformList() {
     return Object.keys(config.platform);
 }
 
+async function getPlatformConfig(name) {
+    const config = await readFile(configPath);
+    const platform = config.platform[name];
+    const to = config.to, from = config.from, pls = config.pls;
+    return { ...platform, to, from, pls }
+}
+
 async function isTranslationPlatformNotFound(name, printErr = true) {
     const config = await getPlatformInfo();
     const keys = config.platform.map(item => item[0]);
@@ -49,6 +57,17 @@ async function isTranslationPlatformNotFound(name, printErr = true) {
     }
     return false;
 }
+
+function generalUuidv4() {
+    return uuidv4();
+}
+
+function getTruncate(str) {
+    const len = str.length;
+    if (len <= 20) return str;
+    return str.slice(0, 10) + len + str.slice(-10);
+}
+
 
 function successLog(message) {
     console.log(chalk.bgGreenBright(" SUCCESS ") + " " + message);
@@ -89,7 +108,10 @@ module.exports = {
     isLowerCaseEqual,
     getPlatformInfo,
     getPlatformList,
+    getPlatformConfig,
     isTranslationPlatformNotFound,
+    generalUuidv4,
+    getTruncate,
     readFile,
     writeFile
 }

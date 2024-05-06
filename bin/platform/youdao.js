@@ -1,22 +1,25 @@
 // 有道翻译
-const Core = require("./core");
-const fetch = require("node-fetch");
 const sha256 = require("crypto-js/sha256");
 const { errorLog } = require("../../util/helpers");
+const {
+    getPlatformConfig,
+    generalUuidv4,
+    getTruncate
+} = require("../../util/helpers");
 
 
-class Youdao extends Core {
-    constructor() {
-        super("youdao");
+class Youdao {
+    constructor(name) {
+        this.mName = name;
         this.mTitle = "有道翻译";
     }
 
     async url(query) {
-        const { appid, key, from, to } = await this.getPlatformConfig();
-        const salt = this.generalUuidv4();
+        const { appid, key, from, to } = await getPlatformConfig(this.mName);
+        const salt = Date.now();
         const q = query.join(" ");
         const curtime = Math.round(new Date().getTime() / 1000);
-        const sign = sha256(appid + this.getTruncate(q) + salt + curtime + key);
+        const sign = sha256(appid + getTruncate(q) + salt + curtime + key);
 
         const params = new URLSearchParams({
             q,

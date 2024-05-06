@@ -1,17 +1,16 @@
 // 百度翻译
-const Core = require('./core');
-const MD5 = require("md5")
-const fetch = require("node-fetch");
+const MD5 = require("crypto-js/md5");
+const { getPlatformConfig, generalUuidv4 } = require("../../util/helpers");
 
-class Baidu extends Core {
-    constructor() {
-        super("baidu");
+class Baidu {
+    constructor(name) {
+        this.mName = name;
         this.mTitle = "百度翻译";
     }
 
     async url(query) {
-        const { appid, key, from, to } = await this.getPlatformConfig();
-        const salt = this.generalUuidv4();
+        const { appid, key, from, to } = await getPlatformConfig(this.mName);
+        const salt = Date.now();
         const q = query.join(" ");
         const sign = MD5(appid + q + salt + key);
 
@@ -30,7 +29,7 @@ class Baidu extends Core {
     errorLog() {
 
     }
-    
+
     async translate(query) {
         const url = await this.url(query);
         return fetch(url)

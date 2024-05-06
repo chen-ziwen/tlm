@@ -1,13 +1,15 @@
-const baidu = require("./baidu");
-const google = require("./google");
-const youdao = require("./youdao");
-const volcengine = require("./volcengine");
+const Baidu = require("./baidu");
+const Google = require("./google");
+const Youdao = require("./youdao");
+const Tenxun = require("./tenxun");
+const Volcengine = require("./volcengine");
 
 module.exports = {
-    baidu,
-    google,
-    youdao,
-    volcengine
+    Baidu,
+    Google,
+    Youdao,
+    Tenxun,
+    Volcengine
 }
 
 

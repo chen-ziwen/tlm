@@ -1,5 +1,4 @@
 // 谷歌翻译
-const Core = require("./core");
 // export function translate(sl, tl, raw) {
 //     return fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=${sl}&tl=${tl}&dt=t&q=${raw}`)
 //         .then(res => res.json())
@@ -8,9 +7,9 @@ const Core = require("./core");
 //         });
 // }
 
-class Google extends Core {
-    constructor() {
-        super("google");
+class Google {
+    constructor(name) {
+        this.mName = name;
         this.mTitle = "谷歌翻译";
 
     }

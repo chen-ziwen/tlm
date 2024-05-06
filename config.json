@@ -1,27 +1,24 @@
 {
-    "platform": {
-        "google": {
-            "name": "谷歌-google",
-            "appid": "",
-            "key": ""
-        },
-        "baidu": {
-            "name": "百度-baidu",
-            "appid": "20240430002039100",
-            "key": "TQ9GyNmtbJ5cJBucCptl"
-        },
-        "youdao": {
-            "name": "有道-youdao",
-            "appid": "7a28b7573c57d509",
-            "key": "t37dvrrLfMNz3lOLrLCxis2DJtxroWb5"
-        },
-        "volcengine": {
-            "name": "火山-volcengine",
-            "appid": "",
-            "key": ""
-        }
+  "platform": {
+    "google": { "name": "谷歌-google", "appid": "", "key": "" },
+    "baidu": {
+      "name": "百度-baidu",
+      "appid": "",
+      "key": ""
     },
-    "pls": "youdao",
-    "from": "auto",
-    "to": "zh"
+    "youdao": {
+      "name": "有道-youdao",
+      "appid": "",
+      "key": ""
+    },
+    "tenxun": {
+      "name": "腾讯-tenxun",
+      "appid": "",
+      "key": ""
+    },
+    "volcengine": { "name": "火山-volcengine", "appid": "", "key": "" }
+  },
+  "pls": "tenxun",
+  "from": "auto",
+  "to": "zh"
 }
