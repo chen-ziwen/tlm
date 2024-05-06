@@ -19,7 +19,7 @@ class Youdao {
         const salt = Date.now();
         const q = query.join(" ");
         const curtime = Math.round(new Date().getTime() / 1000);
-        const sign = sha256(appid + getTruncate(q) + salt + curtime + key);
+        const sign = sha256(appid + this.getTruncate(q) + salt + curtime + key);
 
         const params = new URLSearchParams({
             q,
