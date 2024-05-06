@@ -15,7 +15,7 @@ class Tenxun {
             "UnsupportedOperation.TextTooLong": "翻译文本过长",
             "FailedOperation.UserNotRegistered": "服务未开通，请在腾讯云官网机器翻译控制台开通服务",
             "FailedOperation.StopUsing": "账号已停服",
-            "AuthFailure.SignatureFailure": "签名检验失败,检查 KEY 和 SECRET",
+            "AuthFailure.SignatureFailure": "签名检验失败，检查KEY和SECRET",
             "FailedOperation.ServiceIsolate": "账户已经欠费",
             "FailedOperation.NoFreeAmount": "本月免费额度已用完",
             "RequestLimitExceeded": "访问频率受限",
@@ -28,9 +28,7 @@ class Tenxun {
 
     async translate(query) {
         const TmtClient = tencentCloud.tmt.v20180321.Client;
-
         const { appid, key, from, to } = await getPlatformConfig(this.mName);
-
         const client = new TmtClient({
             credential: {
                 secretId: appid,

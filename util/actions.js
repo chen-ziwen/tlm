@@ -26,10 +26,6 @@ async function onList() {
     messageLog(messages);
 }
 
-async function onCurrent(name) {
-
-}
-
 async function onUse(name) {
     if (await isTranslationPlatformNotFound(name)) return;
     const config = await readFile(configPath);

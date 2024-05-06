@@ -80,10 +80,6 @@ function isLowerCaseEqual(s1, s2) {
     }
 }
 
-function verifTranslationInfo(appid, secretKey) {
-    //    if()
-}
-
 function exit(error) {
     error && errorLog(error);
     process.exit(1);

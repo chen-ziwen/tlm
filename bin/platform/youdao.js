@@ -45,7 +45,7 @@ class Youdao {
             111: "开发者账号无效",
             112: "请求服务无效",
             113: "查询为空",
-            202: "签名检验失败,检查 KEY 和 SECRET",
+            202: "签名检验失败，检查KEY和SECRET",
             401: "账户已经欠费",
             411: "访问频率受限",
         };
@@ -70,7 +70,6 @@ class Youdao {
                 this.printError(err);
             });
     }
-
 }
 
 module.exports = Youdao;
