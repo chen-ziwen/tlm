@@ -16,9 +16,14 @@
       "appid": "",
       "key": ""
     },
+    "ali": {
+      "name": "阿里-ali",
+      "appid": "",
+      "key": ""
+    },
     "volcengine": { "name": "火山-volcengine", "appid": "", "key": "" }
   },
-  "pls": "tenxun",
+  "pls": "ali",
   "from": "auto",
   "to": "zh"
 }

@@ -1,5 +1,5 @@
 // 腾讯翻译
-const tencentCloud = require("tencentcloud-sdk-nodejs-tmt"); // 腾讯云sdk翻译模块
+const tencentCloud = require("tencentcloud-sdk-nodejs-tmt");
 const { getPlatformConfig, errorLog } = require("../../util/helpers");
 
 class Tenxun {

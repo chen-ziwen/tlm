@@ -13,6 +13,7 @@
   "author": "chiko",
   "license": "ISC",
   "dependencies": {
+    "@alicloud/alimt20181012": "^1.0.4",
     "@volcengine/openapi": "^1.18.1",
     "chalk": "^4.1.2",
     "commander": "^12.0.0",
