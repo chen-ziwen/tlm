@@ -6,6 +6,8 @@
 //             return res?.[0]?.[0]?.[0] || "";
 //         });
 // }
+const { getPlatformConfig } = require("../../util/helpers");
+
 
 class Google {
     constructor(name) {
@@ -14,8 +16,34 @@ class Google {
 
     }
 
-    async translate() {
-        const url = "https://translate.googleapis.com/translate_a/single";
+    async url(query) {
+        const { to, from } = await getPlatformConfig(this.mName);
+        const params = new URLSearchParams({
+            client: "gtx",
+            sl: "en",
+            tl: "zh-Hans",
+            dt: ['at', 'bd', 'ex', 'ld', 'md', 'qca', 'rw', 'rm', 'ss', 't'],
+            q: query.join(" "),
+        });
+
+        return "https://translate.google.com/translate_a/single?" + params.toString();
+    }
+
+    async translate(query) {
+        const url = await this.url(query);
+        console.log('url ===>', url);
+        return fetch(url, {
+            headers: {
+      
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log('data==>', data);
+            })
+            .catch((err) => {
+                console.error(err)
+            });
     }
 }
 

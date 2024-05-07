@@ -10,6 +10,12 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node ./bin/cli.js"
   },
+  "keywords": [
+    "translate",
+    "translation",
+    "translator",
+    "language"
+  ],
   "author": "chiko",
   "license": "ISC",
   "dependencies": {

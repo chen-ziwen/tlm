@@ -1,5 +1,5 @@
 // 火山翻译
-const { iam } = require("@volcengine/openapi");
+const { Service } = require("@volcengine/openapi");
 
 class Volcengine {
     constructor(name) {
@@ -7,9 +7,9 @@ class Volcengine {
         this.mTitle = "火山翻译";
     }
 
-
     async translate() {
         const url = "translate.volcengineapi.com";
+
     }
 
 }
