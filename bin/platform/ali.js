@@ -34,9 +34,8 @@ class Ali {
         const runtime = new Util.RuntimeOptions({});
 
         return client.translateGeneralWithOptions(translateGeneralRequest, runtime).
-            then(data => {
-                return data.body.data.translated;
-            }).catch(err => {
+            then(data => data.body.data.translated)
+            .catch(err => {
                 if (err) {
                     const { Message, Recommend } = err.data;
                     const message = `${this.mTitle}: ${Message} [${Recommend}]`;

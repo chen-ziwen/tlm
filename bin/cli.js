@@ -39,6 +39,8 @@ program
 //     .command()
 //     .option()
 
+// 后续版本 增加大驼峰、小驼峰、下划线
+
 program
     .command("p")
     .argument("<query...>")

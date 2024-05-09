@@ -57,7 +57,7 @@ class Tenxun {
         return client.TextTranslate(params)
             .then(data => data.TargetText)
             .catch((err) => {
-                this.printError(err.code)
+                this.printError(err.code);
             });
     }
 }
