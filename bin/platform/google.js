@@ -6,8 +6,12 @@
 //             return res?.[0]?.[0]?.[0] || "";
 //         });
 // }
+const https = require("https");
 const { getPlatformConfig } = require("../../util/helpers");
 
+const httpsAgent = new https.Agent({
+    rejectUnauthorized: false
+})
 
 class Google {
     constructor(name) {
@@ -26,17 +30,13 @@ class Google {
             q: query.join(" "),
         });
 
-        return "https://translate.google.com/translate_a/single?" + params.toString();
+        return "https://translate.googleapis.com/translate_a/single?" + params.toString();
     }
 
     async translate(query) {
         const url = await this.url(query);
         console.log('url ===>', url);
-        return fetch(url, {
-            headers: {
-      
-            }
-        })
+        return fetch(url, { agent: httpsAgent })
             .then(res => res.json())
             .then(data => {
                 console.log('data==>', data);

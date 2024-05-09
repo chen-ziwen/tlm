@@ -1,5 +1,4 @@
 // 阿里翻译
-// 需求比较简单 直接使用sdk对接即可
 const alimt20181012 = require("@alicloud/alimt20181012");
 const OpenApi = require("@alicloud/openapi-client");
 const Util = require("@alicloud/tea-util");
