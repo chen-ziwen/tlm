@@ -50,7 +50,8 @@ class Volcengine {
             .then(res => {
                 const data = JSON.parse(res);
                 if (data.ResponseMetadata.Error) {
-                    return errorLog(data.ResponseMetadata.Error.Message);
+                    const message = this.mTitle + ": " + data.ResponseMetadata.Error.Message;
+                    return errorLog(message);
                 }
                 return data.TranslationList[0].Translation;
             })
