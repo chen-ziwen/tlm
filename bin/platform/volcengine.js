@@ -1,6 +1,6 @@
 // 火山翻译
 const { Signer } = require("@volcengine/openapi");
-const { getPlatformConfig } = require("../../util/helpers");
+const { getPlatformConfig, errorLog } = require("../../util/helpers");
 
 class Volcengine {
     constructor(name) {
@@ -49,6 +49,9 @@ class Volcengine {
             .then(res => res.text())
             .then(res => {
                 const data = JSON.parse(res);
+                if (data.ResponseMetadata.Error) {
+                    return errorLog(data.ResponseMetadata.Error.Message);
+                }
                 return data.TranslationList[0].Translation;
             })
     }
