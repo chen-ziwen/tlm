@@ -1,25 +1,12 @@
 "use strict";
-/*
-Copyright (year) Beijing Volcano Engine Technology Ltd.
 
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-     http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-*/
 const crypto = require("crypto");
 const util = require("util");
 const url = require("url");
+const fetch = require("node-fetch");
 const qs = require("querystring");
 const debuglog = util.debuglog('signer');
-
+const { getPlatformConfig } = require("../../../util/helpers")
 
 /**
  * 不参与加签过程的 header key
@@ -34,7 +21,8 @@ const HEADER_KEYS_TO_IGNORE = new Set([
 ]);
 
 // do request example
-async function doRequest() {
+async function doRequest(q) {
+    const { to, from, appid, key } = await getPlatformConfig("volcengine")
     const signParams = {
         headers: {
             // x-date header 是必传的
@@ -42,13 +30,16 @@ async function doRequest() {
         },
         method: 'GET',
         query: {
-            Version: '2018-01-01',
-            Action: 'ListPolicies',
+            Version: '2020-06-01',
+            Action: 'TranslateText',
+            // SourceLanguage: from,
+            // TargetLanguage: to,
+            // TextList: [q]
         },
-        accessKeyId: '*******',
-        secretAccessKey: '**********',
-        serviceName: 'iam',
-        region: 'cn-beijing',
+        accessKeyId: appid,
+        secretAccessKey: key,
+        serviceName: 'translate',
+        region: 'cn-north-1',
     };
     // 正规化 query object， 防止串化后出现 query 值为 undefined 情况
     for (const [key, val] of Object.entries(signParams.query)) {
@@ -57,18 +48,29 @@ async function doRequest() {
         }
     }
     const authorization = sign(signParams);
-    const res = await fetch(`https://iam.volcengineapi.com/?${qs.stringify(signParams.query)}`, {
+    console.log({
         headers: {
             ...signParams.headers,
             'Authorization': authorization,
         },
         method: signParams.method,
     });
-    const responseText = await res.text();
-    console.log(responseText);
+    const res = await fetch(`https://translate.volcengineapi.com/?${qs.stringify(signParams.query)}`, {
+        headers: {
+            ...signParams.headers,
+            'Authorization': authorization,
+        },
+        method: signParams.method,
+    });
+    return res.text().then(responseText => {
+        console.log(responseText);
+        // return responseText
+    }).catch(e => {
+        console.log(e);
+    });
 }
 
-doRequest();
+// doRequest();
 
 
 function sign(params) {
@@ -195,4 +197,8 @@ function getBodySha(body) {
         hash.update(body);
     }
     return hash.digest('hex');
+}
+
+module.exports = {
+    doRequest
 }
