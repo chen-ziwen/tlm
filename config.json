@@ -1,1 +1,33 @@
-{"platform":{"google":{"name":"谷歌-google","appid":"","key":""},"baidu":{"name":"百度-baidu","appid":"","key":""},"youdao":{"name":"有道-youdao","appid":"","key":""},"tenxun":{"name":"腾讯-tenxun","appid":"","key":""},"ali":{"name":"阿里-ali","appid":"","key":""},"volcengine":{"name":"火山-volcengine","appid":"AKLTYzkzNzQ1YmZiM2FhNDA1YmIyOGEzMWVlMzM3ODg0Nzc","key":"TURObE1HRTJOREU1WW1Gak5EUTJOV0ZsWXpWa05qUTFNR1UzTlRObFpXSQ=="}},"pls":"volcengine","from":"auto","to":"zh"}
+{
+  "pls": "volcengine",
+  "from": "auto",
+  "to": "zh",
+  "platform": {
+    "youdao": {
+      "name": "有道-youdao",
+      "appid": "",
+      "key": ""
+    },
+    "baidu": {
+      "name": "百度-baidu",
+      "appid": "",
+      "key": ""
+    },
+    "tenxun": {
+      "name": "腾讯-tenxun",
+      "appid": "",
+      "key": ""
+    },
+    "ali": {
+      "name": "阿里-ali",
+      "appid": "",
+      "key": ""
+    },
+    "volcengine": {
+      "name": "火山-volcengine",
+      "appid": "",
+      "key": ""
+    },
+    "google": { "name": "谷歌-google", "appid": "", "key": "" }
+  }
+}

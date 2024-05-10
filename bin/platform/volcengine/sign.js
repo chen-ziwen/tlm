@@ -1,4 +1,4 @@
-"use strict";
+// "use strict";
 
 const crypto = require("crypto");
 const util = require("util");
@@ -48,19 +48,19 @@ async function doRequest(q) {
         }
     }
     const authorization = sign(signParams);
-    console.log({
-        headers: {
-            ...signParams.headers,
-            'Authorization': authorization,
-        },
-        method: signParams.method,
-    });
     const res = await fetch(`https://translate.volcengineapi.com/?${qs.stringify(signParams.query)}`, {
         headers: {
             ...signParams.headers,
             'Authorization': authorization,
         },
-        method: signParams.method,
+        method: signParams.method
+    });
+
+    console.log({
+        headers: {
+            ...signParams.headers,
+            'Authorization': authorization,
+        },
     });
     return res.text().then(responseText => {
         console.log(responseText);
