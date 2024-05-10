@@ -10,6 +10,7 @@ class Volcengine {
 
     async url() {
         const { appid, key } = await getPlatformConfig(this.mName);
+
         const openApiRequestData = {
             method: "POST",
             region: "cn-north-1",

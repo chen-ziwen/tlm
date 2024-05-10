@@ -11,7 +11,7 @@ class Baidu {
     async url(query) {
         const { appid, key, from, to } = await getPlatformConfig(this.mName);
         const salt = Date.now();
-        const q = query.join(" ");
+        const q = query.join("\\n");
         const sign = MD5(appid + q + salt + key);
 
         const params = new URLSearchParams({

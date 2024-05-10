@@ -1,5 +1,5 @@
 {
-  "pls": "volcengine",
+  "pls": "youdao",
   "from": "auto",
   "to": "zh",
   "platform": {
@@ -13,8 +13,8 @@
       "appid": "",
       "key": ""
     },
-    "tenxun": {
-      "name": "腾讯-tenxun",
+    "tencent": {
+      "name": "腾讯-tencent",
       "appid": "",
       "key": ""
     },

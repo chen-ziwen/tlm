@@ -1,6 +1,5 @@
 const fs = require("fs");
 const chalk = require("chalk");
-const process = require('../process');
 const { configPath } = require('../constants');
 
 async function readFile(file) {
@@ -80,35 +79,7 @@ function isLowerCaseEqual(s1, s2) {
     }
 }
 
-function exit(error) {
-    error && errorLog(error);
-    process.exit(1);
-}
-
-function getFormattedUTCDate(type) {
-    const now = new Date();
-    const utcDate = new Date(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds()); // 转换为UTC时间
-
-    let formattedDate;
-    switch (type) {
-        case 'day':
-            formattedDate = utcDate.toISOString().split('T')[0].replace(/-/g, ''); // YYYYMMDD
-            break;
-        case 'minute':
-            formattedDate = utcDate.toISOString().split('T')[0] + 'T' + utcDate.toISOString().split('T')[1].slice(0, 5).replace(/:/g, ''); // YYYYMMDDTHHMM
-            break;
-        case 'second':
-            formattedDate = utcDate.toISOString().split('.')[0].replace(/-/g, '').replace(/:/g, ''); // YYYYMMDDTHHMMSS
-            break;
-        default:
-            throw new Error('Invalid precision. Supported values are "day", "minute", "second".');
-    }
-
-    return formattedDate;
-}
-
 module.exports = {
-    exit,
     successLog,
     errorLog,
     messageLog,
@@ -117,7 +88,6 @@ module.exports = {
     getPlatformList,
     getPlatformConfig,
     isTranslationPlatformNotFound,
-    getFormattedUTCDate,
     readFile,
     writeFile
 }

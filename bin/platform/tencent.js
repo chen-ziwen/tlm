@@ -2,7 +2,7 @@
 const tencentCloud = require("tencentcloud-sdk-nodejs-tmt");
 const { getPlatformConfig, errorLog } = require("../../util/helpers");
 
-class Tenxun {
+class Tencent {
     constructor(name) {
         this.mName = name;
         this.mTitle = "腾讯翻译";
@@ -28,7 +28,9 @@ class Tenxun {
 
     async translate(query) {
         const TmtClient = tencentCloud.tmt.v20180321.Client;
+
         const { appid, key, from, to } = await getPlatformConfig(this.mName);
+
         const client = new TmtClient({
             credential: {
                 secretId: appid,
@@ -62,4 +64,4 @@ class Tenxun {
     }
 }
 
-module.exports = Tenxun;
+module.exports = Tencent;

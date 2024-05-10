@@ -22,7 +22,6 @@ async function onList() {
         const suffix = isLowerCaseEqual(key, config.pls) ? chalk.blue(" (Currently useing) ") : "";
         return prefix + value.name + suffix;
     });
-
     messageLog(messages);
 }
 
@@ -46,9 +45,7 @@ async function onSetTranslation(name, { appid, secretKey }) {
 
 async function onTranslate(query) {
     const txt = await translator.translate(query);
-    if (txt) {
-        console.log(chalk.blue(txt));
-    }
+    if (txt) console.log(chalk.blue(txt));
 }
 
 module.exports = {
