@@ -6,6 +6,9 @@
 //             return res?.[0]?.[0]?.[0] || "";
 //         });
 // }
+
+/* https://github.com/matheuss/google-translate-api */
+
 const https = require("https");
 const { getPlatformConfig } = require("../../util/helpers");
 
@@ -30,7 +33,7 @@ class Google {
             q: query.join(" "),
         });
 
-        return "https://translate.googleapis.com/translate_a/single?" + params.toString();
+        return "https://translate.google.com/translate_a/single?" + params.toString();
     }
 
     async translate(query) {

@@ -41,6 +41,7 @@ program
 
 // 后续版本 增加大驼峰、小驼峰、下划线
 
+// 后续可以增加-f和-t option，用于临时选中源语言和目标语言
 program
     .command("p")
     .argument("<query...>")
