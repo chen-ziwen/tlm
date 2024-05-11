@@ -1,7 +1,6 @@
 // 阿里翻译
 const alimt20181012 = require("@alicloud/alimt20181012");
 const OpenApi = require("@alicloud/openapi-client");
-const Util = require("@alicloud/tea-util");
 const { getPlatformConfig, errorLog } = require("../../util/helpers");
 
 class Ali {
@@ -31,10 +30,9 @@ class Ali {
         };
 
         const translateGeneralRequest = new alimt20181012.TranslateGeneralRequest(params);
-        const runtime = new Util.RuntimeOptions({});
 
-        return client.translateGeneralWithOptions(translateGeneralRequest, runtime).
-            then(data => data.body.data.translated)
+        return client.translateGeneralWithOptions(translateGeneralRequest, {})
+            .then(data => data.body.data.translated)
             .catch(err => {
                 if (err) {
                     const { Message, Recommend } = err.data;
