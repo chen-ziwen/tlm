@@ -10,6 +10,14 @@ class Translator {
     translate(query) {
         return this.adapter.translate(query);
     }
+
+    switchSource(source) {
+        return this.adapter.switchSource(source);
+    }
+
+    switchTarget(target) {
+        return this.adapter.switchTarget(target);
+    }
 }
 
 module.exports = new Translator(config.pls);

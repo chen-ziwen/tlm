@@ -1,21 +1,7 @@
-// 谷歌翻译
-// export function translate(sl, tl, raw) {
-//     return fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=${sl}&tl=${tl}&dt=t&q=${raw}`)
-//         .then(res => res.json())
-//         .then(res => {
-//             return res?.[0]?.[0]?.[0] || "";
-//         });
-// }
-
-/* https://github.com/matheuss/google-translate-api */
-
-const https = require("https");
 const { getPlatformConfig } = require("../../util/helpers");
 
-const httpsAgent = new https.Agent({
-    rejectUnauthorized: false
-})
-
+// 谷歌翻译必须翻墙才能使用 翻墙支持浏览器和部分遵循系统代理的软件
+// 本包不支持直接使用 需要翻墙 且需要开始tun模式劫持所有的请求走代理
 class Google {
     constructor(name) {
         this.mName = name;
@@ -27,9 +13,9 @@ class Google {
         const { to, from } = await getPlatformConfig(this.mName);
         const params = new URLSearchParams({
             client: "gtx",
-            sl: "en",
-            tl: "zh-Hans",
-            dt: ['at', 'bd', 'ex', 'ld', 'md', 'qca', 'rw', 'rm', 'ss', 't'],
+            tl: to,
+            sl: from,
+            dt: "t",
             q: query.join(" "),
         });
 
@@ -38,11 +24,10 @@ class Google {
 
     async translate(query) {
         const url = await this.url(query);
-        console.log('url ===>', url);
-        return fetch(url, { agent: httpsAgent })
+        return fetch(url)
             .then(res => res.json())
             .then(data => {
-                console.log('data==>', data);
+                return data[0]?.[0]?.[0];
             })
             .catch((err) => {
                 console.error(err)
