@@ -45,7 +45,7 @@ program
 program
     .command("p")
     .argument("<query...>")
-    .description("Translate the text using the \`tl p <params...>\` directive")
+    .description("Translate the text using the \`tl p <query...>\` directive")
     .action(onTranslate)
 
 program.parse(process.argv);
