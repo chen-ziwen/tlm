@@ -31,7 +31,7 @@ async function writeFile(path, content) {
 async function getPlatformInfo() {
     const config = await readFile(configPath);
     const platform = Object.entries(config.platform);
-    return { pls: config.pls, platform }
+    return { pl: config.pl, platform }
 }
 
 async function getPlatformList() {
@@ -42,8 +42,8 @@ async function getPlatformList() {
 async function getPlatformConfig(name) {
     const config = await readFile(configPath);
     const platform = config.platform[name];
-    const to = config.to, from = config.from, pls = config.pls;
-    return { ...platform, to, from, pls }
+    const to = config.to, from = config.from, pl = config.pl;
+    return { ...platform, to, from, pl }
 }
 
 async function isTranslationPlatformNotFound(name, printErr = true) {
