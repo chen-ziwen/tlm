@@ -40,7 +40,7 @@ async function onSetTranslation(name, { appid, secretKey }) {
     platform.appid = appid;
     platform.key = secretKey;
     await writeFile(configPath, config);
-    successLog(`Set api-secre-key ${name} success`);
+    successLog(`Set api-secret-key ${name} success`);
 }
 
 async function onTranslate(query) {
