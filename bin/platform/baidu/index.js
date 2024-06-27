@@ -1,6 +1,6 @@
 // 百度翻译
 const MD5 = require("crypto-js/md5");
-const { getPlatformConfig, errorLog } = require("../../util/helpers");
+const { getPlatformConfig, errorLog } = require("../../../util/helpers");
 
 class Baidu {
     constructor(name) {

@@ -1,6 +1,6 @@
 // 腾讯翻译
 const tencentCloud = require("tencentcloud-sdk-nodejs-tmt");
-const { getPlatformConfig, errorLog } = require("../../util/helpers");
+const { getPlatformConfig, errorLog } = require("../../../util/helpers");
 
 class Tencent {
     constructor(name) {

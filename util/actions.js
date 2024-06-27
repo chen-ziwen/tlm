@@ -1,7 +1,7 @@
 
 const chalk = require("chalk");
 const { configPath } = require("../constants");
-const { translate } = require("../bin/platform/translator");
+const Translator = require("../bin/platform/translator");
 
 const {
     readFile,
@@ -44,7 +44,7 @@ async function onSetTranslation(name, { appid, secretKey }) {
 }
 
 async function onTranslate(query) {
-    const txt = await translate(query);
+    const txt = await Translator.translate(query);
     if (txt) console.log(chalk.blue(txt));
 }
 

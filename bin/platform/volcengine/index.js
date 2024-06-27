@@ -1,6 +1,6 @@
 // 火山翻译
 const { Signer } = require("@volcengine/openapi");
-const { getPlatformConfig, errorLog } = require("../../util/helpers");
+const { getPlatformConfig, errorLog } = require("../../../util/helpers");
 
 class Volcengine {
     constructor(name) {

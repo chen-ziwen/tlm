@@ -3,15 +3,9 @@ const config = require("../../config.json");
 
 class Translator {
     constructor(pl) {
+        this.pl = pl;
         const name = pl.charAt(0).toUpperCase() + pl.slice(1);
         this.adapter = new Adapter[name](pl);
-        this.init();
-    }
-
-    init() {
-        this.translate = this.translate.bind(this);
-        this.switchSource = this.switchSource.bind(this);
-        this.switchTarget = this.switchTarget.bind(this);
     }
 
     translate(query) {

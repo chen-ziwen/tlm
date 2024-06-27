@@ -1,6 +1,6 @@
 // 有道翻译
 const sha256 = require("crypto-js/sha256");
-const { getPlatformConfig, errorLog } = require("../../util/helpers");
+const { getPlatformConfig, errorLog } = require("../../../util/helpers");
 
 class Youdao {
     constructor(name) {
