@@ -57,6 +57,7 @@ async function isTranslationPlatformNotFound(name, printErr = true) {
 }
 
 
+
 function successLog(message) {
     console.log(chalk.bgGreenBright(" SUCCESS ") + " " + message);
 }

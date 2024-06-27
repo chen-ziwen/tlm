@@ -12,6 +12,7 @@ const {
 const program = new commander.Command();
 
 program.version(pkg.version, '-v, --version', 'Output the current version');
+program.name("tl");
 
 program
     .command("ls")
@@ -32,7 +33,7 @@ program
 
 // // 查看源语言和目标语言，并选中当前的源语言和目标语言
 // program
-//     .command()
+//     .command("")
 
 // // 切换源语言和目标语言，当设置的语言不符合时，选中失败并提示
 // program
