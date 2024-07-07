@@ -1,5 +1,6 @@
 const Adapter = require(".");
 const config = require("../../config.json");
+const langs = require('./langs');
 
 class Translator {
     constructor(pl) {

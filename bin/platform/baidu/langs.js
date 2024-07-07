@@ -1,39 +1,24 @@
 const langs = {
-    codeMaping: {
+    codeMapping: {
         auto: "auto",
         zh: "zh",
+        cht: "cht",
         en: "en",
         ru: "ru",
-        jp: "jp",
-        kor: "kor",
-        fra: "fra",
-        spa: "spa",
-        th: "th",
-        pt: "pt",
+        ja: "jp",
+        ko: "kor",
         de: "de",
+        fr: "fra",
+        es: "spa",
         it: "it",
-        cht: "cht",
-        vie: "vie",
-        nl: "nl",
-        pl: "pl"
+        pt: "pt",
+        th: "th"
     },
-    excludeSourceLanguage: [],
-    excludeTargetLanguage: {
-        zh: [],
-        en: [],
-        ru: [],
-        jp: [],
-        kor: [],
-        fra: [],
-        spa: [],
-        th: [],
-        pt: [],
-        de: [],
-        it: [],
-        cht: [],
-        vie: [],
-        nl: [],
-        pl: []
+    socure: {
+
+    },
+    target: {
+
     }
 }
 
