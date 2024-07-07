@@ -6,7 +6,8 @@ const {
     onList,
     onUse,
     onSetTranslation,
-    onTranslate
+    onTranslate,
+    onTranslateLanguage
 } = require("../util/actions");
 
 const program = new commander.Command();
@@ -15,34 +16,35 @@ program.version(pkg.version, '-v, --version', 'Output the current version');
 program.name("tl");
 
 program
-    .command("ls")
-    .description("List all the translation platform")
+    .command("ls [langs]")
+    .description("List all the translation platform. Type `langs` at the end to see what language can to use.")
     .action(onList);
 
 program
     .command("use <name>")
-    .description("Change current translation platform")
+    .description("Change current translation platform.")
     .action(onUse);
 
 program
     .command("set-translation <name>")
-    .option("-a, --appid <appid>", "Set translation platform appid")
-    .requiredOption("-s, --secret-key <secretKey>", "Set translation platform secret key")
-    .description("Set the appid and key for the translation platform to access the channel translation api")
+    .option("-a, --appid <appid>", "Set translation platform appid.")
+    .requiredOption("-s, --secret-key <secretKey>", "Set translation platform secret key.")
+    .description("Set the appid and key for the translation platform to access the channel translation api.")
     .action(onSetTranslation);
 
-// // 查看源语言和目标语言，并选中当前的源语言和目标语言
-// program
-//     .command("")
 
-// // 切换源语言和目标语言，当设置的语言不符合时，选中失败并提示
-// program
-//     .command()
-//     .option()
+// 切换源语言和目标语言，当设置的语言不符合时，选中失败并提示
+// 可以手动选择想要设置语言的平台，如果不填参数则默认修改当前选中的语言平台
+program
+    .command("set-lang [name]")
+    .option("-s, --source <source>", "Set source language")
+    .option("-t, --target <target>", "Set target language")
+    .description("Set source and target languages")
+    .action(onTranslateLanguage)
 
 // 后续版本 增加大驼峰、小驼峰、下划线
 
-// 后续可以增加-f和-t option，用于临时选中源语言和目标语言
+
 program
     .command("p")
     .argument("<query...>")

@@ -56,6 +56,10 @@ async function isTranslationPlatformNotFound(name, printErr = true) {
     return false;
 }
 
+async function isLanguageNotFound(name, lang, printErr = true) {
+
+}
+
 
 
 function successLog(message) {

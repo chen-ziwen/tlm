@@ -14,7 +14,7 @@ const langs = {
         pt: "pt",
         th: "th"
     },
-    socure: {
+    source: {
 
     },
     target: {

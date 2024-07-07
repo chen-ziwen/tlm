@@ -15,14 +15,19 @@ const {
     isTranslationPlatformNotFound
 } = require("./helpers");
 
-async function onList() {
-    const config = await getPlatformInfo();
-    const messages = config.platform.map(([key, value]) => {
-        const prefix = isLowerCaseEqual(key, config.pl) ? chalk.blue.bold("   * ") : "     ";
-        const suffix = isLowerCaseEqual(key, config.pl) ? chalk.blue(" (Currently useing) ") : "";
-        return prefix + value.name + suffix;
-    });
-    messageLog(messages);
+async function onList(query) {
+    if (query == "langs") {
+        messageLog("我爱你呀")
+
+    } else {
+        const config = await getPlatformInfo();
+        const messages = config.platform.map(([key, value]) => {
+            const prefix = isLowerCaseEqual(key, config.pl) ? chalk.blue.bold("   * ") : "     ";
+            const suffix = isLowerCaseEqual(key, config.pl) ? chalk.blue(" (Currently useing) ") : "";
+            return prefix + value.name + suffix;
+        });
+        messageLog(messages);
+    }
 }
 
 async function onUse(name) {
@@ -48,9 +53,18 @@ async function onTranslate(query) {
     if (txt) console.log(chalk.blue(txt));
 }
 
+async function onTranslateLanguage(name, { source, target }) {
+    if (name) {
+        if (await isTranslationPlatformNotFound(name)) return;
+    } else {
+        console.log(`设置源语言和目标语言。源语言:${source} 目标语言:${source}`);
+    }
+}
+
 module.exports = {
     onList,
     onUse,
     onSetTranslation,
-    onTranslate
+    onTranslate,
+    onTranslateLanguage
 }
