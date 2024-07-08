@@ -1,5 +1,5 @@
 {
-  "pl": "ali",
+  "pl": "tencent",
   "from": "auto",
   "to": "zh",
   "platform": {
@@ -28,6 +28,10 @@
       "appid": "",
       "key": ""
     },
-    "google": { "name": "谷歌-google", "appid": "", "key": "" }
+    "google": {
+      "name": "谷歌-google",
+      "appid": "",
+      "key": ""
+    }
   }
 }

@@ -44,8 +44,8 @@ async function onSetTranslation(name, { appid, secretKey }) {
     if (await isTranslationPlatformNotFound(name)) return;
     const config = await readFile(configPath);
     const platform = config.platform[name];
-    platform.appid = appid;
-    platform.key = secretKey;
+    platform.appid = appid ?? platform.appid;
+    platform.key = secretKey ?? platform.key;
     await writeFile(configPath, config);
     successLog(`Set api-secret-key ${name} success`);
 }
