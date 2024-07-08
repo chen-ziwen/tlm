@@ -2,6 +2,7 @@
 const chalk = require("chalk");
 const { configPath } = require("../constants");
 const Translator = require("../bin/platform/translator");
+const langs = require("../bin/platform/langs");
 
 const {
     readFile,
@@ -12,7 +13,8 @@ const {
     isLowerCaseEqual,
     getPlatformInfo,
     exit,
-    isTranslationPlatformNotFound
+    isTranslationPlatformNotFound,
+    isLanguageNotFound
 } = require("./helpers");
 
 async function onList(query) {
@@ -20,10 +22,10 @@ async function onList(query) {
         messageLog("我爱你呀")
 
     } else {
-        const config = await getPlatformInfo();
-        const messages = config.platform.map(([key, value]) => {
-            const prefix = isLowerCaseEqual(key, config.pl) ? chalk.blue.bold("   * ") : "     ";
-            const suffix = isLowerCaseEqual(key, config.pl) ? chalk.blue(" (Currently useing) ") : "";
+        const { pl, platform } = await getPlatformInfo();
+        const messages = platform.map(([key, value]) => {
+            const prefix = isLowerCaseEqual(key, pl) ? chalk.blue.bold("   * ") : "     ";
+            const suffix = isLowerCaseEqual(key, pl) ? chalk.blue(" (Currently useing) ") : "";
             return prefix + value.name + suffix;
         });
         messageLog(messages);
@@ -53,12 +55,14 @@ async function onTranslate(query) {
     if (txt) console.log(chalk.blue(txt));
 }
 
-async function onTranslateLanguage(name, { source, target }) {
-    if (name) {
-        if (await isTranslationPlatformNotFound(name)) return;
-    } else {
-        console.log(`设置源语言和目标语言。源语言:${source} 目标语言:${source}`);
+async function onTranslateLanguage(languages) {
+    const config = await readFile(configPath);
+    const values = await isLanguageNotFound(languages);
+    const map = { "source": "from", "target": "to" };
+    for (let v in values) {
+        if (v) config[map[v]] = values[v];
     }
+    await writeFile(configPath, config);
 }
 
 module.exports = {

@@ -1,6 +1,5 @@
 const Adapter = require(".");
 const config = require("../../config.json");
-const langs = require('./langs');
 
 class Translator {
     constructor(pl) {
@@ -11,14 +10,6 @@ class Translator {
 
     translate(query) {
         return this.adapter.translate(query);
-    }
-
-    switchSource(source) {
-        return this.adapter.switchSource(source);
-    }
-
-    switchTarget(target) {
-        return this.adapter.switchTarget(target);
     }
 }
 

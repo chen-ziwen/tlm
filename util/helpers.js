@@ -1,6 +1,8 @@
 const fs = require("fs");
 const chalk = require("chalk");
-const { configPath } = require('../constants');
+const process = require('../process');
+const { configPath, defaultLanguage, supportLanguage } = require('../constants');
+const languages = require("../bin/platform/langs");
 
 async function readFile(file) {
     return new Promise(resolve => {
@@ -20,7 +22,7 @@ async function readFile(file) {
 async function writeFile(path, content) {
     return new Promise(resolve => {
         try {
-            fs.writeFileSync(path, JSON.stringify(content));
+            fs.writeFileSync(path, JSON.stringify(content, null, 2));
             resolve();
         } catch (error) {
             exit(error);
@@ -56,8 +58,34 @@ async function isTranslationPlatformNotFound(name, printErr = true) {
     return false;
 }
 
-async function isLanguageNotFound(name, lang, printErr = true) {
+// 检测当前这个平台的源语言和目标语言是否可选，如果可选则找出对应平台的语言代码
+// 这个还不够 还需要判断当前的平台的源语言语言是否能被翻译成目标语言
+// 切换平台时也需要执行切换对应的语言代码
+async function isLanguageNotFound(lang, printErr = true) {
+    const { from, to, pl: name } = await readFile(configPath);
+    const { codeMapping, source, target } = languages[name]; // 拿到对应平台的语种信息
+    const map = { "source": from, "target": to };
+    const mergeMap = Object.assign({}, map, lang);
+    const keys = Object.keys(codeMapping);
 
+    for (let key in mergeMap) {
+        const value = mergeMap[key];
+        if (keys.includes(value)) {
+            map[key] = codeMapping[value];
+        } else {
+            printErr && errorLog(`'${value}' is not a supported ${key} language.`)
+        }
+    }
+
+
+    for (let key in map) {
+        if (key == "source") {
+
+        }
+    }
+
+    console.log(map)
+    return map;
 }
 
 
@@ -84,6 +112,11 @@ function isLowerCaseEqual(s1, s2) {
     }
 }
 
+function exit(error) {
+    error && errorLog(error);
+    process.exit(1);
+}
+
 module.exports = {
     successLog,
     errorLog,
@@ -93,6 +126,7 @@ module.exports = {
     getPlatformList,
     getPlatformConfig,
     isTranslationPlatformNotFound,
+    isLanguageNotFound,
     readFile,
     writeFile
 }

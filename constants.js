@@ -6,7 +6,7 @@ const configPath = path.join(__dirname, './config.json');
 const supportLanguage = [
     { zh: "自动检测", en: "auto", code: "auto" },
     { zh: "中文", en: "chinese", code: "zh" },
-    { zh: "繁体中文", en: "traditional_chinese", code: "cht" },
+    { zh: "繁体中文", en: "traditional_chinese", code: "cht" }, // 标准中没有繁体中文 自定义一个
     { zh: "英语", en: "english", code: "en" },
     { zh: "俄语", en: "russian", code: "ru" },
     { zh: "日语", en: "japanese", code: "ja" },
@@ -17,9 +17,16 @@ const supportLanguage = [
     { zh: "意大利语", en: "italian", code: "it" },
     { zh: "葡萄牙语", en: "portuguese", code: "pt" },
     { zh: "泰语", en: "thai", code: "th" },
-]
+];
+
+// 默认翻译的源语言和目标语言
+const defaultLanguage = {
+    source: "auto",
+    target: "zh"
+}
 
 module.exports = {
     configPath,
-    supportLanguage
+    supportLanguage,
+    defaultLanguage
 }
