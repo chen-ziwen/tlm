@@ -1,6 +1,6 @@
 // 有道翻译
 const sha256 = require("crypto-js/sha256");
-const { getPlatformConfig, errorLog } = require("../../../util/helpers");
+const { getPlatformConfig, errorLog, matchPlatformLanguageCode } = require("../../../util/helpers");
 
 class Youdao {
     constructor(name) {
@@ -16,6 +16,7 @@ class Youdao {
 
     async url(query) {
         const { appid, key, from, to } = await getPlatformConfig(this.mName);
+        const langCode = matchPlatformLanguageCode(this.mName, { from, to });
         const salt = Date.now();
         const q = query.join(" ");
         const curtime = Math.round(new Date().getTime() / 1000);
@@ -23,8 +24,8 @@ class Youdao {
 
         const params = new URLSearchParams({
             q,
-            from,
-            to,
+            from: langCode.from,
+            to: langCode.to,
             appKey: appid,
             salt,
             sign,

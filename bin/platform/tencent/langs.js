@@ -16,7 +16,7 @@ const langs = {
     },
     source: {
         strategy: "exclude",
-        language: [] 
+        language: []
     },
     target: {
         zh: {

@@ -1,6 +1,6 @@
 // 腾讯翻译
 const tencentCloud = require("tencentcloud-sdk-nodejs-tmt");
-const { getPlatformConfig, errorLog } = require("../../../util/helpers");
+const { getPlatformConfig, errorLog, matchPlatformLanguageCode } = require("../../../util/helpers");
 
 class Tencent {
     constructor(name) {
@@ -30,7 +30,7 @@ class Tencent {
         const TmtClient = tencentCloud.tmt.v20180321.Client;
 
         const { appid, key, from, to } = await getPlatformConfig(this.mName);
-
+        const langCode = matchPlatformLanguageCode(this.mName, { from, to });
         const client = new TmtClient({
             credential: {
                 secretId: appid,
@@ -51,8 +51,8 @@ class Tencent {
 
         const params = {
             SourceText: query.join(" "),
-            Source: from,
-            Target: to,
+            Source: langCode.from,
+            Target: langCode.to,
             ProjectId: 0
         }
 

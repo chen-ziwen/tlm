@@ -1,6 +1,6 @@
 // 百度翻译
 const MD5 = require("crypto-js/md5");
-const { getPlatformConfig, errorLog } = require("../../../util/helpers");
+const { getPlatformConfig, errorLog, matchPlatformLanguageCode } = require("../../../util/helpers");
 
 class Baidu {
     constructor(name) {
@@ -10,14 +10,15 @@ class Baidu {
 
     async url(query) {
         const { appid, key, from, to } = await getPlatformConfig(this.mName);
+        const langCode = matchPlatformLanguageCode(this.mName, { from, to });
         const salt = Date.now();
         const q = query.join(" ");
         const sign = MD5(appid + q + salt + key);
 
         const params = new URLSearchParams({
             q,
-            from,
-            to,
+            from: langCode.from,
+            to: langCode.to,
             appid,
             salt,
             sign

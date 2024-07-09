@@ -1,4 +1,4 @@
-const { getPlatformConfig } = require("../../../util/helpers");
+const { getPlatformConfig, matchPlatformLanguageCode } = require("../../../util/helpers");
 
 // 谷歌翻译必须翻墙才能使用 翻墙支持浏览器和部分遵循系统代理的软件
 // 本包不支持直接使用 需要翻墙 且需要开始tun模式劫持所有的请求走代理
@@ -10,10 +10,11 @@ class Google {
 
     async url(query) {
         const { to, from } = await getPlatformConfig(this.mName);
+        const langCode = matchPlatformLanguageCode(this.mName, { from, to });
         const params = new URLSearchParams({
             client: "gtx",
-            tl: to,
-            sl: from,
+            tl: langCode.to,
+            sl: langCode.from,
             dt: "t",
             q: query.join(" "),
         });

@@ -1,7 +1,7 @@
 // 阿里翻译
 const alimt20181012 = require("@alicloud/alimt20181012");
 const OpenApi = require("@alicloud/openapi-client");
-const { getPlatformConfig, errorLog } = require("../../../util/helpers");
+const { getPlatformConfig, errorLog, matchPlatformLanguageCode } = require("../../../util/helpers");
 
 class Ali {
     constructor(name) {
@@ -11,7 +11,7 @@ class Ali {
 
     async translate(query) {
         const { appid, key, from, to } = await getPlatformConfig(this.mName);
-
+        const langCode = matchPlatformLanguageCode(this.mName, { from, to });
         const config = new OpenApi.Config({
             accessKeyId: appid,
             accessKeySecret: key
@@ -23,8 +23,8 @@ class Ali {
 
         const params = {
             formatType: "text",
-            sourceLanguage: from,
-            targetLanguage: to,
+            sourceLanguage: langCode.from,
+            targetLanguage: langCode.to,
             sourceText: query.join(" "),
             scene: "general"
         };

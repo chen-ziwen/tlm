@@ -58,12 +58,14 @@ async function isTranslationPlatformNotFound(name, printErr = true) {
     return false;
 }
 
-// 检测当前这个平台的源语言和目标语言是否可选，如果可选则找出对应平台的语言代码
-// 这个还不够 还需要判断当前的平台的源语言语言是否能被翻译成目标语言
-// 切换平台时也需要执行切换对应的语言代码
+function matchPlatformLanguageCode(name, { from, to }) {
+    const { codeMapping } = languages[name];
+    return { "from": codeMapping[from], "to": codeMapping[to] };
+}
+
 async function isLanguageNotFound(lang, printErr = true) {
-    const { from, to, pl: name } = await readFile(configPath);
-    const { codeMapping, source, target } = languages[name]; // 拿到对应平台的语种信息
+    const { from, to, pl } = await readFile(configPath);
+    const { codeMapping } = languages[pl];
     const map = { "source": from, "target": to };
     const mergeMap = Object.assign({}, map, lang);
     const keys = Object.keys(codeMapping);
@@ -71,20 +73,13 @@ async function isLanguageNotFound(lang, printErr = true) {
     for (let key in mergeMap) {
         const value = mergeMap[key];
         if (keys.includes(value)) {
-            map[key] = codeMapping[value];
+            map[key] = value;
         } else {
-            printErr && errorLog(`'${value}' is not a supported ${key} language.`)
+            printErr && errorLog(`'${value}' is not a supported ${key} language.`);
         }
     }
-
-
-    for (let key in map) {
-        if (key == "source") {
-
-        }
-    }
-
-    console.log(map)
+    // 还需要做一些别的判断
+    console.log(map);
     return map;
 }
 
@@ -127,6 +122,7 @@ module.exports = {
     getPlatformConfig,
     isTranslationPlatformNotFound,
     isLanguageNotFound,
+    matchPlatformLanguageCode,
     readFile,
     writeFile
 }

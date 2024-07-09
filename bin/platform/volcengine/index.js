@@ -1,6 +1,6 @@
 // 火山翻译
 const { Signer } = require("@volcengine/openapi");
-const { getPlatformConfig, errorLog } = require("../../../util/helpers");
+const { getPlatformConfig, errorLog, matchPlatformLanguageCode } = require("../../../util/helpers");
 
 class Volcengine {
     constructor(name) {
@@ -33,6 +33,7 @@ class Volcengine {
 
     async translate(query) {
         const { to, from } = await getPlatformConfig(this.mName);
+        const langCode = matchPlatformLanguageCode(this.mName, { from, to });
         const url = await this.url();
 
         return fetch(url, {
@@ -41,8 +42,8 @@ class Volcengine {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                SourceLanguage: from == "auto" ? "" : from,
-                TargetLanguage: to,
+                SourceLanguage: langCode.from,
+                TargetLanguage: langCode.to,
                 TextList: [query.join(" ")]
             }),
         })
