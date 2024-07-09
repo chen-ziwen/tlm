@@ -20,8 +20,8 @@ const langs = {
     },
     target: {
         auto: {
-            strategy: "include",
-            language: []
+            strategy: "exclude",
+            language: ["auto"]
         },
         zh: {
             strategy: "exclude",

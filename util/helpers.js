@@ -67,55 +67,27 @@ async function isLanguageNotFound(lang, printErr = true) {
     const { from, to, pl } = await readFile(configPath);
     const { codeMapping, source, target } = languages[pl];
     const map = { "source": from, "target": to };
+    const condition = { "include": false, "exclude": true };
     const mergeMap = Object.assign({}, map, lang);
     const keys = Object.keys(codeMapping);
-
 
     for (let key in mergeMap) {
         const value = mergeMap[key];
         if (keys.includes(value)) {
             map[key] = value;
 
-            // defaultLanguage 如果源语言和目标语言无法匹配，则赋值为默认语言 { source: auto, target: zh }
-            // 现在先实现功能 实现完功能再去优化
-            if (key == "source") {
-                const { strategy, language } = source;
-                if (strategy == "include") {
-                    if (!language.includes(value)) {
-                        map[key] = defaultLanguage.source;
-                        printErr && errorLog(`该平台的源语言不支持'${value}'语种代码，已替换成默认语言代码'${map[key]}'`);
-                    }
-                } else if (strategy == "exclude") {
-                    if (language.includes(value)) {
-                        map[key] = defaultLanguage.source;
-                        printErr && errorLog(`该平台的源语言不支持'${value}'语种代码，已替换成默认语言代码'${map[key]}'`);
-                    }
-                } else {
-                    printErr && errorLog(`错误`)
-                }
-            } else if (key == "target") {
-                const { strategy, language } = target[map["source"]];
-                console.log('目标语言', strategy, language);
-                if (strategy == "include") {
-                    if (!language.includes(value)) {
-                        map[key] = defaultLanguage.target;
-                        printErr && errorLog(`该平台的目标语言不支持'${value}'语种代码，已替换成默认语言代码'${map[key]}'`);
-                    }
-                } else if (strategy == "exclude") {
-                    if (language.includes(value)) {
-                        map[key] = defaultLanguage.target;
-                        printErr && errorLog(`该平台的目标语言不支持'${value}'语种代码，已替换成默认语言代码'${map[key]}'`);
-                    }
-                }
-            } else {
-                printErr && errorLog(`'${value}' is not a supported ${key} language.`);
+            const langsMap = { source: source, target: target[map["source"]] };
+
+            const { strategy, language } = langsMap[key];
+            if (language.includes(value) == condition[strategy]) {
+                map[key] = defaultLanguage[key];
+                printErr && errorLog(`The ${key} language does not support '${value}' language code has been replaced with the default code '${map[key]}'.`);
             }
         } else {
-            printErr && errorLog(`错误`);
+            printErr && errorLog(`'${value}' language code is not supported in the ${key} language.`);
         }
     }
 
-    console.log(map);
     return map;
 }
 
