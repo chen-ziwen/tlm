@@ -32,9 +32,6 @@ program
     .description("Set the appid and key for the translation platform to access the channel translation api.")
     .action(onSetTranslation);
 
-
-// 切换源语言和目标语言，当设置的语言不符合时，选中失败并提示
-// 可以手动选择想要设置语言的平台，如果不填参数则默认修改当前选中的语言平台
 program
     .command("set-lang")
     .option("-s, --source <source>", "Set source language")
