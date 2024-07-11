@@ -1,1 +1,1 @@
-module.exports = global.process;
+export default global.process;

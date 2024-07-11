@@ -1,8 +1,9 @@
-const fs = require("fs");
-const chalk = require("chalk");
-const process = require('../process');
-const { configPath, defaultLanguage, supportLanguage } = require('../constants');
-const languages = require("../bin/platform/langs");
+
+import fs from "fs";
+import chalk from "chalk";
+import process from "../process.js";
+import { configPath, defaultLanguage, supportLanguage } from "../constants.js";
+import languages from "../bin/platform/langs.js";
 
 async function readFile(file) {
     return new Promise(resolve => {
@@ -125,7 +126,7 @@ function exit(error) {
     process.exit(1);
 }
 
-module.exports = {
+export {
     successLog,
     errorLog,
     messageLog,

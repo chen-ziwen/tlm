@@ -74,4 +74,4 @@ const langs = {
     }
 }
 
-module.exports = langs; 
+export default langs; 

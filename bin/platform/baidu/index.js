@@ -1,8 +1,8 @@
 // 百度翻译
-const MD5 = require("crypto-js/md5");
-const { getPlatformConfig, errorLog, matchPlatformLanguageCode } = require("../../../util/helpers");
+import MD5 from "crypto-js/md5.js";
+import { getPlatformConfig, matchPlatformLanguageCode, errorLog } from "../../../util/helpers.js";
 
-class Baidu {
+export default class Baidu {
     constructor(name) {
         this.mName = name;
         this.mTitle = "百度翻译";
@@ -61,5 +61,3 @@ class Baidu {
     }
 
 }
-
-module.exports = Baidu;

@@ -1,8 +1,8 @@
 // 有道翻译
-const sha256 = require("crypto-js/sha256");
-const { getPlatformConfig, errorLog, matchPlatformLanguageCode } = require("../../../util/helpers");
+import sha256 from "crypto-js/sha256.js";
+import { getPlatformConfig, matchPlatformLanguageCode, errorLog } from "../../../util/helpers.js";
 
-class Youdao {
+export default class Youdao {
     constructor(name) {
         this.mName = name;
         this.mTitle = "有道翻译";
@@ -72,7 +72,3 @@ class Youdao {
             });
     }
 }
-
-
-
-module.exports = Youdao;

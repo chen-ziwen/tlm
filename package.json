@@ -1,6 +1,7 @@
 {
   "name": "translate",
   "version": "1.0.0",
+  "type": "module",
   "description": "terminal translation",
   "main": "./bin/cli.js",
   "bin": {

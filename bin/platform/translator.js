@@ -1,5 +1,6 @@
-const Adapter = require(".");
-const config = require("../../config.json");
+
+import Adapter from "./index.js";
+import config from "../../config.json" assert { type: "json"};
 
 class Translator {
     constructor(pl) {
@@ -13,4 +14,4 @@ class Translator {
     }
 }
 
-module.exports = new Translator(config.pl);
+export default new Translator(config.pl);

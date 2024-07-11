@@ -1,16 +1,16 @@
 #!/usr/bin/env node
 
-const commander = require("commander");
-const pkg = require("../package.json");
-const {
+import { Command } from "commander";
+import pkg from "../package.json" assert { type: "json" };
+import {
     onList,
     onUse,
     onSetTranslation,
     onTranslate,
     onSetTranslateLanguage
-} = require("../util/actions");
+} from "../util/actions.js";
 
-const program = new commander.Command();
+const program = new Command();
 
 program.version(pkg.version, '-v, --version', 'Output the current version');
 program.name("tl");

@@ -1,10 +1,8 @@
+import chalk from "chalk";
+import { configPath } from "../constants.js";
+import Translator from "../bin/platform/translator.js";
 
-const chalk = require("chalk");
-const { configPath } = require("../constants");
-const Translator = require("../bin/platform/translator");
-const langs = require("../bin/platform/langs");
-
-const {
+import {
     readFile,
     writeFile,
     successLog,
@@ -12,10 +10,9 @@ const {
     messageLog,
     isLowerCaseEqual,
     getPlatformInfo,
-    exit,
     isTranslationPlatformNotFound,
     changeLanguageCode
-} = require("./helpers");
+} from "./helpers.js";
 
 async function onList(query) {
     if (query == "langs") {
@@ -61,7 +58,7 @@ async function onSetTranslateLanguage(languages) {
     await changeLanguageCode(languages, {});
 }
 
-module.exports = {
+export {
     onList,
     onUse,
     onSetTranslation,

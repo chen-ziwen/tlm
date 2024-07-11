@@ -1,8 +1,8 @@
 // 火山翻译
-const { Signer } = require("@volcengine/openapi");
-const { getPlatformConfig, errorLog, matchPlatformLanguageCode } = require("../../../util/helpers");
+import { Signer } from "@volcengine/openapi";
+import { getPlatformConfig, matchPlatformLanguageCode, errorLog } from "../../../util/helpers.js";
 
-class Volcengine {
+export default class Volcengine {
     constructor(name) {
         this.mName = name;
         this.mTitle = "火山翻译";
@@ -59,5 +59,3 @@ class Volcengine {
     }
 }
 
-
-module.exports = Volcengine;

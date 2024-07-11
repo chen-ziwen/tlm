@@ -1,8 +1,7 @@
 // 腾讯翻译
-const tencentCloud = require("tencentcloud-sdk-nodejs-tmt");
-const { getPlatformConfig, errorLog, matchPlatformLanguageCode } = require("../../../util/helpers");
-
-class Tencent {
+import tencentCloud from "tencentcloud-sdk-nodejs-tmt";
+import { getPlatformConfig, matchPlatformLanguageCode, errorLog } from "../../../util/helpers.js";
+export default class Tencent {
     constructor(name) {
         this.mName = name;
         this.mTitle = "腾讯翻译";
@@ -63,5 +62,3 @@ class Tencent {
             });
     }
 }
-
-module.exports = Tencent;

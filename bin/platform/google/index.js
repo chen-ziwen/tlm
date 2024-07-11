@@ -1,8 +1,8 @@
-const { getPlatformConfig, matchPlatformLanguageCode } = require("../../../util/helpers");
 
+import { getPlatformConfig, matchPlatformLanguageCode } from "../../../util/helpers.js";
 // 谷歌翻译必须翻墙才能使用 翻墙支持浏览器和部分遵循系统代理的软件
 // 本包不支持直接使用 需要翻墙 且需要开启tun模式劫持所有的请求走代理
-class Google {
+export default class Google {
     constructor(name) {
         this.mName = name;
         this.mTitle = "谷歌翻译";
@@ -34,5 +34,3 @@ class Google {
             });
     }
 }
-
-module.exports = Google;
