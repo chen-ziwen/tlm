@@ -44,47 +44,47 @@ async function getPlatformList() {
 async function getPlatformConfig(name) {
     const config = await readFile(configPath);
     const platform = config.platform[name];
-    const to = config.to, from = config.from, pl = config.pl;
-    return { ...platform, to, from, pl }
+    const source = config.source, target = config.target, pl = config.pl;
+    return { ...platform, source, target, pl }
 }
 
-async function isTranslationPlatformNotFound(name, printErr = true) {
+async function isTranslationPlatformNotFound(name, print = true) {
     const config = await getPlatformInfo();
     const keys = config.platform.map(item => item[0]);
     if (!keys.includes(name)) {
-        printErr && errorLog(`The translation platform '${name}' is not found.`);
+        print && errorLog(`The translation platform '${name}' is not found.`);
         return true;
     }
     return false;
 }
 
-function matchPlatformLanguageCode(name, { from, to }) {
-    const { codeMapping } = languages[name];
-    return { "from": codeMapping[from], "to": codeMapping[to] };
+function matchPlatformLanguageCode(name, { source, target }) {
+    const { codeMap } = languages[name];
+    return { "source": codeMap[source], "target": codeMap[target] };
 }
 
-async function isLanguageNotFound(lang, printErr = true) {
-    const { from, to, pl } = await readFile(configPath);
-    const { codeMapping, source, target } = languages[pl];
-    const map = { "source": from, "target": to };
+async function changeLanguageCode(lang, { printSuc = true, printErr = true }) {
+    const { source, target, pl } = await readFile(configPath);
+    const { codeMap, sourceMap, targetMap } = languages[pl];
+    const map = { source, target };
     const condition = { "include": false, "exclude": true };
-    const mergeMap = Object.assign({}, map, lang);
-    const keys = Object.keys(codeMapping);
+    const keys = Object.keys(codeMap);
 
-    for (let key in mergeMap) {
-        const value = mergeMap[key];
+    for (let key in lang) {
+        const value = lang[key];
         if (keys.includes(value)) {
-            map[key] = value;
-
-            const langsMap = { source: source, target: target[map["source"]] };
-
+            const langsMap = { "source": sourceMap, "target": targetMap[map["source"]] };
             const { strategy, language } = langsMap[key];
+
             if (language.includes(value) == condition[strategy]) {
                 map[key] = defaultLanguage[key];
                 printErr && errorLog(`The ${key} language does not support '${value}' language code has been replaced with the default code '${map[key]}'.`);
+            } else {
+                map[key] = value;
+                printSuc && successLog(`The ${key} language code successfully switched to '${value}'.`);
             }
         } else {
-            printErr && errorLog(`'${value}' language code is not supported in the ${key} language.`);
+            printErr && errorLog(`The '${value}' language code is not supported in the ${key} language.`);
         }
     }
 
@@ -129,7 +129,7 @@ module.exports = {
     getPlatformList,
     getPlatformConfig,
     isTranslationPlatformNotFound,
-    isLanguageNotFound,
+    changeLanguageCode,
     matchPlatformLanguageCode,
     readFile,
     writeFile

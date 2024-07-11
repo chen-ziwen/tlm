@@ -1,7 +1,7 @@
 {
   "pl": "tencent",
-  "from": "auto",
-  "to": "zh",
+  "source": "auto",
+  "target": "zh",
   "platform": {
     "youdao": {
       "name": "有道-youdao",

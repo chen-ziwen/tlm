@@ -1,5 +1,5 @@
 const langs = {
-    codeMapping: {
+    codeMap: {
         auto: "",
         zh: "zh",
         cht: "zh-Hant",
@@ -14,11 +14,11 @@ const langs = {
         pt: "pt",
         th: "th"
     },
-    source: {
+    sourceMap: {
         strategy: "exclude",
         language: []
     },
-    target: {
+    targetMap: {
         auto: {
             strategy: "exclude",
             language: ["auto"]

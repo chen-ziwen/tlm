@@ -32,8 +32,8 @@ class Volcengine {
     }
 
     async translate(query) {
-        const { to, from } = await getPlatformConfig(this.mName);
-        const langCode = matchPlatformLanguageCode(this.mName, { from, to });
+        const { source, target } = await getPlatformConfig(this.mName);
+        const langCode = matchPlatformLanguageCode(this.mName, { source, target });
         const url = await this.url();
 
         return fetch(url, {
@@ -42,8 +42,8 @@ class Volcengine {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                SourceLanguage: langCode.from,
-                TargetLanguage: langCode.to,
+                SourceLanguage: langCode.source,
+                TargetLanguage: langCode.target,
                 TextList: [query.join(" ")]
             }),
         })

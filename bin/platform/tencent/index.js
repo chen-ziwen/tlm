@@ -29,8 +29,8 @@ class Tencent {
     async translate(query) {
         const TmtClient = tencentCloud.tmt.v20180321.Client;
 
-        const { appid, key, from, to } = await getPlatformConfig(this.mName);
-        const langCode = matchPlatformLanguageCode(this.mName, { from, to });
+        const { appid, key, source, target } = await getPlatformConfig(this.mName);
+        const langCode = matchPlatformLanguageCode(this.mName, { source, target });
         const client = new TmtClient({
             credential: {
                 secretId: appid,
@@ -51,8 +51,8 @@ class Tencent {
 
         const params = {
             SourceText: query.join(" "),
-            Source: langCode.from,
-            Target: langCode.to,
+            Source: langCode.source,
+            Target: langCode.target,
             ProjectId: 0
         }
 

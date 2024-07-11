@@ -10,8 +10,8 @@ class Ali {
     }
 
     async translate(query) {
-        const { appid, key, from, to } = await getPlatformConfig(this.mName);
-        const langCode = matchPlatformLanguageCode(this.mName, { from, to });
+        const { appid, key, source, target } = await getPlatformConfig(this.mName);
+        const langCode = matchPlatformLanguageCode(this.mName, { source, target });
         const config = new OpenApi.Config({
             accessKeyId: appid,
             accessKeySecret: key
@@ -23,8 +23,8 @@ class Ali {
 
         const params = {
             formatType: "text",
-            sourceLanguage: langCode.from,
-            targetLanguage: langCode.to,
+            sourceLanguage: langCode.source,
+            targetLanguage: langCode.target,
             sourceText: query.join(" "),
             scene: "general"
         };

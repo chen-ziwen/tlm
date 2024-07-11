@@ -7,7 +7,7 @@ const {
     onUse,
     onSetTranslation,
     onTranslate,
-    onTranslateLanguage
+    onSetTranslateLanguage
 } = require("../util/actions");
 
 const program = new commander.Command();
@@ -40,7 +40,7 @@ program
     .option("-s, --source <source>", "Set source language")
     .option("-t, --target <target>", "Set target language")
     .description("Set source and target languages")
-    .action(onTranslateLanguage)
+    .action(onSetTranslateLanguage)
 
 program
     .command("p")

@@ -14,7 +14,7 @@ const {
     getPlatformInfo,
     exit,
     isTranslationPlatformNotFound,
-    isLanguageNotFound
+    changeLanguageCode
 } = require("./helpers");
 
 async function onList(query) {
@@ -38,6 +38,12 @@ async function onUse(name) {
     config.pl = name;
     await writeFile(configPath, config);
     successLog(`The translation platform has been changed to '${name}'.`)
+
+    const values = await changeLanguageCode({ source: config.source, target: config.target }, { printSuc: false });
+    for (let v in values) {
+        if (v) config[v] = values[v];
+    }
+    await writeFile(configPath, config);
 }
 
 async function onSetTranslation(name, { appid, secretKey }) {
@@ -55,12 +61,12 @@ async function onTranslate(query) {
     if (txt) console.log(chalk.blue(txt));
 }
 
-async function onTranslateLanguage(languages) {
+async function onSetTranslateLanguage(languages) {
     const config = await readFile(configPath);
-    const values = await isLanguageNotFound(languages);
-    const map = { "source": "from", "target": "to" };
+    const values = await changeLanguageCode(languages, {});
+
     for (let v in values) {
-        if (v) config[map[v]] = values[v];
+        if (v) config[v] = values[v];
     }
     await writeFile(configPath, config);
 }
@@ -70,5 +76,5 @@ module.exports = {
     onUse,
     onSetTranslation,
     onTranslate,
-    onTranslateLanguage
+    onSetTranslateLanguage
 }

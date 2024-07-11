@@ -9,12 +9,12 @@ class Google {
     }
 
     async url(query) {
-        const { to, from } = await getPlatformConfig(this.mName);
-        const langCode = matchPlatformLanguageCode(this.mName, { from, to });
+        const { source, target } = await getPlatformConfig(this.mName);
+        const langCode = matchPlatformLanguageCode(this.mName, { source, target });
         const params = new URLSearchParams({
             client: "gtx",
-            tl: langCode.to,
-            sl: langCode.from,
+            tl: langCode.source,
+            sl: langCode.target,
             dt: "t",
             q: query.join(" "),
         });
