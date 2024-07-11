@@ -65,7 +65,7 @@ class Youdao {
                 if (ec !== "0") {
                     return this.printError(ec);
                 }
-                return tl.join("");
+                return tl.join(" ");
             })
             .catch((err) => {
                 this.printError(err);

@@ -19,7 +19,7 @@ const {
 
 async function onList(query) {
     if (query == "langs") {
-        messageLog("我爱你呀")
+        messageLog("untreated")
 
     } else {
         const { pl, platform } = await getPlatformInfo();
