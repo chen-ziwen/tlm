@@ -17,7 +17,7 @@ program.name("tl");
 
 program
     .command("ls [langs]")
-    .description("List all the translation platform. Type `langs` at the end to see what language can to use.")
+    .description("List all the translation platform. Type 'langs' at the end to see what language code can to use.")
     .action(onList);
 
 program
@@ -45,7 +45,7 @@ program
 program
     .command("p")
     .argument("<query...>")
-    .description("Translate the text using the \`tl p <query...>\` directive")
+    .description("Translate the text using the 'tl p <query...>' directive")
     .action(onTranslate)
 
 program.parse(process.argv);

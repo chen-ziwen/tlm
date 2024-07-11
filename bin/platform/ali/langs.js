@@ -29,7 +29,7 @@ const langs = {
         },
         cht: {
             strategy: "include",
-            language: ["zh"],
+            language: ["cht", "zh"],
         },
         en: {
             strategy: "exclude",

@@ -64,7 +64,8 @@ function matchPlatformLanguageCode(name, { source, target }) {
 }
 
 async function changeLanguageCode(lang, { printSuc = true, printErr = true }) {
-    const { source, target, pl } = await readFile(configPath);
+    const config = await readFile(configPath);
+    const { source, target, pl } = config;
     const { codeMap, sourceMap, targetMap } = languages[pl];
     const map = { source, target };
     const condition = { "include": false, "exclude": true };
@@ -88,7 +89,11 @@ async function changeLanguageCode(lang, { printSuc = true, printErr = true }) {
         }
     }
 
-    return map;
+    for (let v in map) {
+        if (v) config[v] = map[v];
+    }
+
+    await writeFile(configPath, config);
 }
 
 

@@ -39,11 +39,7 @@ async function onUse(name) {
     await writeFile(configPath, config);
     successLog(`The translation platform has been changed to '${name}'.`)
 
-    const values = await changeLanguageCode({ source: config.source, target: config.target }, { printSuc: false });
-    for (let v in values) {
-        if (v) config[v] = values[v];
-    }
-    await writeFile(configPath, config);
+    await changeLanguageCode({ source: config.source, target: config.target }, { printSuc: false });
 }
 
 async function onSetTranslation(name, { appid, secretKey }) {
@@ -62,13 +58,7 @@ async function onTranslate(query) {
 }
 
 async function onSetTranslateLanguage(languages) {
-    const config = await readFile(configPath);
-    const values = await changeLanguageCode(languages, {});
-
-    for (let v in values) {
-        if (v) config[v] = values[v];
-    }
-    await writeFile(configPath, config);
+    await changeLanguageCode(languages, {});
 }
 
 module.exports = {
