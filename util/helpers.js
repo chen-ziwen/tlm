@@ -37,11 +37,6 @@ async function getPlatformInfo() {
     return { pl: config.pl, platform }
 }
 
-async function getPlatformList() {
-    const config = await readFile(configPath);
-    return Object.keys(config.platform);
-}
-
 async function getPlatformConfig(name) {
     const config = await readFile(configPath);
     const platform = config.platform[name];
@@ -57,6 +52,36 @@ async function isTranslationPlatformNotFound(name, print = true) {
         return true;
     }
     return false;
+}
+
+async function showLanguageList() {
+    const config = await readFile(configPath);
+    const { source, target, pl } = config;
+    const { sourceMap, targetMap } = languages[pl];
+    const condition = { "include": false, "exclude": true };
+    const map = { source, target };
+
+    const langsList = {
+        sourceList: [],
+        targetList: []
+    }
+
+    for (let value of supportLanguage) {
+        const code = value.code;
+        const name = value.zh + "-" + code;
+
+        const langsMap = { "source": sourceMap, "target": targetMap[code] };
+        for (let key in langsMap) {
+            const { strategy, language } = langsMap[key];
+            if (language.includes(map[key]) == condition[strategy]) {
+                langsList[key + "List"].push({ name, code, selectable: false });
+            } else {
+                langsList[key + "List"].push({ name, code, selectable: true });
+            }
+        }
+    }
+    langsList.targetList = langsList.targetList.filter(item => item.code !== "auto");
+    return langsList;
 }
 
 function matchPlatformLanguageCode(name, { source, target }) {
@@ -98,7 +123,6 @@ async function changeLanguageCode(lang, { printSuc = true, printErr = true }) {
 }
 
 
-
 function successLog(message) {
     console.log(chalk.bgGreenBright(" SUCCESS ") + " " + message);
 }
@@ -132,11 +156,11 @@ export {
     messageLog,
     isLowerCaseEqual,
     getPlatformInfo,
-    getPlatformList,
     getPlatformConfig,
     isTranslationPlatformNotFound,
     changeLanguageCode,
     matchPlatformLanguageCode,
+    showLanguageList,
     readFile,
     writeFile
 }

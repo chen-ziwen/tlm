@@ -11,6 +11,12 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node ./bin/cli.js"
   },
+  "exports": {
+    ".": "./bin/cli.js"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
   "keywords": [
     "translate",
     "translation",
@@ -21,9 +27,14 @@
   "author": "chiko",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/chen-ziwen/translate_terminal/issues"
+    "url": "https://github.com/chen-ziwen/translate_terminal/issues",
+    "email": "czw245255@gmail.com"
   },
   "homepage": "https://github.com/chen-ziwen/translate_terminal",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chen-ziwen/translate_terminal"
+  },
   "dependencies": {
     "@alicloud/alimt20181012": "^1.0.4",
     "@volcengine/openapi": "^1.18.1",

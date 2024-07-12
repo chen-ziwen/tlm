@@ -23,11 +23,10 @@ const supportLanguage = [
     { zh: "泰语", en: "thai", code: "th" },
 ];
 
-// 默认翻译的源语言和目标语言
 const defaultLanguage = {
     source: "auto",
     target: "zh"
-}
+};
 
 export {
     configPath,

@@ -11,12 +11,15 @@ import {
     isLowerCaseEqual,
     getPlatformInfo,
     isTranslationPlatformNotFound,
+    showLanguageList,
     changeLanguageCode
 } from "./helpers.js";
 
 async function onList(query) {
     if (query == "langs") {
-        messageLog("untreated")
+
+        console.log(showLanguageList());
+        // messageLog("untreated")
 
     } else {
         const { pl, platform } = await getPlatformInfo();
