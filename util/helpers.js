@@ -1,4 +1,3 @@
-
 import fs from "fs";
 import chalk from "chalk";
 import process from "../process.js";
@@ -60,17 +59,13 @@ async function showLanguageList() {
     const { sourceMap, targetMap } = languages[pl];
     const condition = { "include": false, "exclude": true };
     const map = { source, target };
-
-    const langsList = {
-        sourceList: [],
-        targetList: []
-    }
+    const langsList = { sourceList: [], targetList: [] };
 
     for (let value of supportLanguage) {
         const code = value.code;
         const name = value.zh + "-" + code;
-
         const langsMap = { "source": sourceMap, "target": targetMap[code] };
+
         for (let key in langsMap) {
             const { strategy, language } = langsMap[key];
             if (language.includes(map[key]) == condition[strategy]) {
