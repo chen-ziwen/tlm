@@ -1,7 +1,9 @@
 
 import * as Adapter from "./index.js";
-import config from "../../config.json" assert { type: "json"};
+import { configPath } from "../../constants.js";
+import { readFile } from "../../util/helpers.js";
 
+const { pl: name } = await readFile(configPath);
 class Translator {
     constructor(pl) {
         this.pl = pl;
@@ -14,4 +16,4 @@ class Translator {
     }
 }
 
-export default new Translator(config.pl);
+export default new Translator(name);

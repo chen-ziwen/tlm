@@ -4,6 +4,7 @@ import path from "path";
 const __fileName = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__fileName);
 const configPath = path.join(__dirname, './config.json');
+const packagePath = path.join(__dirname, './package.json');
 
 // 采用ISO 639-1标准语言代码，除了一些特殊语言
 const supportLanguage = [
@@ -30,6 +31,7 @@ const defaultLanguage = {
 
 export {
     configPath,
+    packagePath,
     supportLanguage,
     defaultLanguage
 }

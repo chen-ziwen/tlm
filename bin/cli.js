@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 
 import { Command } from "commander";
-import pkg from "../package.json" assert { type: "json" };
+import { readFile } from "../util/helpers.js";
+import { packagePath } from "../constants.js";
 import {
     onList,
     onUse,
@@ -10,9 +11,11 @@ import {
     onSetTranslateLanguage
 } from "../util/actions.js";
 
+const { version } = await readFile(packagePath);
+
 const program = new Command();
 
-program.version(pkg.version, '-v, --version', 'Output the current version');
+program.version(version, '-v, --version', 'Output the current version');
 program.name("tl");
 
 program
