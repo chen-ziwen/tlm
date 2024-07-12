@@ -2,7 +2,7 @@
 import MD5 from "crypto-js/md5.js";
 import { getPlatformConfig, matchPlatformLanguageCode, errorLog } from "../../../util/helpers.js";
 
-export default class Baidu {
+export class Baidu {
     constructor(name) {
         this.mName = name;
         this.mTitle = "百度翻译";

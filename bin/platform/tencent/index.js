@@ -1,7 +1,8 @@
 // 腾讯翻译
 import tencentCloud from "tencentcloud-sdk-nodejs-tmt";
 import { getPlatformConfig, matchPlatformLanguageCode, errorLog } from "../../../util/helpers.js";
-export default class Tencent {
+
+export class Tencent {
     constructor(name) {
         this.mName = name;
         this.mTitle = "腾讯翻译";

@@ -3,7 +3,7 @@ import fs from "fs";
 import chalk from "chalk";
 import process from "../process.js";
 import { configPath, defaultLanguage, supportLanguage } from "../constants.js";
-import languages from "../bin/platform/langs.js";
+import * as languages from "../bin/platform/langs.js";
 
 async function readFile(file) {
     return new Promise(resolve => {

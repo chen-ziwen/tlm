@@ -2,7 +2,7 @@
 import sha256 from "crypto-js/sha256.js";
 import { getPlatformConfig, matchPlatformLanguageCode, errorLog } from "../../../util/helpers.js";
 
-export default class Youdao {
+export class Youdao {
     constructor(name) {
         this.mName = name;
         this.mTitle = "有道翻译";

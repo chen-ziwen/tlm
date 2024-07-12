@@ -1,5 +1,5 @@
 
-import Adapter from "./index.js";
+import * as Adapter from "./index.js";
 import config from "../../config.json" assert { type: "json"};
 
 class Translator {

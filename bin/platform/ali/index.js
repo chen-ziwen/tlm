@@ -4,7 +4,7 @@ import alimt20181012 from "@alicloud/alimt20181012";
 import OpenApi from "@alicloud/openapi-client";
 import { getPlatformConfig, matchPlatformLanguageCode, errorLog } from "../../../util/helpers.js";
 
-export default class Ali {
+export class Ali {
     constructor(name) {
         this.mName = name;
         this.mTitle = "阿里翻译";

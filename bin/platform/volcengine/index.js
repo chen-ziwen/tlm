@@ -2,7 +2,7 @@
 import { Signer } from "@volcengine/openapi";
 import { getPlatformConfig, matchPlatformLanguageCode, errorLog } from "../../../util/helpers.js";
 
-export default class Volcengine {
+export class Volcengine {
     constructor(name) {
         this.mName = name;
         this.mTitle = "火山翻译";

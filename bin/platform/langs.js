@@ -1,15 +1,6 @@
-import baidu from "./baidu/langs.js";
-import google from "./google/langs.js";
-import youdao from "./youdao/langs.js";
-import tencent from "./tencent/langs.js";
-import ali from "./ali/langs.js";
-import volcengine from "./volcengine/langs.js";
-
-export default {
-    baidu,
-    google,
-    youdao,
-    tencent,
-    ali,
-    volcengine
-}
+export { default as baidu } from "./baidu/langs.js";
+export { default as google } from "./google/langs.js";
+export { default as youdao } from "./youdao/langs.js";
+export { default as tencent } from "./tencent/langs.js";
+export { default as ali } from "./ali/langs.js";
+export { default as volcengine } from "./volcengine/langs.js";

@@ -1,19 +1,6 @@
-
-import Baidu from "./baidu/index.js";
-import Google from "./google/index.js";
-import Youdao from "./youdao/index.js";
-import Tencent from "./tencent/index.js";
-import Ali from "./ali/index.js";
-import Volcengine from "./volcengine/index.js";
-
-
-export default {
-    Baidu,
-    Google,
-    Youdao,
-    Tencent,
-    Ali,
-    Volcengine
-}
-
-
+export { Baidu } from "./baidu/index.js";
+export { Google } from "./google/index.js";
+export { Youdao } from "./youdao/index.js";
+export { Tencent } from "./tencent/index.js";
+export { Ali } from "./ali/index.js";
+export { Volcengine } from "./volcengine/index.js";
