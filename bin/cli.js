@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-
 import { Command } from "commander";
 import { readFile } from "../util/helpers.js";
 import { packagePath } from "../constants.js";

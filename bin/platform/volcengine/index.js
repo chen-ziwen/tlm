@@ -1,4 +1,3 @@
-// 火山翻译
 import { Signer } from "@volcengine/openapi";
 import { getPlatformConfig, matchPlatformLanguageCode, errorLog } from "../../../util/helpers.js";
 

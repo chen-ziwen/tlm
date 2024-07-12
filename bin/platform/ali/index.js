@@ -1,5 +1,3 @@
-// 阿里翻译
-
 import alimt20181012 from "@alicloud/alimt20181012";
 import OpenApi from "@alicloud/openapi-client";
 import { getPlatformConfig, matchPlatformLanguageCode, errorLog } from "../../../util/helpers.js";

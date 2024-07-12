@@ -1,4 +1,3 @@
-// 腾讯翻译
 import tencentCloud from "tencentcloud-sdk-nodejs-tmt";
 import { getPlatformConfig, matchPlatformLanguageCode, errorLog } from "../../../util/helpers.js";
 

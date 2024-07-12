@@ -1,4 +1,3 @@
-// 百度翻译
 import MD5 from "crypto-js/md5.js";
 import { getPlatformConfig, matchPlatformLanguageCode, errorLog } from "../../../util/helpers.js";
 

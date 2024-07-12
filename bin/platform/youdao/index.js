@@ -1,4 +1,3 @@
-// 有道翻译
 import sha256 from "crypto-js/sha256.js";
 import { getPlatformConfig, matchPlatformLanguageCode, errorLog } from "../../../util/helpers.js";
 
