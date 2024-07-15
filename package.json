@@ -1,6 +1,6 @@
 {
-  "name": "mp-trl",
-  "version": "1.0.1",
+  "name": "mp-tl",
+  "version": "1.0.0",
   "type": "module",
   "description": "terminal translation",
   "main": "./bin/cli.js",
@@ -18,10 +18,8 @@
     "node": ">=13.2.0"
   },
   "keywords": [
-    "mp-trl",
-    "trl",
     "tl",
-    "multi-trl",
+    "mp-tl",
     "translate",
     "translation",
     "translator",

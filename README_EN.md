@@ -1,4 +1,4 @@
-# Terminal Translation
+# Multi-Platform Terminal Translation
 
 ![Static Badge](https://img.shields.io/badge/npm-6.13.1-blue)
 ![Static Badge](https://img.shields.io/badge/node->=13.2.0-97CA00)
@@ -14,7 +14,7 @@
 ## Install
 
 ```
-npm install -g terminal-translate
+npm install -g mp-tl
 ```
 
 ## Usage
