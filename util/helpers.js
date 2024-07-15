@@ -1,5 +1,6 @@
 import fs from "fs";
 import chalk from "chalk";
+import stringWidth from "string-width";
 import process from "../process.js";
 import { configPath, defaultLanguage, supportLanguage } from "../constants.js";
 import * as languages from "../bin/platform/langs.js";
@@ -53,7 +54,7 @@ async function isTranslationPlatformNotFound(name, print = true) {
     return false;
 }
 
-async function showLanguageList() {
+async function languageListHanle() {
     const config = await readFile(configPath);
     const { source, pl } = config;
     const { sourceMap, targetMap } = languages[pl];
@@ -73,9 +74,44 @@ async function showLanguageList() {
             }
         }
     }
-    
-    langsList.targetList = langsList.targetList.filter(item => item.code !== "auto");
+
     return langsList;
+}
+
+
+async function showLanguageList(len = 14) {
+    const langsList = await languageListHanle();
+    const { source, target } = await readFile(configPath);
+    const map = { "sourceList": source, "targetList": target };
+    // 打印提示语
+    console.log(`\n The ${chalk.blue('blue')} highlighted text is the currently selected language, \n and the ${chalk.red('red')} highlighted text is the currently unsupported language.\n`);
+    // 打印表头
+    console.log(`| ${'Source '.padEnd(len)} | ${'Target'.padEnd(len)} |`);
+    // 打印分隔线
+    console.log(`|${'-'.repeat(len + 2)}|${'-'.repeat(len + 2)}|`);
+    // 打印数据行
+    supportLanguage.forEach(item => {
+        let rowStr = "";
+        Object.entries(langsList).forEach(([key, list]) => {
+            let row = list.find(row => row.code == item.code);
+            if (row) {
+                let name = row.name;
+                if (!row.selectable) {
+                    name = chalk.red(name);
+                }
+                if (item.code == map[key]) {
+                    name = chalk.blue(name);
+                }
+                const realLen = len - stringWidth(name) + name.length;
+                if (key == "sourceList") {
+                    rowStr += `| ${name.padEnd(realLen)} |`;
+                } else {
+                    rowStr += ` ${name.padEnd(realLen)} |`;
+                }
+            }
+        });
+        console.log(rowStr);
+    })
 }
 
 function matchPlatformLanguageCode(name, { source, target }) {

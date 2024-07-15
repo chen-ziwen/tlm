@@ -17,10 +17,7 @@ import {
 
 async function onList(query) {
     if (query == "langs") {
-
         await showLanguageList();
-        // messageLog("untreated")
-
     } else {
         const { pl, platform } = await getPlatformInfo();
         const messages = platform.map(([key, value]) => {
