@@ -48,9 +48,9 @@ $ tl set-translation baidu -a 123456 -s abcdefghijklmnopqrstuvwxyz
 
 $ tl ls
 
-  查看当前使用的翻译平台.
+  查看翻译平台列表和当前选中的平台.
 
-$ tl ues youdao
+$ tl use youdao
  
  使用有道翻译平台进行翻译.
 
