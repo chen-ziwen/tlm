@@ -1,5 +1,5 @@
 {
-  "name": "translate",
+  "name": "mp-trl",
   "version": "1.0.0",
   "type": "module",
   "description": "terminal translation",
@@ -18,11 +18,16 @@
     "node": ">=14.0.0"
   },
   "keywords": [
+    "mp-trl",
+    "trl",
+    "tl",
+    "multi-trl",
     "translate",
     "translation",
     "translator",
     "language",
-    "multi-platform"
+    "multi-platform",
+    "multi-platform-translate"
   ],
   "author": "chiko",
   "license": "ISC",
