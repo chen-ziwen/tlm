@@ -55,26 +55,25 @@ async function isTranslationPlatformNotFound(name, print = true) {
 
 async function showLanguageList() {
     const config = await readFile(configPath);
-    const { source, target, pl } = config;
+    const { source, pl } = config;
     const { sourceMap, targetMap } = languages[pl];
     const condition = { "include": false, "exclude": true };
-    const map = { source, target };
     const langsList = { sourceList: [], targetList: [] };
+    const langsMap = { "source": sourceMap, "target": targetMap[source] };
 
     for (let value of supportLanguage) {
         const code = value.code;
         const name = value.zh + "-" + code;
-        const langsMap = { "source": sourceMap, "target": targetMap[code] };
-
         for (let key in langsMap) {
             const { strategy, language } = langsMap[key];
-            if (language.includes(map[key]) == condition[strategy]) {
+            if (language.includes(code) == condition[strategy]) {
                 langsList[key + "List"].push({ name, code, selectable: false });
             } else {
                 langsList[key + "List"].push({ name, code, selectable: true });
             }
         }
     }
+    
     langsList.targetList = langsList.targetList.filter(item => item.code !== "auto");
     return langsList;
 }
@@ -84,20 +83,20 @@ function matchPlatformLanguageCode(name, { source, target }) {
     return { "source": codeMap[source], "target": codeMap[target] };
 }
 
-async function changeLanguageCode(lang, { printSuc = true, printErr = true }) {
+async function changeLanguageCode(langs, { printSuc = true, printErr = true }) {
+    const orderLangs = { "source": langs.source, "target": langs.target };
     const config = await readFile(configPath);
     const { source, target, pl } = config;
-    const { codeMap, sourceMap, targetMap } = languages[pl];
     const map = { source, target };
+    const { codeMap, sourceMap, targetMap } = languages[pl];
     const condition = { "include": false, "exclude": true };
-    const keys = Object.keys(codeMap);
 
-    for (let key in lang) {
-        const value = lang[key];
-        if (keys.includes(value)) {
+    for (let key in orderLangs) {
+        const value = orderLangs[key];
+        if (!value) continue;
+        if (Object.keys(codeMap).includes(value)) {
             const langsMap = { "source": sourceMap, "target": targetMap[map["source"]] };
             const { strategy, language } = langsMap[key];
-
             if (language.includes(value) == condition[strategy]) {
                 map[key] = defaultLanguage[key];
                 printErr && errorLog(`The ${key} language does not support '${value}' language code has been replaced with the default code '${map[key]}'.`);

@@ -35,7 +35,7 @@ program
     .action(onSetTranslation);
 
 program
-    .command("set-lang")
+    .command("set-langs")
     .option("-s, --source <source>", "Set source language")
     .option("-t, --target <target>", "Set target language")
     .description("Set source and target languages")

@@ -18,7 +18,7 @@ import {
 async function onList(query) {
     if (query == "langs") {
 
-        console.log(showLanguageList());
+        await showLanguageList();
         // messageLog("untreated")
 
     } else {
@@ -35,11 +35,12 @@ async function onList(query) {
 async function onUse(name) {
     if (await isTranslationPlatformNotFound(name)) return;
     const config = await readFile(configPath);
+    const { source, target } = config;
     config.pl = name;
     await writeFile(configPath, config);
     successLog(`The translation platform has been changed to '${name}'.`)
 
-    await changeLanguageCode({ source: config.source, target: config.target }, { printSuc: false });
+    await changeLanguageCode({ source, target }, { printSuc: false });
 }
 
 async function onSetTranslation(name, { appid, secretKey }) {
