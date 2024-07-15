@@ -1,6 +1,6 @@
 {
   "name": "mp-trl",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "module",
   "description": "terminal translation",
   "main": "./bin/cli.js",
@@ -15,7 +15,7 @@
     ".": "./bin/cli.js"
   },
   "engines": {
-    "node": ">=14.0.0"
+    "node": ">=13.2.0"
   },
   "keywords": [
     "mp-trl",
