@@ -83,7 +83,6 @@ async function showLanguageList(len = 14) {
     const langsList = await languageListHanle();
     const { source, target } = await readFile(configPath);
     const map = { "sourceList": source, "targetList": target };
-    // 打印提示语
     console.log(`\n The ${chalk.blue('blue')} highlighted text is the currently selected language, \n and the ${chalk.red('red')} highlighted text is the currently unsupported language.\n`);
     // 打印表头
     console.log(`| ${'Source '.padEnd(len)} | ${'Target'.padEnd(len)} |`);
@@ -120,16 +119,14 @@ function matchPlatformLanguageCode(name, { source, target }) {
 }
 
 async function changeLanguageCode(langs, { printSuc = true, printErr = true }) {
-    const orderLangs = { "source": langs.source, "target": langs.target };
     const config = await readFile(configPath);
     const { source, target, pl } = config;
-    const map = { source, target };
+    const map = Object.assign({ source, target }, langs);
     const { codeMap, sourceMap, targetMap } = languages[pl];
     const condition = { "include": false, "exclude": true };
 
-    for (let key in orderLangs) {
-        const value = orderLangs[key];
-        if (!value) continue;
+    for (let key in map) {
+        const value = map[key];
         if (Object.keys(codeMap).includes(value)) {
             const langsMap = { "source": sourceMap, "target": targetMap[map["source"]] };
             const { strategy, language } = langsMap[key];
@@ -138,15 +135,16 @@ async function changeLanguageCode(langs, { printSuc = true, printErr = true }) {
                 printErr && errorLog(`The ${key} language does not support '${value}' language code has been replaced with the default code '${map[key]}'.`);
             } else {
                 map[key] = value;
-                printSuc && successLog(`The ${key} language code successfully switched to '${value}'.`);
+                printSuc && langs[key] && successLog(`The ${key} language code successfully switched to '${value}'.`);
             }
         } else {
+            map[key] = config[key];
             printErr && errorLog(`The '${value}' language code is not supported in the ${key} language.`);
         }
     }
 
-    for (let v in map) {
-        if (v) config[v] = map[v];
+    for (let key in map) {
+        if (key) config[key] = map[key];
     }
 
     await writeFile(configPath, config);

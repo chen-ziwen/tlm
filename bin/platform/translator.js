@@ -3,6 +3,7 @@ import { configPath } from "../../constants.js";
 import { readFile } from "../../util/helpers.js";
 
 const { pl: name } = await readFile(configPath);
+
 class Translator {
     constructor(pl) {
         this.pl = pl;
