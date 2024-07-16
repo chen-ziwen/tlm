@@ -23,20 +23,20 @@ npm install -g mp-tl
 Usage: tl [options] [command]
 
 Options:
-  -v, --version                     Output the current version
-  -h, --help                        display help for command
+  -v, --version                     输出当前版本
+  -h, --help                        显示命令的帮助
 
 Commands:
-  ls [langs]                        List all the translation platform. Type 'langs' at the end to see what language code can to use.
-  use <name>                        Change current translation platform.
-  set-translation [options] <name>  Set the appid and key for the translation platform to access the channel translation api.
-    -a, --appid <appid>             Set translation platform appid.
-    -s, --secret-key <secretKey>    Set translation platform secret key.
-  set-langs [options]               Set source and target languages
-    -s, --source <source>           Set source language
-    -t, --target <target>           Set target language
-  p <query...>                      Translate the text using the 'tl p <query...>' directive
-  help [command]                    display help for command
+  ls [langs]                        列出所有翻译平台。在末尾输入“langs”以查看可以使用的语言代码。
+  use <name>                        更改当前的翻译平台。
+  set-translation [options] <name>  设置翻译平台访问渠道的应用ID和密钥。
+    -a, --appid <appid>             设置翻译平台应用ID。
+    -s, --secret-key <secretKey>    设置翻译平台密钥。
+  set-langs [options]               设置源语言和目标语言。
+    -s, --source <source>           设置源语言
+    -t, --target <target>           设置目标语言
+  p <query...>                      使用 'tl p <query...>' 指令翻译文本
+  help [command]                    显示命令的帮助
 ```
 
 ## 示例
@@ -75,23 +75,20 @@ $ tl p hello world
 - 阿里云翻译
 - 火山翻译
 
-## 申请教程
-
-[来自易翻的教程](https://flowus.cn/share/0d96c879-2dba-4bfc-9d81-4b4f435398e8)
-
 ## 注意事项
 
 - 翻译插件本身并没有翻译文字的能力，而是通过调用翻译平台提供的API进行翻译，目前支持的平台都有免费的翻译额度，对于大部分人来说是完全足够的。
-- 除了谷歌翻译，所有翻译平台都需要去申请应用ID和密钥。
+- 除了谷歌翻译，所有翻译平台都需要去申请应用ID和密钥，具体申请教程请看：[翻译平台API申请教程](https://flowus.cn/chiko_translation/share/e0a8678b-314c-4327-885c-b13ea7c5f239?code=B8NQGQ)。
 - 由于本插件是终端运行，也并没有提供服务器的打算，所以谷歌翻译需要通过代理才能使用，如果开启代理还不能使用，请开启代理的Tun模式。
+
 
 ## 联系
 
-- qq: 2452559902
+- QQ 2452559902
 
 ## 贡献
 
-欢迎提交issue和pull request。
+欢迎提交 issue 和 pull request
 
 ## 许可证
 

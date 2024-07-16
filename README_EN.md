@@ -74,19 +74,15 @@ $ tl p hello world
 - Alibaba Cloud Translate
 - Volcengine Translate
 
-## Apply for Tutorial
-
-[Tutorial from Yifan](https://flowus.cn/share/0d96c879-2dba-4bfc-9d81-4b4f435398e8)
-
 ## Precautions
 
 - The translation plug-in itself does not have the ability to translate text, but instead translates by calling the API provided by the translation platform. Currently supported platforms have free translation quotas, which is completely sufficient for most people.
-- Except for Google Translate, all translation platforms need to apply for application ID and key.
+- Except for Google Translate, all translation platforms need to apply for application ID and key, Please see the specific tutorial: [Translation platform API application tutorial](https://flowus.cn/chiko_translation/share/e0a8678b-314c-4327-885c-b13ea7c5f239?code=B8NQGQ).
 - Since this plug-in runs in the terminal and there is no plan to provide a server, Google Translate needs to be used through a proxy. If it still does not work after turning on the proxy, please turn on the Tun mode of the proxy.
 
 ## Connect
 
-- qq: 2452559902
+- QQ 2452559902
 
 ## Contribute
 
