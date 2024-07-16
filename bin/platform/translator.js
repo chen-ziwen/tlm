@@ -1,4 +1,3 @@
-
 import * as Adapter from "./index.js";
 import { configPath } from "../../constants.js";
 import { readFile } from "../../util/helpers.js";
