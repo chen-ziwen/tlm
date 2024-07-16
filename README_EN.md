@@ -27,11 +27,11 @@ Options:
   -h, --help                        display help for command
 
 Commands:
-  ls [langs]                        List all the translation platform. Type 'langs' at the end to see what language code can to use.
-  use <name>                        Change current translation platform.
-  set-translation [options] <name>  Set the appid and key for the translation platform to access the channel translation api.
-    -a, --appid <appid>             Set translation platform appid.
-    -s, --secret-key <secretKey>    Set translation platform secret key.
+  ls [langs]                        List all the translation platform, Type 'langs' at the end to see what language code can to use
+  use <name>                        Change current translation platform
+  set-translation [options] <name>  Set the appid and key for the translation platform to access the channel translation api
+    -a, --appid <appid>             Set translation platform appid
+    -s, --secret-key <secretKey>    Set translation platform secret key
   set-langs [options]               Set source and target languages
     -s, --source <source>           Set source language
     -t, --target <target>           Set target language
@@ -43,27 +43,27 @@ Commands:
 ```
 $ tl set-translation baidu -a 123456 -s abcdefghijklmnopqrstuvwxyz
 
-  Set the application ID and key of Baidu Translation Platform.
+  Set the application ID and key of Baidu Translation Platform
 
 $ tl ls
 
-  View the list of translation platforms and the currently selected platform.
+  View the list of translation platforms and the currently selected platform
 
 $ tl use youdao
  
- Use Youdao translation platform for translation.
+ Use Youdao translation platform for translation
 
 $ tl ls langs
   
- View the currently available source and target language codes.
+ View the currently available source and target language codes
 
 $ tl set-langs -s en -t zh
 
- Set the translation source language to English and the target language to Chinese.
+ Set the translation source language to English and the target language to Chinese
  
 $ tl p hello world
 
- tl p Keep up with the text that needs to be translated.
+ tl p Keep up with the text that needs to be translated
 ```
 ## Supported Platforms
 
@@ -86,7 +86,7 @@ $ tl p hello world
 
 ## Contribute
 
-Welcome to submit issues and pull requests.
+Welcome to submit issues and pull requests
 
 ## License
 

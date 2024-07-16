@@ -27,12 +27,12 @@ Options:
   -h, --help                        显示命令的帮助
 
 Commands:
-  ls [langs]                        列出所有翻译平台。在末尾输入“langs”以查看可以使用的语言代码。
-  use <name>                        更改当前的翻译平台。
-  set-translation [options] <name>  设置翻译平台访问渠道的应用ID和密钥。
-    -a, --appid <appid>             设置翻译平台应用ID。
-    -s, --secret-key <secretKey>    设置翻译平台密钥。
-  set-langs [options]               设置源语言和目标语言。
+  ls [langs]                        列出所有翻译平台，在末尾输入“langs”以查看可以使用的语言代码
+  use <name>                        更改当前的翻译平台
+  set-translation [options] <name>  设置翻译平台访问渠道的应用ID和密钥
+    -a, --appid <appid>             设置翻译平台应用ID
+    -s, --secret-key <secretKey>    设置翻译平台密钥
+  set-langs [options]               设置源语言和目标语言
     -s, --source <source>           设置源语言
     -t, --target <target>           设置目标语言
   p <query...>                      使用 'tl p <query...>' 指令翻译文本
@@ -44,23 +44,23 @@ Commands:
 ```
 $ tl set-translation baidu -a 123456 -s abcdefghijklmnopqrstuvwxyz
 
-  设置百度翻译平台的应用ID和密钥.
+  设置百度翻译平台的应用ID和密钥
 
 $ tl ls
 
-  查看翻译平台列表和当前选中的平台.
+  查看翻译平台列表和当前选中的平台
 
 $ tl use youdao
  
- 使用有道翻译平台进行翻译.
+ 使用有道翻译平台进行翻译
 
 $ tl ls langs
   
- 查看当前可以选择的源语言和目标语言代码.
+ 查看当前可以选择的源语言和目标语言代码
  
 $ tl set-langs -s en -t zh
 
- 设置翻译源语言为英语，目标语言为中文.
+ 设置翻译源语言为英语，目标语言为中文
  
 $ tl p hello world
 
