@@ -21,7 +21,7 @@ async function onList(query) {
     } else {
         const { pl, platform } = await getPlatformInfo();
         const messages = platform.map(([key, value]) => {
-            const prefix = isLowerCaseEqual(key, pl) ? chalk.blue.bold("   * ") : "     ";
+            const prefix = isLowerCaseEqual(key, pl) ? chalk.blue.bold("* ") : "  ";
             const suffix = isLowerCaseEqual(key, pl) ? chalk.blue(" (Currently useing) ") : "";
             return prefix + value.name + suffix;
         });
