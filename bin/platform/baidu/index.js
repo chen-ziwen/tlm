@@ -58,5 +58,4 @@ export class Baidu {
             })
             .catch((err) => console.error(err));
     }
-
 }

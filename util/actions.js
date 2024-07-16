@@ -36,7 +36,6 @@ async function onUse(name) {
     config.pl = name;
     await writeFile(configPath, config);
     successLog(`The translation platform has been changed to '${name}'.`)
-
     await changeLanguageCode({ source, target }, { printSuc: false });
 }
 
