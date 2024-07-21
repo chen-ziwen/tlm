@@ -22,7 +22,8 @@ export class Ali implements Tl.Methods {
 
         config.endpoint = "mt.aliyuncs.com";
 
-        const client = new alimt20181012(config);
+        // @ts-ignore
+        const client = new alimt20181012.default(config);
 
         const params = {
             formatType: "text",
@@ -36,7 +37,9 @@ export class Ali implements Tl.Methods {
         const runtime = new $Util.RuntimeOptions({});
 
         return client.translateGeneralWithOptions(translateGeneralRequest, runtime)
+            // @ts-ignore
             .then(data => data.body?.data?.translated)
+            // @ts-ignore
             .catch(err => {
                 if (err) {
                     const { Message, Recommend } = err.data;
