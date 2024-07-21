@@ -1,6 +1,6 @@
 {
   "name": "mp-tl",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "type": "module",
   "description": "terminal translation",
   "main": "./dist/bin/cli.js",
@@ -18,6 +18,11 @@
   "engines": {
     "node": ">=13.2.0"
   },
+  "files": [
+    "dist/",
+    "config.json",
+    "README_EN.md"
+  ],
   "keywords": [
     "tl",
     "mp-tl",
