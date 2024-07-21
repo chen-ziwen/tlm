@@ -3,16 +3,17 @@
   "version": "1.0.4",
   "type": "module",
   "description": "terminal translation",
-  "main": "./bin/cli.js",
+  "main": "./dist/bin/cli.js",
   "bin": {
-    "tl": "./bin/cli.js"
+    "tl": "./dist/bin/cli.js"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node ./bin/cli.js"
+    "tl": "tsx src/bin/cli.ts",
+    "build": "tsc --project tsconfig.json && tsc-alias -p tsconfig.json",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "exports": {
-    ".": "./bin/cli.js"
+    ".": "./dist/bin/cli.js"
   },
   "engines": {
     "node": ">=13.2.0"
@@ -28,7 +29,7 @@
     "multi-platform-translate"
   ],
   "author": "chiko",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/chen-ziwen/translate_terminal/issues",
     "email": "czw245255@gmail.com"
@@ -40,6 +41,7 @@
   },
   "dependencies": {
     "@alicloud/alimt20181012": "^1.0.4",
+    "@types/crypto-js": "^4.2.2",
     "@volcengine/openapi": "^1.18.1",
     "chalk": "^4.1.2",
     "commander": "^12.0.0",
@@ -47,5 +49,11 @@
     "string-width": "^7.2.0",
     "tencentcloud-sdk-nodejs-tmt": "^4.0.844",
     "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.11",
+    "tsc-alias": "^1.8.10",
+    "tsx": "^4.16.2",
+    "typescript": "^5.5.3"
   }
 }
