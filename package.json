@@ -8,8 +8,8 @@
     "tl": "./dist/bin/cli.js"
   },
   "scripts": {
-    "tl": "tsx src/bin/cli.ts",
-    "build": "tsc --project tsconfig.json && tsc-alias -p tsconfig.json",
+    "start": "tsc-watch --onSuccess \"tsc-alias\"",
+    "build": "tsc && tsc-alias",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "exports": {
@@ -58,7 +58,7 @@
   "devDependencies": {
     "@types/node": "^20.14.11",
     "tsc-alias": "^1.8.10",
-    "tsx": "^4.16.2",
+    "tsc-watch": "^6.2.0",
     "typescript": "^5.5.3"
   }
 }

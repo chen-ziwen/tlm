@@ -12,7 +12,7 @@ import {
     isTranslationPlatformNotFound,
     showLanguageList,
     changeLanguageCode
-} from "./helpers.js";
+} from "@util/helpers";
 
 async function onList(query: string) {
     if (query == "langs") {
