@@ -1,7 +1,6 @@
 import fs from "fs";
 import chalk from "chalk";
 import stringWidth from "string-width";
-import process from "@/process";
 import { configPath, defaultLanguage, supportLanguage } from "@/constants";
 import * as languages from "@bin/langs";
 
