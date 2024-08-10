@@ -14,37 +14,42 @@ const { version } = <{ version: string }>await readFile(packagePath);
 
 const program = new Command();
 
-program.version(version, '-v, --version', 'Output the current version');
-program.name("tl");
+program.version(version, '-v, --version', '输出当前版本');
+
+program.name("tl").usage("command [options]");
+
+program.helpOption('-h, --help', '显示命令帮助');
+
+program.helpCommand('help', '显示命令帮助');
 
 program
     .command("ls [langs]")
-    .description("List all the translation platform. Type 'langs' at the end to see what language code can to use.")
+    .description("展示翻译平台列表，末尾加上 'langs' 可查看当前选中的语种")
     .action(onList);
 
 program
     .command("use <name>")
-    .description("Change current translation platform.")
+    .description("切换当前的翻译平台")
     .action(onUse);
 
 program
     .command("set-translation <name>")
-    .option("-a, --appid <appid>", "Set translation platform appid.")
-    .requiredOption("-s, --secret-key <secretKey>", "Set translation platform secret key.")
-    .description("Set the appid and key for the translation platform to access the channel translation api.")
+    .option("-a, --appid <appid>", "设置翻译平台的应用ID")
+    .requiredOption("-s, --secret-key <secretKey>", "设置翻译平台的秘钥")
+    .description("设置翻译平台的应用ID和秘钥去连接访问翻译API")
     .action(onSetTranslation);
 
 program
     .command("set-langs")
-    .option("-s, --source <source>", "Set source language")
-    .option("-t, --target <target>", "Set target language")
-    .description("Set source and target languages")
+    .option("-s, --source <source>", "设置源语言")
+    .option("-t, --target <target>", "设置目标语言")
+    .description("设置源语言和目标语言")
     .action(onSetTranslateLanguage)
 
 program
     .command("p")
     .argument("<query...>")
-    .description("Translate the text using the 'tl p <query...>' directive")
+    .description("翻译文本使用 'tl p <query...>' 命令")
     .action(onTranslate)
 
 program.parse(process.argv);

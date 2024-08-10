@@ -23,14 +23,21 @@ const supportLanguage: Tl.SupportLangs[] = [
     { zh: "泰语", en: "thai", code: "th" },
 ];
 
+const languageZh = {
+    source: "源语言",
+    target: "目标语言"
+}
+
 const defaultLanguage: Tl.DefaultLangs = {
     source: "auto",
     target: "zh"
 };
 
+
 export {
     configPath,
     packagePath,
+    languageZh,
     supportLanguage,
     defaultLanguage
 }
