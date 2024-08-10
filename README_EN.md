@@ -1,15 +1,16 @@
 # Multi-Platform Terminal Translation
 
-![Static Badge](https://img.shields.io/badge/npm-6.13.1-blue)
-![Static Badge](https://img.shields.io/badge/node->=13.2.0-97CA00)
+![Static Badge](https://img.shields.io/badge/npm-6.14.17-blue)
+![Static Badge](https://img.shields.io/badge/node->=14.8.0-97CA00)
 ![Static Badge](https://img.shields.io/badge/licenes-MIT-97CA00)
-
-> A simple terminal translation tool that supports multiple platforms. Through commands, you can easily switch translation platforms, set translation languages, and perform translation operations.
 
 ## Language
 
 - [简体中文](README.md)
 - [English](README_EN.md)
+
+
+> A simple terminal translation tool that supports multiple platforms. Through commands, you can easily switch translation platforms, set translation languages, and perform translation operations.
 
 ## Install
 

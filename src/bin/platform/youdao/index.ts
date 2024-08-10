@@ -1,6 +1,7 @@
 import sha256 from "crypto-js/sha256.js";
 import { getPlatformConfig, matchPlatformLanguageCode, errorLog } from "@util/helpers";
 import querystring from "querystring";
+import fetch from "node-fetch";
 
 export class Youdao implements Tl.Methods {
     private mName: string;
@@ -62,7 +63,7 @@ export class Youdao implements Tl.Methods {
         const url = await this.url(query);
         return fetch(url)
             .then(res => res.json())
-            .then(data => {
+            .then((data: any) => {
                 const { errorCode: ec, translation: tl } = data;
                 if (ec !== "0") {
                     return this.printError(ec);

@@ -1,4 +1,5 @@
 import { getPlatformConfig, matchPlatformLanguageCode } from "@util/helpers";
+import fetch from "node-fetch";
 
 export class Google implements Tl.Methods {
     private mName: string;
@@ -26,7 +27,7 @@ export class Google implements Tl.Methods {
         const url = await this.url(query);
         return fetch(url)
             .then(res => res.json())
-            .then(data => {
+            .then((data: any) => {
                 return data[0]?.[0]?.[0];
             })
             .catch((err) => {

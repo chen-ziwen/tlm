@@ -1,6 +1,7 @@
 import MD5 from "crypto-js/md5.js";
 import { getPlatformConfig, matchPlatformLanguageCode, errorLog } from "@util/helpers";
 import querystring from "querystring";
+import fetch from "node-fetch";
 
 export class Baidu implements Tl.Methods {
     private mName: string;
@@ -51,7 +52,7 @@ export class Baidu implements Tl.Methods {
         const url = await this.url(query);
         return fetch(url)
             .then(res => res.json())
-            .then(data => {
+            .then((data: any) => {
                 const { error_code: ec, trans_result: rs } = data;
                 if (ec) {
                     return this.printError(ec);
