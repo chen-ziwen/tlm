@@ -15,7 +15,8 @@ const { version } = <{ version: string }>await readFile(packagePath);
 const program = new Command();
 
 program.version(version, '-v, --version', 'Output the current version');
-program.name("tl");
+
+program.name("tl").usage("command [options]");
 
 program
     .command("ls [langs]")

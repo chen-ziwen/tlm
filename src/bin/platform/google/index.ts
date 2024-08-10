@@ -14,8 +14,8 @@ export class Google implements Tl.Methods {
         const langCode = matchPlatformLanguageCode(this.mName, { source, target });
         const params = new URLSearchParams({
             client: "gtx",
-            tl: langCode.source,
-            sl: langCode.target,
+            tl: langCode.target,
+            sl: langCode.source,
             dt: "t",
             q: query.join(" "),
         });
