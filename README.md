@@ -4,14 +4,14 @@
 ![Static Badge](https://img.shields.io/badge/node->=14.8.0-97CA00)
 ![Static Badge](https://img.shields.io/badge/licenes-MIT-97CA00)
 
+> 一个简单的终端翻译包，支持多个翻译平台。通过终端命令，可以方便快捷的切换平台、语种，进行文本翻译操作。
+
 ## 语言
 
 - [简体中文](README.md)
 - [English](README_EN.md)
+
   
-
-> 一个简单的终端翻译工具，支持多个平台。通过指令，可以方便地切换翻译平台，设置翻译语言，进行翻译操作。
-
 ## 安装
 
 ```

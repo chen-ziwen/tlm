@@ -4,13 +4,13 @@
 ![Static Badge](https://img.shields.io/badge/node->=14.8.0-97CA00)
 ![Static Badge](https://img.shields.io/badge/licenes-MIT-97CA00)
 
+> A simple terminal translation package that supports multiple translation platforms.  Through terminal commands, you can easily and quickly switch platforms and languages, and perform text translation operations.
+
 ## Language
 
 - [简体中文](README.md)
 - [English](README_EN.md)
 
-
-> A simple terminal translation tool that supports multiple platforms. Through commands, you can easily switch translation platforms, set translation languages, and perform translation operations.
 
 ## Install
 
