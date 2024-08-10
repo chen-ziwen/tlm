@@ -83,14 +83,18 @@ async function languageListHanle() {
     return langsList;
 }
 
+function stringFill(len: number, text: string) {
+    return text.padEnd(len - stringWidth(text) + text.length);
+}
 
 async function showLanguageList(len = 14) {
     const langsList = await languageListHanle();
     const { source, target } = <Tl.Config>await readFile(configPath);
     const map: { [key: string]: string } = { "sourceList": source, "targetList": target };
+    
     console.log(`\n The ${chalk.blue('blue')} highlighted text is the currently selected language, \n and the ${chalk.red('red')} highlighted text is the currently unsupported language.\n`);
     // 打印表头
-    console.log(`| ${'Source '.padEnd(len)} | ${'Target'.padEnd(len)} |`);
+    console.log(`| ${stringFill(len, 'Source')} | ${stringFill(len, 'Target')} |`);
     // 打印分隔线
     console.log(`|${'-'.repeat(len + 2)}|${'-'.repeat(len + 2)}|`);
     // 打印数据行
@@ -106,11 +110,10 @@ async function showLanguageList(len = 14) {
                 if (item.code == map[key]) {
                     name = chalk.blue(name);
                 }
-                const realLen = len - stringWidth(name) + name.length;
                 if (key == "sourceList") {
-                    rowStr += `| ${name.padEnd(realLen)} |`;
+                    rowStr += `| ${stringFill(len, name)} |`;
                 } else {
-                    rowStr += ` ${name.padEnd(realLen)} |`;
+                    rowStr += ` ${stringFill(len, name)} |`;
                 }
             }
         });
