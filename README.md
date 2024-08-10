@@ -30,7 +30,7 @@ Options:
 Commands:
   ls [langs]                        列出所有翻译平台，在末尾输入“langs”以查看可以使用的语言代码
   use <name>                        更改当前的翻译平台
-  set-trl [options] <name>  设置翻译平台访问渠道的应用ID和密钥
+  set-trl [options] <name>          设置翻译平台访问渠道的应用ID和密钥
     -a, --appid <appid>             设置翻译平台应用ID
     -s, --secret-key <secretKey>    设置翻译平台密钥
   set-langs [options]               设置源语言和目标语言
