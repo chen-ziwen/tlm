@@ -1,0 +1,34 @@
+name: Create Release on Tag
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0 
+
+    - name: Get Tag Message
+      id: get_tag_message
+      run: |
+        TAG_MESSAGE=$(git show --no-patch --no-notes --pretty="body" ${{ github.ref }})
+        echo ::set-output name=tag_message::"$TAG_MESSAGE"
+
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.TRANSLATE_TOKEN }}
+      with:
+        tag_name: ${{ github.ref }}
+        release_name: Release ${{ github.ref }}
+        body: ${{ steps.get_tag_message.outputs.tag_message }}
+        draft: false
+        prerelease: false
