@@ -30,7 +30,7 @@ Options:
 Commands:
   ls [langs]                        List all the translation platform, Type 'langs' at the end to see what language code can to use
   use <name>                        Change current translation platform
-  set-translation [options] <name>  Set the appid and key for the translation platform to access the channel translation api
+  set-trl [options] <name>  Set the appid and key for the translation platform to access the channel translation api
     -a, --appid <appid>             Set translation platform appid
     -s, --secret-key <secretKey>    Set translation platform secret key
   set-langs [options]               Set source and target languages
@@ -42,7 +42,7 @@ Commands:
 
 ## Example
 ```
-$ tl set-translation baidu -a 123456 -s abcdefghijklmnopqrstuvwxyz
+$ tl set-trl baidu -a 123456 -s abcdefghijklmnopqrstuvwxyz
 
   Set the application ID and key of Baidu Translation Platform
 

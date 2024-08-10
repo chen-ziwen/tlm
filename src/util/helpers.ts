@@ -1,7 +1,7 @@
 import fs from "fs";
 import chalk from "chalk";
 import stringWidth from "string-width";
-import { configPath, defaultLanguage, supportLanguage } from "@/constants";
+import { configPath, defaultLanguage, supportLanguage, languageZh } from "@/constants";
 import * as languages from "@bin/langs";
 
 interface LangsList {
@@ -49,17 +49,27 @@ async function getPlatformConfig(name: string) {
     return { ...platform, source, target, pl }
 }
 
+async function getPlatformName(name: string) {
+    const { platform } = await getPlatformInfo();
+    for (let [key, value] of platform) {
+        if (key == name) {
+            return value.name.split("-")[0];
+        }
+    }
+    return name;
+}
+
 async function isTranslationPlatformNotFound(name: string, print = true) {
-    const config = await getPlatformInfo();
-    const keys = config.platform.map(item => item[0]);
+    const { platform } = await getPlatformInfo();
+    const keys = platform.map(item => item[0]);
     if (!keys.includes(name)) {
-        print && errorLog(`The translation platform '${name}' is not found.`);
+        print && errorLog(`不支持 \`${name}\` 翻译平台，请使用 \`tl ls\` 命令查看可支持平台`);
         return true;
     }
     return false;
 }
 
-async function languageListHanle() {
+async function languageListHandle() {
     const config = <Tl.Config>await readFile(configPath);
     const { source, pl } = config;
     const { sourceMap, targetMap } = (<{ [key: string]: Tl.LangsConfig }>languages)[pl];
@@ -79,22 +89,26 @@ async function languageListHanle() {
             }
         }
     }
-
     return langsList;
 }
+
 
 function stringFill(len: number, text: string) {
     return text.padEnd(len - stringWidth(text) + text.length);
 }
 
+function foundZhMap(code: string) {
+    return supportLanguage.find(item => item.code == code)?.zh ?? code;
+}
+
 async function showLanguageList(len = 14) {
-    const langsList = await languageListHanle();
+    const langsList = await languageListHandle();
     const { source, target } = <Tl.Config>await readFile(configPath);
     const map: { [key: string]: string } = { "sourceList": source, "targetList": target };
-    
-    console.log(`\n The ${chalk.blue('blue')} highlighted text is the currently selected language, \n and the ${chalk.red('red')} highlighted text is the currently unsupported language.\n`);
+
+    console.log(`\n- ${chalk.blue('蓝色')}高亮文本为当前选中语种\n- ${chalk.red('红色')}高亮文本为当前不支持语种\n- 不同翻译平台的不同语种支持略有差异\n`);
     // 打印表头
-    console.log(`| ${stringFill(len, 'Source')} | ${stringFill(len, 'Target')} |`);
+    console.log(`| ${stringFill(len, '源语言')} | ${stringFill(len, "目标语言")} |`);
     // 打印分隔线
     console.log(`|${'-'.repeat(len + 2)}|${'-'.repeat(len + 2)}|`);
     // 打印数据行
@@ -104,12 +118,8 @@ async function showLanguageList(len = 14) {
             let row = list.find(row => row.code == item.code);
             if (row) {
                 let name = row.name;
-                if (!row.selectable) {
-                    name = chalk.red(name);
-                }
-                if (item.code == map[key]) {
-                    name = chalk.blue(name);
-                }
+                if (!row.selectable) name = chalk.red(name);
+                if (item.code == map[key]) name = chalk.blue(name);
                 if (key == "sourceList") {
                     rowStr += `| ${stringFill(len, name)} |`;
                 } else {
@@ -141,31 +151,27 @@ async function changeLanguageCode(langs: Tl.DefaultLangs, { printSuc = true, pri
             const { strategy, language } = langsMap[key];
             if (language.includes(value) == condition[strategy]) {
                 map[key] = defaultLanguage[key];
-                printErr && errorLog(`The ${key} language does not support '${value}' language code has been replaced with the default code '${map[key]}'.`);
+                printErr && errorLog(`当前选择下，${languageZh[key]}不支持 \`${foundZhMap(value)}\`，自动替换为默认语种 \`${foundZhMap(map[key])}\``);
             } else {
                 map[key] = value;
-                printSuc && langs[key] && successLog(`The ${key} language code successfully switched to '${value}'.`);
+                printSuc && langs[key] && successLog(`${languageZh[key]}已成功切换为 \`${foundZhMap(value)}\``);
             }
         } else {
             map[key] = config[key];
-            printErr && errorLog(`The '${value}' language code is not supported in the ${key} language.`);
+            printErr && errorLog(`${languageZh[key]}无法识别 \`${value}\` 语种，请检查是否输入错误！`);
         }
+        config[key] = map[key];
     }
-
-    for (key in map) {
-        if (key) config[key] = map[key];
-    }
-
     await writeFile(configPath, config);
 }
 
 
 function successLog(message: string) {
-    console.log(chalk.bgGreenBright(" SUCCESS ") + " " + message);
+    console.log(chalk.bgGreenBright(" 成功 ") + " " + message);
 }
 
 function errorLog(error: unknown) {
-    console.error(chalk.bgRed(" ERROR ") + " " + chalk.red(error));
+    console.error(chalk.bgRed(" 失败 ") + " " + chalk.red(error));
 }
 
 function messageLog(messages: string[]) {
@@ -193,11 +199,15 @@ export {
     messageLog,
     isLowerCaseEqual,
     getPlatformInfo,
+    getPlatformName,
     getPlatformConfig,
     isTranslationPlatformNotFound,
     changeLanguageCode,
     matchPlatformLanguageCode,
     showLanguageList,
+    languageListHandle,
+    stringFill,
+    foundZhMap,
     readFile,
     writeFile
 }

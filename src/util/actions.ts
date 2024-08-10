@@ -9,6 +9,7 @@ import {
     messageLog,
     isLowerCaseEqual,
     getPlatformInfo,
+    getPlatformName,
     isTranslationPlatformNotFound,
     showLanguageList,
     changeLanguageCode
@@ -21,7 +22,7 @@ async function onList(query: string) {
         const { pl, platform } = await getPlatformInfo();
         const messages = platform.map(([key, value]) => {
             const prefix = isLowerCaseEqual(key, pl) ? chalk.blue.bold("* ") : "  ";
-            const suffix = isLowerCaseEqual(key, pl) ? chalk.blue(" (Currently useing) ") : "";
+            const suffix = isLowerCaseEqual(key, pl) ? chalk.blue(" (当前选中) ") : "";
             return prefix + value.name + suffix;
         });
         messageLog(messages);
@@ -34,7 +35,8 @@ async function onUse(name: string) {
     const { source, target } = config;
     config.pl = name;
     await writeFile(configPath, config);
-    successLog(`The translation platform has been changed to '${name}'.`)
+    const plName = await getPlatformName(name);
+    successLog(`正在使用${plName}翻译平台`);
     await changeLanguageCode({ source, target }, { printSuc: false });
 }
 
@@ -45,7 +47,8 @@ async function onSetTranslation(name: string, { appid, secretKey }: { appid: str
     platform.appid = appid ?? platform.appid;
     platform.key = secretKey ?? platform.key;
     await writeFile(configPath, config);
-    successLog(`Set api-secret-key ${name} success`);
+    const plName = await getPlatformName(name);
+    successLog(`${plName}翻译平台成功设置应用ID和秘钥`);
 }
 
 async function onTranslate(query: string[]) {
