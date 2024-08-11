@@ -21,7 +21,7 @@ npm install -g mp-tl
 ## 使用
 
 ```
-Usage: tl [options] [command]
+Usage: tl command [options]
 
 Options:
   -v, --version                     输出当前版本

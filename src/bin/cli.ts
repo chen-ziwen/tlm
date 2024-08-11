@@ -29,7 +29,7 @@ program
     .action(onUse);
 
 program
-    .command("set-translation <name>")
+    .command("set-trl <name>")
     .option("-a, --appid <appid>", "Set translation platform appid.")
     .requiredOption("-s, --secret-key <secretKey>", "Set translation platform secret key.")
     .description("Set the appid and key for the translation platform to access the channel translation api.")
