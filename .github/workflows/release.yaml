@@ -18,7 +18,7 @@ jobs:
     - name: Get Tag Message
       id: get_tag_message
       run: |
-        TAG_MESSAGE=$(git tag -n1 ${GITHUB_REF##*/})
+        TAG_MESSAGE=$(git tag -n1 ${{ github.ref }})
         echo "tag_message=$TAG_MESSAGE" >> $GITHUB_OUTPUT
 
     - name: Create Release
