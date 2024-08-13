@@ -1,6 +1,6 @@
 {
   "name": "mp-tl",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "type": "module",
   "description": "terminal translation",
   "main": "./dist/bin/cli.js",
@@ -8,9 +8,9 @@
     "tl": "./dist/bin/cli.js"
   },
   "scripts": {
-    "postinstall":"node ./dist/util/updated_config.js",
     "start": "tsc-watch --onSuccess \"tsc-alias\"",
     "build": "tsc && tsc-alias",
+    "postinstall": "node ./dist/util/updated_config.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "exports": {
