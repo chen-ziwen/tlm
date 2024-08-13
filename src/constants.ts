@@ -3,11 +3,12 @@ import path from "path";
 
 const __fileName = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__fileName);
-const configPath = path.join(__dirname, '../config.json');
-const packagePath = path.join(__dirname, '../package.json');
+const CONFIG_PATH = path.join(__dirname, '../config.json');
+const PACKAGE_PATH = path.join(__dirname, '../package.json');
+const MPTLRC = path.join(<string>process.env[(process.platform === 'win32') ? 'USERPROFILE' : 'HOME'], '.mptlrc.json');
 
-// 采用ISO 639-1标准语言代码，除了一些特殊语言，例如繁体中文
-const supportLanguage: Tl.SupportLangs[] = [
+// 采用ISO 639-1标准语言代码，除了一些特殊语言，如繁体中文
+const LANGUAGE_MAP: Tl.SupportLangs[] = [
     { zh: "自动检测", en: "auto", code: "auto" },
     { zh: "中文", en: "chinese", code: "zh" },
     { zh: "繁体中文", en: "traditional_chinese", code: "cht" },
@@ -23,21 +24,21 @@ const supportLanguage: Tl.SupportLangs[] = [
     { zh: "泰语", en: "thai", code: "th" },
 ];
 
-const languageZh = {
+const LANGUAGE_ZH = {
     source: "源语言",
     target: "目标语言"
 }
 
-const defaultLanguage: Tl.DefaultLangs = {
+const DEFAULTLANGUAGE: Tl.DefaultLangs = {
     source: "auto",
     target: "zh"
 };
 
-
 export {
-    configPath,
-    packagePath,
-    languageZh,
-    supportLanguage,
-    defaultLanguage
+    MPTLRC,
+    CONFIG_PATH,
+    PACKAGE_PATH,
+    LANGUAGE_ZH,
+    LANGUAGE_MAP,
+    DEFAULTLANGUAGE
 }

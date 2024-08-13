@@ -1,7 +1,7 @@
 import fs from "fs";
 import chalk from "chalk";
 import stringWidth from "string-width";
-import { configPath, supportLanguage } from "@/constants";
+import { LANGUAGE_MAP, MPTLRC } from "@/constants";
 import * as languages from "@bin/langs";
 
 async function readFile(file: string) {
@@ -30,14 +30,20 @@ async function writeFile(path: string, content: Tl.Config): Promise<void> {
     })
 }
 
+async function isExistConfig(path: string) {
+    return new Promise(resolve => {
+        fs.access(path, (err) => err ? resolve(false) : resolve(true));
+    })
+}
+
 async function getPlatformInfo() {
-    const config = <Tl.Config>await readFile(configPath);
+    const config = <Tl.Config>await readFile(MPTLRC);
     const platform = Object.entries(config.platform);
     return { pl: config.pl, platform }
 }
 
 async function getPlatformConfig(name: string) {
-    const config = <Tl.Config>await readFile(configPath);
+    const config = <Tl.Config>await readFile(MPTLRC);
     const platform = config.platform[name];
     const source = config.source, target = config.target, pl = config.pl;
     return { ...platform, source, target, pl }
@@ -58,7 +64,7 @@ function stringFill(len: number, text: string) {
 }
 
 function foundZhMap(code: string) {
-    return supportLanguage.find(item => item.code == code)?.zh ?? code;
+    return LANGUAGE_MAP.find(item => item.code == code)?.zh ?? code;
 }
 
 function matchPlatformLanguageCode(name: string, { source, target }: { source: string, target: string }) {
@@ -98,5 +104,6 @@ export {
     stringFill,
     foundZhMap,
     readFile,
-    writeFile
+    writeFile,
+    isExistConfig
 }

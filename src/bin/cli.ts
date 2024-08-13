@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import { Command } from "commander";
 import { readFile } from "@util/helpers";
-import { packagePath } from "@/constants";
+import { PACKAGE_PATH } from "@/constants";
 import {
     onList,
     onUse,
@@ -10,7 +10,7 @@ import {
     onSetTranslateLanguage
 } from "@util/actions";
 
-const { version } = <{ version: string }>await readFile(packagePath);
+const { version } = <{ version: string }>await readFile(PACKAGE_PATH);
 
 const program = new Command();
 
