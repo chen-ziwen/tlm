@@ -18,6 +18,9 @@ jobs:
         node-version: 16
         registry-url: https://registry.npmjs.org/
 
+    - name: Set SKIP_POSTINSTALL Environment Variable
+      run: echo "SKIP_POSTINSTALL=true" >> $GITHUB_ENV
+
     - name: Install dependencies
       run: npm install
 
