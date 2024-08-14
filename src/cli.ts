@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+
 import { Command } from "commander";
 import { readFile } from "@util/helpers";
 import { PACKAGE_PATH } from "@/constants";
@@ -16,7 +17,7 @@ const program = new Command();
 
 program.version(version, '-v, --version', 'Output the current version');
 
-program.name("tl").usage("command [options]");
+program.name("mptl").usage("command [options]");
 
 program
     .command("ls [langs]")
@@ -45,7 +46,7 @@ program
 program
     .command("p")
     .argument("<query...>")
-    .description("Translate the text using the 'tl p <query...>' directive")
+    .description("Translate the text using the 'mptl p <query...>' directive")
     .action(onTranslate)
 
 program.parse(process.argv);

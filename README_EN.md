@@ -1,4 +1,4 @@
-# Multi-Platform Terminal Translation
+# Multi-translation platform terminal package
 
 ![Static Badge](https://img.shields.io/badge/npm-6.14.17-blue)
 ![Static Badge](https://img.shields.io/badge/node->=14.8.0-97CA00)
@@ -15,13 +15,13 @@
 ## Install
 
 ```
-npm install -g mp-tl
+npm install -g mptl
 ```
 
 ## Usage
 
 ```
-Usage: tl command [options]
+Usage: mptl command [options]
 
 Options:
   -v, --version                     Output the current version
@@ -36,35 +36,35 @@ Commands:
   set-langs [options]               Set source and target languages
     -s, --source <source>           Set source language
     -t, --target <target>           Set target language
-  p <query...>                      Translate the text using the 'tl p <query...>' directive
+  p <query...>                      Translate the text using the 'mptl p <query...>' directive
   help [command]                    display help for command
 ```
 
 ## Example
 ```
-$ tl set-trl baidu -a 123456 -s abcdefghijklmnopqrstuvwxyz
+$ mptl set-trl baidu -a 123456 -s abcdefghijklmnopqrstuvwxyz
 
   Set the application ID and key of Baidu Translation Platform
 
-$ tl ls
+$ mptl ls
 
   View the list of translation platforms and the currently selected platform
 
-$ tl use youdao
- 
- Use Youdao translation platform for translation
-
-$ tl ls langs
+$ mptl ls langs
   
  View the currently available source and target language codes
 
-$ tl set-langs -s en -t zh
+$ mptl use youdao
+ 
+ Use Youdao translation platform for translation
+
+$ mptl set-langs -s en -t zh
 
  Set the translation source language to English and the target language to Chinese
  
-$ tl p hello world
+$ mptl p hello world
 
- tl p Keep up with the text that needs to be translated
+ mptl p Keep up with the text that needs to be translated
 ```
 ## Supported Platforms
 
@@ -78,7 +78,7 @@ $ tl p hello world
 ## Precautions
 
 - The translation plug-in itself does not have the ability to translate text, but instead translates by calling the API provided by the translation platform. Currently supported platforms have free translation quotas, which is completely sufficient for most people.
-- Except for Google Translate, all translation platforms need to apply for application ID and key, Please see the specific tutorial: [Translation platform API application tutorial](https://flowus.cn/chiko_mp-tl/share/91538d60-cf6e-48a6-b2b3-bc14eed4f066?code=B8NQGQ).
+- Except for Google Translate, all translation platforms need to apply for application ID and key, Please see the specific tutorial: [Translation platform API application tutorial](https://flowus.cn/chiko_mptl/share/c721cbc9-6537-41e5-99b9-fd6299ec5b01?code=B8NQGQ).
 - Since this plug-in runs in the terminal and there is no plan to provide a server, Google Translate needs to be used through a proxy. If it still does not work after turning on the proxy, please turn on the Tun mode of the proxy.
 
 ## Connect

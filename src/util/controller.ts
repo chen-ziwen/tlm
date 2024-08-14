@@ -28,7 +28,7 @@ async function isTranslationPlatformNotFound(name: string, print = true) {
     const { platform } = await getPlatformInfo();
     const keys = platform.map(item => item[0]);
     if (!keys.includes(name)) {
-        print && errorLog(`不支持 \`${name}\` 翻译平台，请使用 \`tl ls\` 命令查看可支持平台`);
+        print && errorLog(`不支持 \`${name}\` 翻译平台，请使用 \`mptl ls\` 命令查看可支持平台`);
         return true;
     }
     return false;

@@ -1,11 +1,11 @@
 {
-  "name": "mp-tl",
-  "version": "2.0.1",
+  "name": "mptl",
+  "version": "0.0.1",
   "type": "module",
-  "description": "terminal translation",
-  "main": "./dist/bin/cli.js",
+  "description": "Terminal packages that support multiple translation platforms",
+  "main": "./dist/cli.js",
   "bin": {
-    "tl": "./dist/bin/cli.js"
+    "mptl": "./dist/cli.js"
   },
   "scripts": {
     "start": "tsc-watch --onSuccess \"tsc-alias\"",
@@ -14,7 +14,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "exports": {
-    ".": "./dist/bin/cli.js"
+    ".": "./dist/cli.js"
   },
   "engines": {
     "node": ">=14.8.0"
@@ -25,8 +25,7 @@
     "README_EN.md"
   ],
   "keywords": [
-    "tl",
-    "mp-tl",
+    "mptl",
     "translate",
     "translation",
     "translator",

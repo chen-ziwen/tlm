@@ -1,4 +1,4 @@
-# 多平台终端翻译
+# 多翻译平台终端包
 
 ![Static Badge](https://img.shields.io/badge/npm-6.14.17-blue)
 ![Static Badge](https://img.shields.io/badge/node->=14.8.0-97CA00)
@@ -15,13 +15,13 @@
 ## 安装
 
 ```
-npm install -g mp-tl
+npm install -g mptl
 ```
 
 ## 使用
 
 ```
-Usage: tl command [options]
+Usage: mptl command [options]
 
 Options:
   -v, --version                     输出当前版本
@@ -36,36 +36,36 @@ Commands:
   set-langs [options]               设置源语言和目标语言
     -s, --source <source>           设置源语言
     -t, --target <target>           设置目标语言
-  p <query...>                      使用 'tl p <query...>' 指令翻译文本
+  p <query...>                      使用 'mptl p <query...>' 指令翻译文本
   help [command]                    显示命令的帮助
 ```
 
 ## 示例
 
 ```
-$ tl set-trl baidu -a 123456 -s abcdefghijklmnopqrstuvwxyz
+$ mptl set-trl baidu -a 123456 -s abcdefghijklmnopqrstuvwxyz
 
   设置百度翻译平台的应用ID和密钥
 
-$ tl ls
+$ mptl ls
 
   查看翻译平台列表和当前选中的平台
 
-$ tl use youdao
+$ mptl use youdao
  
  使用有道翻译平台进行翻译
 
-$ tl ls langs
+$ mptl ls langs
   
  查看当前可以选择的源语言和目标语言代码
  
-$ tl set-langs -s en -t zh
+$ mptl set-langs -s en -t zh
 
  设置翻译源语言为英语，目标语言为中文
  
-$ tl p hello world
+$ mptl p hello world
 
- tl p 跟上需要翻译的文本内容
+ mptl p 跟上需要翻译的文本内容
 ```
 ## 支持平台
 
@@ -79,7 +79,7 @@ $ tl p hello world
 ## 注意事项
 
 - 翻译插件本身并没有翻译文字的能力，而是通过调用翻译平台提供的API进行翻译，目前支持的平台都有免费的翻译额度，对于大部分人来说是完全足够的。
-- 除了谷歌翻译，所有翻译平台都需要去申请应用ID和密钥，具体申请教程请看：[翻译平台API申请教程](https://flowus.cn/chiko_mp-tl/share/91538d60-cf6e-48a6-b2b3-bc14eed4f066?code=B8NQGQ)。
+- 除了谷歌翻译，所有翻译平台都需要去申请应用ID和密钥，具体申请教程请看：[翻译平台API申请教程](https://flowus.cn/chiko_mptl/share/c721cbc9-6537-41e5-99b9-fd6299ec5b01?code=B8NQGQ)。
 - 由于本插件是终端运行，也并没有提供服务器的打算，所以谷歌翻译需要通过代理才能使用，如果开启代理还不能使用，请开启代理的Tun模式。
 
 

@@ -8,7 +8,7 @@ export class Ali implements Tl.Methods {
     private mTitle: string;
     constructor(name: string) {
         this.mName = name;
-        this.mTitle = "阿里翻译";
+        this.mTitle = "阿里云翻译";
     }
 
     async translate(query: string[]) {

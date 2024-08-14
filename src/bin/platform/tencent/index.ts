@@ -6,7 +6,7 @@ export class Tencent implements Tl.Methods {
     private mTitle: string;
     constructor(name: string) {
         this.mName = name;
-        this.mTitle = "腾讯翻译";
+        this.mTitle = "腾讯云翻译";
     }
 
     printError(code: string) {
