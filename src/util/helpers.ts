@@ -30,7 +30,7 @@ async function writeFile(path: string, content: Tl.Config): Promise<void> {
     })
 }
 
-async function isExistConfig(path: string) {
+async function isExistConfig(path: string): Promise<boolean> {
     return new Promise(resolve => {
         fs.access(path, (err) => err ? resolve(false) : resolve(true));
     })

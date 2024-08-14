@@ -7,8 +7,7 @@ const CONFIG_PATH = path.join(__dirname, '../config.json');
 const PACKAGE_PATH = path.join(__dirname, '../package.json');
 const MPTLRC = path.join(<string>process.env[(process.platform === 'win32') ? 'USERPROFILE' : 'HOME'], '.mptlrc.json');
 
-// 采用ISO 639-1标准语言代码，除了一些特殊语言，如繁体中文
-const LANGUAGE_MAP: Tl.SupportLangs[] = [
+const LANGUAGE_MAP = [
     { zh: "自动检测", en: "auto", code: "auto" },
     { zh: "中文", en: "chinese", code: "zh" },
     { zh: "繁体中文", en: "traditional_chinese", code: "cht" },
@@ -29,7 +28,7 @@ const LANGUAGE_ZH = {
     target: "目标语言"
 }
 
-const DEFAULTLANGUAGE: Tl.DefaultLangs = {
+const DEFAULTLANGUAGE = {
     source: "auto",
     target: "zh"
 };
