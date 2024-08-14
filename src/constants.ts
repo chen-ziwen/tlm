@@ -5,7 +5,7 @@ const __fileName = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__fileName);
 const CONFIG_PATH = path.join(__dirname, '../config.json');
 const PACKAGE_PATH = path.join(__dirname, '../package.json');
-const MPTLRC = path.join(<string>process.env[(process.platform === 'win32') ? 'USERPROFILE' : 'HOME'], '.mptlrc.json');
+const TLMRC = path.join(<string>process.env[(process.platform === 'win32') ? 'USERPROFILE' : 'HOME'], '.tlmrc.json');
 
 const LANGUAGE_MAP = [
     { zh: "自动检测", en: "auto", code: "auto" },
@@ -34,7 +34,7 @@ const DEFAULTLANGUAGE = {
 };
 
 export {
-    MPTLRC,
+    TLMRC,
     CONFIG_PATH,
     PACKAGE_PATH,
     LANGUAGE_ZH,

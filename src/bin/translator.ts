@@ -1,8 +1,8 @@
 import * as Adapters from ".";
-import { MPTLRC } from "@/constants";
+import { TLMRC } from "@/constants";
 import { readFile } from "@util/helpers";
 
-const { pl: name } = <Tl.Config>await readFile(MPTLRC);
+const { pl: name } = <Tl.Config>await readFile(TLMRC);
 
 type keys = keyof typeof Adapters;
 

@@ -3,7 +3,7 @@ import * as languages from "@bin/langs";
 import {
     LANGUAGE_MAP,
     DEFAULTLANGUAGE,
-    MPTLRC,
+    TLMRC,
     LANGUAGE_ZH
 } from "@/constants";
 import {
@@ -28,14 +28,14 @@ async function isTranslationPlatformNotFound(name: string, print = true) {
     const { platform } = await getPlatformInfo();
     const keys = platform.map(item => item[0]);
     if (!keys.includes(name)) {
-        print && errorLog(`不支持 \`${name}\` 翻译平台，请使用 \`mptl ls\` 命令查看可支持平台`);
+        print && errorLog(`不支持 \`${name}\` 翻译平台，请使用 \`tlm ls\` 命令查看可支持平台`);
         return true;
     }
     return false;
 }
 
 async function languageListHandle() {
-    const config = <Tl.Config>await readFile(MPTLRC);
+    const config = <Tl.Config>await readFile(TLMRC);
     const { source, pl } = config;
     const { sourceMap, targetMap } = (<{ [key: string]: Tl.LangsConfig }>languages)[pl];
     const condition: { [key: string]: boolean } = { "include": false, "exclude": true };
@@ -69,7 +69,7 @@ async function showPlatformList() {
 
 async function showLanguageList(len = 14) {
     const langsList = await languageListHandle();
-    const { source, target } = <Tl.Config>await readFile(MPTLRC);
+    const { source, target } = <Tl.Config>await readFile(TLMRC);
     const map: { [key: string]: string } = { source, target };
 
     console.log(`\n- ${chalk.blue('蓝色')}高亮文本为当前选中语种\n- ${chalk.red('红色')}高亮文本为当前不支持语种\n- 不同翻译平台的不同语种支持略有差异\n`);
@@ -96,17 +96,17 @@ async function showLanguageList(len = 14) {
 
 async function changePlatform(name: string) {
     if (await isTranslationPlatformNotFound(name)) return;
-    const config = <Tl.Config>await readFile(MPTLRC);
+    const config = <Tl.Config>await readFile(TLMRC);
     const { source, target } = config;
     config.pl = name;
-    await writeFile(MPTLRC, config);
+    await writeFile(TLMRC, config);
     const plName = await getPlatformName(name);
     successLog(`正在使用${plName}翻译平台`);
     await changeLanguageCode({ source, target }, { printSuc: false });
 }
 
 async function changeLanguageCode(langs: Tl.DefaultLangs, { printSuc = true, printErr = true }) {
-    const config = <Tl.Config>await readFile(MPTLRC);
+    const config = <Tl.Config>await readFile(TLMRC);
     const { source, target, pl } = config;
     const map = Object.assign({ source, target }, langs);
     const { codeMap, sourceMap, targetMap } = (<{ [key: string]: Tl.LangsConfig }>languages)[pl];
@@ -131,16 +131,16 @@ async function changeLanguageCode(langs: Tl.DefaultLangs, { printSuc = true, pri
         }
         config[key] = map[key];
     }
-    await writeFile(MPTLRC, config);
+    await writeFile(TLMRC, config);
 }
 
 async function setTranslation(name: string, { appid, secretKey }: { appid: string, secretKey: string }) {
     if (await isTranslationPlatformNotFound(name)) return;
-    const config = <Tl.Config>await readFile(MPTLRC);
+    const config = <Tl.Config>await readFile(TLMRC);
     const platform = config.platform[name];
     platform.appid = appid ?? platform.appid;
     platform.key = secretKey ?? platform.key;
-    await writeFile(MPTLRC, config);
+    await writeFile(TLMRC, config);
     const plName = await getPlatformName(name);
     successLog(`${plName}翻译平台成功设置应用ID和秘钥`);
 }

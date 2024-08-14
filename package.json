@@ -1,11 +1,11 @@
 {
-  "name": "mptl",
+  "name": "tlm",
   "version": "0.0.1",
   "type": "module",
   "description": "Terminal packages that support multiple translation platforms",
   "main": "./dist/cli.js",
   "bin": {
-    "mptl": "./dist/cli.js"
+    "tlm": "./dist/cli.js"
   },
   "scripts": {
     "start": "tsc-watch --onSuccess \"tsc-alias\"",
@@ -25,10 +25,8 @@
     "README_EN.md"
   ],
   "keywords": [
-    "mptl",
+    "tlm",
     "translate",
-    "translation",
-    "translator",
     "language",
     "multi-platform",
     "multi-platform-translate"

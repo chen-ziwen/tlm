@@ -15,13 +15,13 @@
 ## 安装
 
 ```
-npm install -g mptl
+npm install -g tlm
 ```
 
 ## 使用
 
 ```
-Usage: mptl command [options]
+Usage: tlm command [options]
 
 Options:
   -v, --version                     输出当前版本
@@ -36,36 +36,36 @@ Commands:
   set-langs [options]               设置源语言和目标语言
     -s, --source <source>           设置源语言
     -t, --target <target>           设置目标语言
-  p <query...>                      使用 'mptl p <query...>' 指令翻译文本
+  p <query...>                      使用 'tlm p <query...>' 指令翻译文本
   help [command]                    显示命令的帮助
 ```
 
 ## 示例
 
 ```
-$ mptl set-trl baidu -a 123456 -s abcdefghijklmnopqrstuvwxyz
+$ tlm set-trl baidu -a 123456 -s abcdefghijklmnopqrstuvwxyz
 
   设置百度翻译平台的应用ID和密钥
 
-$ mptl ls
+$ tlm ls
 
   查看翻译平台列表和当前选中的平台
 
-$ mptl use youdao
+$ tlm use youdao
  
  使用有道翻译平台进行翻译
 
-$ mptl ls langs
+$ tlm ls langs
   
  查看当前可以选择的源语言和目标语言代码
  
-$ mptl set-langs -s en -t zh
+$ tlm set-langs -s en -t zh
 
  设置翻译源语言为英语，目标语言为中文
  
-$ mptl p hello world
+$ tlm p hello world
 
- mptl p 跟上需要翻译的文本内容
+ tlm p 跟上需要翻译的文本内容
 ```
 ## 支持平台
 
@@ -79,7 +79,7 @@ $ mptl p hello world
 ## 注意事项
 
 - 翻译插件本身并没有翻译文字的能力，而是通过调用翻译平台提供的API进行翻译，目前支持的平台都有免费的翻译额度，对于大部分人来说是完全足够的。
-- 除了谷歌翻译，所有翻译平台都需要去申请应用ID和密钥，具体申请教程请看：[翻译平台API申请教程](https://flowus.cn/chiko_mptl/share/c721cbc9-6537-41e5-99b9-fd6299ec5b01?code=B8NQGQ)。
+- 除了谷歌翻译，所有翻译平台都需要去申请应用ID和密钥，具体申请教程请看：[翻译平台API申请教程](https://flowus.cn/chiko_tlm/share/c721cbc9-6537-41e5-99b9-fd6299ec5b01?code=B8NQGQ)。
 - 由于本插件是终端运行，也并没有提供服务器的打算，所以谷歌翻译需要通过代理才能使用，如果开启代理还不能使用，请开启代理的Tun模式。
 
 

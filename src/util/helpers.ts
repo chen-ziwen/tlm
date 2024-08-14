@@ -1,7 +1,7 @@
 import fs from "fs";
 import chalk from "chalk";
 import stringWidth from "string-width";
-import { LANGUAGE_MAP, MPTLRC } from "@/constants";
+import { LANGUAGE_MAP, TLMRC } from "@/constants";
 import * as languages from "@bin/langs";
 
 async function readFile(file: string) {
@@ -37,13 +37,13 @@ async function isExistConfig(path: string): Promise<boolean> {
 }
 
 async function getPlatformInfo() {
-    const config = <Tl.Config>await readFile(MPTLRC);
+    const config = <Tl.Config>await readFile(TLMRC);
     const platform = Object.entries(config.platform);
     return { pl: config.pl, platform }
 }
 
 async function getPlatformConfig(name: string) {
-    const config = <Tl.Config>await readFile(MPTLRC);
+    const config = <Tl.Config>await readFile(TLMRC);
     const platform = config.platform[name];
     const source = config.source, target = config.target, pl = config.pl;
     return { ...platform, source, target, pl }

@@ -17,7 +17,7 @@ const program = new Command();
 
 program.version(version, '-v, --version', 'Output the current version');
 
-program.name("mptl").usage("command [options]");
+program.name("tlm").usage("command [options]");
 
 program
     .command("ls [langs]")
@@ -46,7 +46,7 @@ program
 program
     .command("p")
     .argument("<query...>")
-    .description("Translate the text using the 'mptl p <query...>' directive")
+    .description("Translate the text using the 'tlm p <query...>' directive")
     .action(onTranslate)
 
 program.parse(process.argv);
