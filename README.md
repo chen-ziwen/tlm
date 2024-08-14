@@ -1,4 +1,4 @@
-# 多翻译平台终端包
+# 多平台终端翻译包
 
 ![Static Badge](https://img.shields.io/badge/npm-6.14.17-blue)
 ![Static Badge](https://img.shields.io/badge/node->=14.8.0-97CA00)
@@ -79,7 +79,7 @@ $ tlm p hello world
 ## 注意事项
 
 - 翻译插件本身并没有翻译文字的能力，而是通过调用翻译平台提供的API进行翻译，目前支持的平台都有免费的翻译额度，对于大部分人来说是完全足够的。
-- 除了谷歌翻译，所有翻译平台都需要去申请应用ID和密钥，具体申请教程请看：[翻译平台API申请教程](https://flowus.cn/chiko_tlm/share/c721cbc9-6537-41e5-99b9-fd6299ec5b01?code=B8NQGQ)。
+- 除了谷歌翻译，所有翻译平台都需要去申请应用ID和密钥，具体申请教程请看：[翻译平台API申请教程](https://flowus.cn/chiko_tlm/share/91538d60-cf6e-48a6-b2b3-bc14eed4f066?code=B8NQGQ)。
 - 由于本插件是终端运行，也并没有提供服务器的打算，所以谷歌翻译需要通过代理才能使用，如果开启代理还不能使用，请开启代理的Tun模式。
 
 

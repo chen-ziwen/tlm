@@ -1,6 +1,6 @@
 {
   "name": "tlm",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "type": "module",
   "description": "Terminal packages that support multiple translation platforms",
   "main": "./dist/cli.js",

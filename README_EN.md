@@ -1,4 +1,4 @@
-# Multi-translation platform terminal package
+# Multiplatform terminal translation package
 
 ![Static Badge](https://img.shields.io/badge/npm-6.14.17-blue)
 ![Static Badge](https://img.shields.io/badge/node->=14.8.0-97CA00)
@@ -78,7 +78,7 @@ $ tlm p hello world
 ## Precautions
 
 - The translation plug-in itself does not have the ability to translate text, but instead translates by calling the API provided by the translation platform. Currently supported platforms have free translation quotas, which is completely sufficient for most people.
-- Except for Google Translate, all translation platforms need to apply for application ID and key, Please see the specific tutorial: [Translation platform API application tutorial](https://flowus.cn/chiko_tlm/share/c721cbc9-6537-41e5-99b9-fd6299ec5b01?code=B8NQGQ).
+- Except for Google Translate, all translation platforms need to apply for application ID and key, Please see the specific tutorial: [Translation platform API application tutorial](https://flowus.cn/chiko_tlm/share/91538d60-cf6e-48a6-b2b3-bc14eed4f066?code=B8NQGQ).
 - Since this plug-in runs in the terminal and there is no plan to provide a server, Google Translate needs to be used through a proxy. If it still does not work after turning on the proxy, please turn on the Tun mode of the proxy.
 
 ## Connect
