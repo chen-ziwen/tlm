@@ -2,7 +2,7 @@ import chalk from "chalk";
 import * as languages from "@bin/langs";
 import {
     LANGUAGE_MAP,
-    DEFAULTLANGUAGE,
+    DEFAULT_LANGUAGE,
     TLMRC,
     LANGUAGE_ZH
 } from "@/constants";
@@ -59,10 +59,11 @@ async function languageListHandle() {
 
 async function showPlatformList() {
     const { pl, platform } = await getPlatformInfo();
-    platform.forEach(([key, value]) => {
+    platform.forEach(([key, value], idx) => {
         const prefix = isLowerCaseEqual(key, pl) ? chalk.blue.bold("* ") : "  ";
         const suffix = isLowerCaseEqual(key, pl) ? chalk.blue(" (目前使用)") : "";
-        const message = prefix + value.name + suffix;
+        let message = prefix + value.name + suffix;
+        if (idx == 0) message = "\n" + message;
         console.log(message);
     });
 }
@@ -72,7 +73,7 @@ async function showLanguageList(len = 14) {
     const { source, target } = <Tl.Config>await readFile(TLMRC);
     const map: { [key: string]: string } = { source, target };
 
-    console.log(`- ${chalk.blue('蓝色')}高亮文本为当前选中语种\n- ${chalk.red('红色')}高亮文本为当前不支持语种\n- 不同翻译平台的不同语种支持略有差异\n`);
+    console.log(`\n- ${chalk.blue('蓝色')}高亮文本为当前选中语种\n- ${chalk.red('红色')}高亮文本为当前不支持语种\n- 不同翻译平台的不同语种支持略有差异\n`);
     console.log(`| ${stringFill(len, '源语言')} | ${stringFill(len, "目标语言")} |`);
     console.log(`|${'-'.repeat(len + 2)}|${'-'.repeat(len + 2)}|`);
     LANGUAGE_MAP.forEach(item => {
@@ -119,7 +120,7 @@ async function changeLanguageCode(langs: Tl.DefaultLangs, { printSuc = true, pri
             const langsMap: { [key: string]: Tl.LangMsg } = { "source": sourceMap, "target": targetMap[map["source"]] };
             const { strategy, language } = langsMap[key];
             if (language.includes(value) == condition[strategy]) {
-                map[key] = DEFAULTLANGUAGE[key];
+                map[key] = DEFAULT_LANGUAGE[key];
                 printErr && errorLog(`当前选择下，${LANGUAGE_ZH[key]}不支持 \`${foundZhMap(value)}\`，自动替换为默认语种 \`${foundZhMap(map[key])}\``);
             } else {
                 map[key] = value;
@@ -150,10 +151,10 @@ async function getTranslation(name: string, { show }: { show: boolean }) {
     name = name ?? pl;
     if (await isTranslationPlatformNotFound(name)) return;
     const [_, value] = platform.find(([key]) => key == name)!;
-    const prefix = value.name.split("-")[0] + "翻译";
+    const prefix = chalk.blue(value.name.split("-")[0] + "翻译");
     const appid = value.appid || "暂未设置";
     const key = value.key ? (show ? value.key : "*".repeat(value.key.length)) : "暂未设置";
-    const message = `${prefix}\n- 应用ID: ${appid}\n- 秘钥: ${key}`;
+    const message = `\n${prefix}\n- 应用ID: ${appid}\n- 秘钥: ${key}`;
     console.log(message);
 }
 

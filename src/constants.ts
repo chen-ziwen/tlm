@@ -28,7 +28,7 @@ const LANGUAGE_ZH = {
     target: "目标语言"
 }
 
-const DEFAULTLANGUAGE = {
+const DEFAULT_LANGUAGE = {
     source: "auto",
     target: "zh"
 };
@@ -39,5 +39,5 @@ export {
     PACKAGE_PATH,
     LANGUAGE_ZH,
     LANGUAGE_MAP,
-    DEFAULTLANGUAGE
+    DEFAULT_LANGUAGE
 }

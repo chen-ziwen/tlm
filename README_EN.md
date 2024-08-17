@@ -62,15 +62,15 @@ $ tlm ls
 
 $ tlm ls langs
   
- View the currently available source and target language codes
+  View the currently available source and target language codes
 
 $ tlm set-langs -s en -t zh
 
- Set the translation source language to English and the target language to Chinese
+  Set the translation source language to English and the target language to Chinese
  
 $ tlm p hello world
 
- tlm p Keep up with the text that needs to be translated
+  tlm p Keep up with the text that needs to be translated
 ```
 ## Supported Platforms
 
