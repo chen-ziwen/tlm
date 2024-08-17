@@ -33,6 +33,8 @@ Commands:
   set-trl [options] <name>          设置翻译平台访问渠道的应用ID和密钥
     -a, --appid <appid>             设置翻译平台应用ID
     -s, --secret-key <secretKey>    设置翻译平台密钥
+  get-trl [options] [name]          显示指定平台的应用ID和秘钥，不指定则显示当前选中平台
+    -s, --show                      显示真正的秘钥
   set-langs [options]               设置源语言和目标语言
     -s, --source <source>           设置源语言
     -t, --target <target>           设置目标语言
@@ -47,25 +49,29 @@ $ tlm set-trl baidu -a 123456 -s abcdefghijklmnopqrstuvwxyz
 
   设置百度翻译平台的应用ID和密钥
 
+$ tlm get-trl baidu -s 
+
+  查看百度翻译平台的应用ID和秘钥
+
+$ tlm use youdao
+ 
+  使用有道翻译平台进行翻译
+
 $ tlm ls
 
   查看翻译平台列表和当前选中的平台
 
-$ tlm use youdao
- 
- 使用有道翻译平台进行翻译
-
 $ tlm ls langs
   
- 查看当前可以选择的源语言和目标语言代码
+  查看当前可以选择的源语言和目标语言代码
  
 $ tlm set-langs -s en -t zh
 
- 设置翻译源语言为英语，目标语言为中文
+  设置翻译源语言为英语，目标语言为中文
  
 $ tlm p hello world
 
- tlm p 跟上需要翻译的文本内容
+  tlm p 跟上需要翻译的文本内容
 ```
 ## 支持平台
 

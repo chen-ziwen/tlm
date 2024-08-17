@@ -5,7 +5,8 @@ import {
     showPlatformList,
     changePlatform,
     changeLanguageCode,
-    setTranslation
+    setTranslation,
+    getTranslation
 } from "@/util/controller";
 
 async function onList(query: string) {
@@ -24,6 +25,10 @@ async function onSetTranslation(name: string, info: { appid: string, secretKey: 
     await setTranslation(name, info);
 }
 
+async function onGetTranslation(name: string, info: { show: boolean }) {
+    await getTranslation(name, info);
+}
+
 async function onTranslate(query: string[]) {
     const txt = await Translator.translate(query);
     if (txt) console.log(chalk.blue(txt));
@@ -37,6 +42,7 @@ export {
     onList,
     onUse,
     onSetTranslation,
+    onGetTranslation,
     onTranslate,
     onSetTranslateLanguage
 }

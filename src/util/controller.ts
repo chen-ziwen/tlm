@@ -72,7 +72,7 @@ async function showLanguageList(len = 14) {
     const { source, target } = <Tl.Config>await readFile(TLMRC);
     const map: { [key: string]: string } = { source, target };
 
-    console.log(`\n- ${chalk.blue('蓝色')}高亮文本为当前选中语种\n- ${chalk.red('红色')}高亮文本为当前不支持语种\n- 不同翻译平台的不同语种支持略有差异\n`);
+    console.log(`- ${chalk.blue('蓝色')}高亮文本为当前选中语种\n- ${chalk.red('红色')}高亮文本为当前不支持语种\n- 不同翻译平台的不同语种支持略有差异\n`);
     console.log(`| ${stringFill(len, '源语言')} | ${stringFill(len, "目标语言")} |`);
     console.log(`|${'-'.repeat(len + 2)}|${'-'.repeat(len + 2)}|`);
     LANGUAGE_MAP.forEach(item => {
@@ -145,6 +145,18 @@ async function setTranslation(name: string, { appid, secretKey }: { appid: strin
     successLog(`${plName}翻译平台成功设置应用ID和秘钥`);
 }
 
+async function getTranslation(name: string, { show }: { show: boolean }) {
+    const { pl, platform } = await getPlatformInfo();
+    name = name ?? pl;
+    if (await isTranslationPlatformNotFound(name)) return;
+    const [_, value] = platform.find(([key]) => key == name)!;
+    const prefix = value.name.split("-")[0] + "翻译";
+    const appid = value.appid || "暂未设置";
+    const key = value.key ? (show ? value.key : "*".repeat(value.key.length)) : "暂未设置";
+    const message = `${prefix}\n- 应用ID: ${appid}\n- 秘钥: ${key}`;
+    console.log(message);
+}
+
 export {
     isTranslationPlatformNotFound,
     languageListHandle,
@@ -152,5 +164,6 @@ export {
     showPlatformList,
     changePlatform,
     changeLanguageCode,
-    setTranslation
+    setTranslation,
+    getTranslation
 }

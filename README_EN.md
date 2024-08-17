@@ -33,6 +33,8 @@ Commands:
   set-trl [options] <name>          Set the appid and key for the translation platform to access the channel translation api
     -a, --appid <appid>             Set translation platform appid
     -s, --secret-key <secretKey>    Set translation platform secret key
+  get-trl [options] [name]          Displays the appid and key of the specified platform, or the currently selected platform if not specified
+    -s, --show                      Displays the real secret key
   set-langs [options]               Set source and target languages
     -s, --source <source>           Set source language
     -t, --target <target>           Set target language
@@ -46,6 +48,14 @@ $ tlm set-trl baidu -a 123456 -s abcdefghijklmnopqrstuvwxyz
 
   Set the application ID and key of Baidu Translation Platform
 
+$ tlm get-trl baidu -s 
+
+  View the app ID and key of Baidu Translate platform
+
+$ tlm use youdao
+ 
+  Use Youdao translation platform for translation
+
 $ tlm ls
 
   View the list of translation platforms and the currently selected platform
@@ -53,10 +63,6 @@ $ tlm ls
 $ tlm ls langs
   
  View the currently available source and target language codes
-
-$ tlm use youdao
- 
- Use Youdao translation platform for translation
 
 $ tlm set-langs -s en -t zh
 

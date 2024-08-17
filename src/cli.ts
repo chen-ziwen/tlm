@@ -7,6 +7,7 @@ import {
     onList,
     onUse,
     onSetTranslation,
+    onGetTranslation,
     onTranslate,
     onSetTranslateLanguage
 } from "@util/actions";
@@ -37,16 +38,22 @@ program
     .action(onSetTranslation);
 
 program
+    .command("get-trl [name]")
+    .option("-s, --show", "Displays the real secret key")
+    .description("Displays the appid and key of the specified platform, or the currently selected platform if not specified.")
+    .action(onGetTranslation);
+
+program
     .command("set-langs")
     .option("-s, --source <source>", "Set source language")
     .option("-t, --target <target>", "Set target language")
     .description("Set source and target languages")
-    .action(onSetTranslateLanguage)
+    .action(onSetTranslateLanguage);
 
 program
     .command("p")
     .argument("<query...>")
     .description("Translate the text using the 'tlm p <query...>' directive")
-    .action(onTranslate)
+    .action(onTranslate);
 
 program.parse(process.argv);
