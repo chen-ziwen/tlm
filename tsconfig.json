@@ -9,6 +9,7 @@
     "skipLibCheck": true,
     "outDir": "./dist",
     "baseUrl": ".",
+    "allowJs": true,
     "paths": {
       "@/*": [
         "src/*"
@@ -24,6 +25,7 @@
   },
   "include": [
     "src/**/*.ts",
+    "src/**/*.js",
     "index.d.ts",
   ],
   "exclude": [
