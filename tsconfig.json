@@ -24,7 +24,6 @@
   },
   "include": [
     "src/**/*.ts",
-    "updated_config.ts",
     "index.d.ts",
   ],
   "exclude": [

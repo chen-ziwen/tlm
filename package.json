@@ -1,6 +1,6 @@
 {
   "name": "tlm",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "type": "module",
   "description": "Terminal packages that support multiple translation platforms",
   "main": "./dist/cli.js",
@@ -8,9 +8,9 @@
     "tlm": "./dist/cli.js"
   },
   "scripts": {
-    "start": "tsc-watch --onSuccess \"tsc-alias\"",
+    "dev": "tsc-watch --onSuccess \"tsc-alias\"",
     "build": "tsc && tsc-alias",
-    "postinstall": "node ./dist/updated_config.js",
+    "postinstall": "node ./updated_config.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "exports": {
@@ -21,6 +21,7 @@
   },
   "files": [
     "dist/",
+    "updated_config",
     "config.json",
     "README_EN.md"
   ],
@@ -57,6 +58,7 @@
     "@types/crypto-js": "^4.2.2",
     "@types/node": "^20.14.11",
     "@types/node-fetch": "^2.6.11",
+    "cross-env": "^7.0.3",
     "tsc-alias": "^1.8.10",
     "tsc-watch": "^6.2.0",
     "typescript": "^5.5.3"
