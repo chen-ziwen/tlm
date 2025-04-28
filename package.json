@@ -1,6 +1,6 @@
 {
   "name": "tlm",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "type": "module",
   "description": "Terminal packages that support multiple translation platforms",
   "main": "./dist/cli.js",
@@ -22,7 +22,7 @@
   "files": [
     "dist/",
     "config.json",
-    "update-config.js",
+    "config-updated.js",
     "README_EN.md"
   ],
   "keywords": [
