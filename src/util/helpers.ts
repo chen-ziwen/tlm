@@ -19,7 +19,7 @@ async function readFile(file: string) {
     })
 }
 
-async function writeFile(path: string, content: Tl.Config): Promise<void> {
+async function writeFile(path: string, content: TLM.Config): Promise<void> {
     return new Promise(resolve => {
         try {
             fs.writeFileSync(path, JSON.stringify(content, null, 2));
@@ -37,13 +37,13 @@ async function isExistConfig(path: string): Promise<boolean> {
 }
 
 async function getPlatformInfo() {
-    const config = <Tl.Config>await readFile(TLMRC);
+    const config = <TLM.Config>await readFile(TLMRC);
     const platform = Object.entries(config.platform);
     return { pl: config.pl, platform }
 }
 
 async function getPlatformConfig(name: string) {
-    const config = <Tl.Config>await readFile(TLMRC);
+    const config = <TLM.Config>await readFile(TLMRC);
     const platform = config.platform[name];
     const source = config.source, target = config.target, pl = config.pl;
     return { ...platform, source, target, pl }
@@ -68,7 +68,7 @@ function foundZhMap(code: string) {
 }
 
 function matchPlatformLanguageCode(name: string, { source, target }: { source: string, target: string }) {
-    const { codeMap } = (<{ [key: string]: Tl.LangsConfig }>languages)[name];
+    const { codeMap } = (<{ [key: string]: TLM.LangsConfig }>languages)[name];
     return { "source": codeMap[source], "target": codeMap[target] };
 }
 

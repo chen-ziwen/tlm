@@ -35,12 +35,12 @@ async function isTranslationPlatformNotFound(name: string, print = true) {
 }
 
 async function languageListHandle() {
-    const config = <Tl.Config>await readFile(TLMRC);
+    const config = <TLM.Config>await readFile(TLMRC);
     const { source, pl } = config;
-    const { sourceMap, targetMap } = (<{ [key: string]: Tl.LangsConfig }>languages)[pl];
+    const { sourceMap, targetMap } = (<{ [key: string]: TLM.LangsConfig }>languages)[pl];
     const condition: { [key: string]: boolean } = { "include": false, "exclude": true };
     const langsList: { [key: string]: LangsList[] } = { source: [], target: [] };
-    const langsMap: { [key: string]: Tl.LangMsg } = { "source": sourceMap, "target": targetMap[source] };
+    const langsMap: { [key: string]: TLM.LangMsg } = { "source": sourceMap, "target": targetMap[source] };
 
     for (let value of LANGUAGE_MAP) {
         const code = value.code;
@@ -70,7 +70,7 @@ async function showPlatformList() {
 
 async function showLanguageList(len = 14) {
     const langsList = await languageListHandle();
-    const { source, target } = <Tl.Config>await readFile(TLMRC);
+    const { source, target } = <TLM.Config>await readFile(TLMRC);
     const map: { [key: string]: string } = { source, target };
 
     console.log(`\n- ${chalk.blue('蓝色')}高亮文本为当前选中语种\n- ${chalk.red('红色')}高亮文本为当前不支持语种\n- 不同翻译平台的不同语种支持略有差异\n`);
@@ -97,7 +97,7 @@ async function showLanguageList(len = 14) {
 
 async function changePlatform(name: string) {
     if (await isTranslationPlatformNotFound(name)) return;
-    const config = <Tl.Config>await readFile(TLMRC);
+    const config = <TLM.Config>await readFile(TLMRC);
     const { source, target } = config;
     config.pl = name;
     await writeFile(TLMRC, config);
@@ -106,18 +106,18 @@ async function changePlatform(name: string) {
     await changeLanguageCode({ source, target }, { printSuc: false });
 }
 
-async function changeLanguageCode(langs: Tl.DefaultLangs, { printSuc = true, printErr = true }) {
-    const config = <Tl.Config>await readFile(TLMRC);
+async function changeLanguageCode(langs: TLM.DefaultLangs, { printSuc = true, printErr = true }) {
+    const config = <TLM.Config>await readFile(TLMRC);
     const { source, target, pl } = config;
     const map = Object.assign({ source, target }, langs);
-    const { codeMap, sourceMap, targetMap } = (<{ [key: string]: Tl.LangsConfig }>languages)[pl];
+    const { codeMap, sourceMap, targetMap } = (<{ [key: string]: TLM.LangsConfig }>languages)[pl];
     const condition = { "include": false, "exclude": true };
 
     let key: keyof typeof map;
     for (key in map) {
         const value = map[key];
         if (Object.keys(codeMap).includes(value)) {
-            const langsMap: { [key: string]: Tl.LangMsg } = { "source": sourceMap, "target": targetMap[map["source"]] };
+            const langsMap: { [key: string]: TLM.LangMsg } = { "source": sourceMap, "target": targetMap[map["source"]] };
             const { strategy, language } = langsMap[key];
             if (language.includes(value) == condition[strategy]) {
                 map[key] = DEFAULT_LANGUAGE[key];
@@ -137,7 +137,7 @@ async function changeLanguageCode(langs: Tl.DefaultLangs, { printSuc = true, pri
 
 async function setTranslation(name: string, { appid, secretKey }: { appid: string, secretKey: string }) {
     if (await isTranslationPlatformNotFound(name)) return;
-    const config = <Tl.Config>await readFile(TLMRC);
+    const config = <TLM.Config>await readFile(TLMRC);
     const platform = config.platform[name];
     platform.appid = appid ?? platform.appid;
     platform.key = secretKey ?? platform.key;

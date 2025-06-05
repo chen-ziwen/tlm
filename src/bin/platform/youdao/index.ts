@@ -3,7 +3,7 @@ import { getPlatformConfig, matchPlatformLanguageCode, errorLog } from "@util/he
 import querystring from "querystring";
 import fetch from "node-fetch";
 
-export class Youdao implements Tl.Methods {
+export class Youdao implements TLM.Methods {
     private mName: string;
     private mTitle: string;
     constructor(name: string) {

@@ -3,7 +3,7 @@ import { getPlatformConfig, matchPlatformLanguageCode, errorLog } from "@util/he
 import querystring from "querystring";
 import fetch from "node-fetch";
 
-export class Baidu implements Tl.Methods {
+export class Baidu implements TLM.Methods {
     private mName: string;
     private mTitle: string;
     constructor(name: string) {

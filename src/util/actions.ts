@@ -34,7 +34,7 @@ async function onTranslate(query: string[]) {
     if (txt) console.log(chalk.blue(txt));
 }
 
-async function onSetTranslateLanguage(languages: Tl.DefaultLangs) {
+async function onSetTranslateLanguage(languages: TLM.DefaultLangs) {
     await changeLanguageCode(languages, {});
 }
 

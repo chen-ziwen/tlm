@@ -1,10 +1,10 @@
 import { fileURLToPath } from 'url';
 import path from "path";
 
-const FILENAME = fileURLToPath(import.meta.url);
-const DIRNAME = path.dirname(FILENAME);
-const CONFIG_PATH = path.join(DIRNAME, '../config.json');
-const PACKAGE_PATH = path.join(DIRNAME, '../package.json');
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const CONFIG_PATH = path.join(__dirname, '../config.json');
+const PACKAGE_PATH = path.join(__dirname, '../package.json');
 const TLMRC = path.join(<string>process.env[(process.platform === 'win32') ? 'USERPROFILE' : 'HOME'], '.tlmrc.json');
 
 const LANGUAGE_MAP = [

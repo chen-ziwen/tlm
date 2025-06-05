@@ -1,7 +1,7 @@
 import tencentCloud from "tencentcloud-sdk-nodejs-tmt";
 import { getPlatformConfig, matchPlatformLanguageCode, errorLog } from "@util/helpers";
 
-export class Tencent implements Tl.Methods {
+export class Tencent implements TLM.Methods {
     private mName: string;
     private mTitle: string;
     constructor(name: string) {

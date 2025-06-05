@@ -1,7 +1,7 @@
 import { getPlatformConfig, matchPlatformLanguageCode } from "@util/helpers";
 import fetch from "node-fetch";
 
-export class Google implements Tl.Methods {
+export class Google implements TLM.Methods {
     private mName: string;
     private mTitle: string;
     constructor(name: string) {

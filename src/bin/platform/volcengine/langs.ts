@@ -1,4 +1,4 @@
-const langs: Tl.LangsConfig = {
+const langs: TLM.LangsConfig = {
     codeMap: {
         auto: "",
         zh: "zh",

@@ -3,7 +3,7 @@ import * as $OpenApi from "@alicloud/openapi-client";
 import * as $Util from '@alicloud/tea-util';
 import { getPlatformConfig, matchPlatformLanguageCode, errorLog } from "@util/helpers";
 
-export class Ali implements Tl.Methods {
+export class Ali implements TLM.Methods {
     private mName: string;
     private mTitle: string;
     constructor(name: string) {

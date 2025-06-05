@@ -2,7 +2,7 @@ import { Signer } from "@volcengine/openapi";
 import { getPlatformConfig, matchPlatformLanguageCode, errorLog } from "@util/helpers";
 import fetch from "node-fetch";
 
-export class Volcengine implements Tl.Methods {
+export class Volcengine implements TLM.Methods {
     private mName: string;
     private mTitle: string;
     constructor(name: string) {
