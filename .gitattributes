@@ -1,0 +1,5 @@
+# 强制 LF。本机 core.autocrlf=true 会把 checkout 出来的文件变成 CRLF，
+# 编译产物 dist/cli.js 的 shebang 一旦带上 \r，Linux/macOS 用户执行 tlm 会报
+# "/usr/bin/env: 'node\r': No such file or directory"。
+# 统一成 LF 后，无论从哪个平台构建，发布出去的 bin 入口都是可执行的。
+* text=auto eol=lf

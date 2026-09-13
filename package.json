@@ -1,6 +1,6 @@
 {
   "name": "tlm",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "type": "module",
   "description": "Terminal packages that support multiple translation platforms",
   "main": "./dist/cli.js",
@@ -9,20 +9,19 @@
   },
   "scripts": {
     "dev": "tsc-watch --onSuccess \"tsc-alias\"",
+    "prebuild": "node scripts/clean.mjs",
     "build": "tsc && tsc-alias",
-    "postinstall": "node ./config-updated.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npm run build && node --test test/*.test.js"
   },
   "exports": {
     ".": "./dist/cli.js"
   },
   "engines": {
-    "node": ">=14.8.0"
+    "node": ">=18.0.0"
   },
   "files": [
     "dist/",
     "config.json",
-    "config-updated.js",
     "README_EN.md"
   ],
   "keywords": [
@@ -44,21 +43,20 @@
     "url": "https://github.com/chen-ziwen/translate_terminal"
   },
   "dependencies": {
-    "@alicloud/alimt20181012": "^1.0.4",
+    "@alicloud/alimt20181012": "^1.4.2",
+    "@alicloud/openapi-core": "^1.0.0",
     "@volcengine/openapi": "^1.18.1",
     "chalk": "^4.1.2",
     "commander": "^12.0.0",
     "crypto-js": "^4.2.0",
     "node-fetch": "^3.3.2",
     "string-width": "^4.2.3",
-    "tencentcloud-sdk-nodejs-tmt": "^4.0.844",
-    "uuid": "^9.0.1"
+    "tencentcloud-sdk-nodejs-tmt": "^4.0.844"
   },
   "devDependencies": {
     "@types/crypto-js": "^4.2.2",
     "@types/node": "^20.14.11",
     "@types/node-fetch": "^2.6.11",
-    "cross-env": "^7.0.3",
     "tsc-alias": "^1.8.10",
     "tsc-watch": "^6.2.0",
     "typescript": "^5.5.3"

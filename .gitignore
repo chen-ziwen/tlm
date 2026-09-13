@@ -1,4 +1,8 @@
 node_modules
 dist/
-package-lock.json
 privateConfig.json
+*.tgz
+
+# package-lock.json 必须提交：CI 和用户安装要拿到同一棵依赖树。
+# 它曾被忽略，导致 caret 依赖（如 @alicloud/alimt20181012）悄悄漂版本，
+# 发出去的包和本地测过的不是一回事 —— 0.1.8 之前的安装故障就是这么来的。

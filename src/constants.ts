@@ -1,11 +1,15 @@
-import { fileURLToPath } from 'url';
-import path from "path";
+import type { DefaultLangs } from "@/types";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const CONFIG_PATH = path.join(__dirname, '../config.json');
-const PACKAGE_PATH = path.join(__dirname, '../package.json');
-const TLMRC = path.join(<string>process.env[(process.platform === 'win32') ? 'USERPROFILE' : 'HOME'], '.tlmrc.json');
+import os from "os";
+import path from "path";
+import { fileURLToPath } from "url";
+
+const CURRENT_DIR = path.dirname(fileURLToPath(import.meta.url));
+const PACKAGE_ROOT = path.join(CURRENT_DIR, "..");
+
+const CONFIG_PATH = path.join(PACKAGE_ROOT, "config.json");
+const PACKAGE_PATH = path.join(PACKAGE_ROOT, "package.json");
+const TLMRC = path.join(os.homedir(), ".tlmrc.json");
 
 const LANGUAGE_MAP = [
     { zh: "自动检测", en: "auto", code: "auto" },
@@ -28,7 +32,7 @@ const LANGUAGE_ZH = {
     target: "目标语言"
 };
 
-const DEFAULT_LANGUAGE = {
+const DEFAULT_LANGUAGE: DefaultLangs = {
     source: "auto",
     target: "zh"
 };

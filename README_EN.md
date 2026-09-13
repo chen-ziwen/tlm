@@ -1,7 +1,7 @@
 # Multiplatform terminal translation package
 
 ![Static Badge](https://img.shields.io/badge/npm-6.14.17-blue)
-![Static Badge](https://img.shields.io/badge/node->=14.8.0-97CA00)
+![Static Badge](https://img.shields.io/badge/node->=18.0.0-97CA00)
 ![Static Badge](https://img.shields.io/badge/licenes-MIT-97CA00)
 
 > A simple terminal translation package that supports multiple translation platforms.  Through terminal commands, you can easily and quickly switch platforms and languages, and perform text translation operations.
